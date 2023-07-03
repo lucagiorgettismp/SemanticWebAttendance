@@ -1,0 +1,1099 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/"
+     xml:base="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/"
+     xmlns:ns="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:attendance-ontology="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#"
+     xmlns:untitled-ontology-4="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology">
+        <owl:imports rdf:resource="http://www.w3.org/2006/vcard/ns"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- http://www.w3.org/2003/06/sw-vocab-status/ns#term_status -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2003/06/sw-vocab-status/ns#term_status"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasAttendance -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasAttendance">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isAttendanceOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Workgroup"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasDidacticActivity -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasDidacticActivity">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isDidacticActivityOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Class"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasExam -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasExam">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isExamOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Exam"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasLesson -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasLesson">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isLessonOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasPin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasPin">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isPinOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Pin"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasStudent -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasStudent">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isStudentOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#StudentGroup"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasTeacher -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasTeacher">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isTeacherOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Teacher"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasTurn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasTurn">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isTurnOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Exam"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ExamTurn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isAttendanceOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isAttendanceOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isDidacticActivityOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isDidacticActivityOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isExamOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isExamOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isLessonOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isLessonOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isPinOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isPinOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isStudentOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isStudentOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isTeacherOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isTeacherOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isTurnOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#isTurnOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#expiration-date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#expiration-date">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Pin"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:comment>Pin expiration date. After this date pin is considered invalid.</rdfs:comment>
+        <rdfs:label>expiration date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#student-id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#student-id">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>The student identifier</rdfs:comment>
+        <rdfs:label>student id</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#family-name -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/vcard/ns#family-name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Person"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#given-name -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2006/vcard/ns#given-name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Person"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#StudentGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Class -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Class">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#StudentGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Exam -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Exam"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ExamTurn -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ExamTurn">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Workgroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Workgroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValid -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValid">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValidAlreadySubmitted -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValidAlreadySubmitted">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValida"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValidOutOfWorkgroup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValidOutOfWorkgroup">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValidWithDelay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValidWithDelay">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValida -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#NotValida">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Pin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Pin"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#StudentGroup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#StudentGroup"/>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Teacher -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Teacher">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Valid -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Valid">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Valida"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ValidWithDelay -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ValidWithDelay">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Valida"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Valida -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Valida">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Workgroup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Workgroup">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#StudentGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+        <attendance-ontology:hasPin rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#PIN_WS_2"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+        <attendance-ontology:hasPin rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#PIN_WS_1"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#CL_2023_01 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#CL_2023_01">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Class"/>
+        <attendance-ontology:hasDidacticActivity rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DA_ProjectManagement"/>
+        <attendance-ontology:hasDidacticActivity rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DA_WebSemantico"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DA_ProjectManagement -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DA_ProjectManagement">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+        <attendance-ontology:hasTeacher rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DA_WebSemantico -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DA_WebSemantico">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#DidacticActivity"/>
+        <attendance-ontology:hasExam rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26"/>
+        <attendance-ontology:hasLesson rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#LEZ_WS_2023_05_21"/>
+        <attendance-ontology:hasLesson rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#LEZ_WS_2023_05_22"/>
+        <attendance-ontology:hasTeacher rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ExamTurn"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ExamTurn"/>
+        <attendance-ontology:hasAttendance rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Exam"/>
+        <attendance-ontology:hasTurn rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30"/>
+        <attendance-ontology:hasTurn rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#LEZ_WS_2023_05_21 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#LEZ_WS_2023_05_21">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson"/>
+        <attendance-ontology:hasAttendance rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#LEZ_WS_2023_05_22 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#LEZ_WS_2023_05_22">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi"/>
+        <attendance-ontology:hasStudent rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#PIN_WS_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#PIN_WS_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Pin"/>
+        <attendance-ontology:expiration-date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-05-21T10:00:00Z</attendance-ontology:expiration-date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#PIN_WS_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#PIN_WS_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Pin"/>
+        <attendance-ontology:expiration-date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2023-06-26T10:00:00Z</attendance-ontology:expiration-date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+        <attendance-ontology:student-id>00001</attendance-ontology:student-id>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+        <attendance-ontology:student-id>00002</attendance-ontology:student-id>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Teacher"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti">
+        <rdf:type rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Teacher"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/et">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/e">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/c">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/da">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/t">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Get exams partecipated by Luigi Verdi</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasAttendance"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/et"/>
+                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasTurn"/>
+                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/e"/>
+                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/et"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#student-id"/>
+                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                                                        <swrl:argument2>00002</swrl:argument2>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#ExamTurn"/>
+                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/et"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                <rdf:first>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                                                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Exam"/>
+                                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/e"/>
+                                                                    </rdf:Description>
+                                                                </rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                                        <rdf:first>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasStudent"/>
+                                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a"/>
+                                                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                                                                            </rdf:Description>
+                                                                        </rdf:first>
+                                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/e"/>
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/et"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Get lessons partecipated by Mario Rossi</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Attendance"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson"/>
+                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#student-id"/>
+                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                                                <swrl:argument2>00001</swrl:argument2>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasAttendance"/>
+                                                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                                                        <swrl:argument2 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                                                        <rdf:first>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasStudent"/>
+                                                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/a"/>
+                                                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                                                            </rdf:Description>
+                                                        </rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Count classes</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Class"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/c"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/c"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Get all lessons</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Get lessons number for DA</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Lesson"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#hasLesson"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/da"/>
+                                <swrl:argument2 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/da"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                                <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count"/>
+                                <swrl:arguments rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/l"/>
+                                </swrl:arguments>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Count stundents</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Get all stundents</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Get student by studentId</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Student"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#student-id"/>
+                                <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                                <swrl:argument2>00001</swrl:argument2>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/s"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</swrla:isRuleEnabled>
+        <rdfs:comment></rdfs:comment>
+        <rdfs:label>Count teachers</rdfs:label>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/attendance-ontology#Teacher"/>
+                        <swrl:argument1 rdf:resource="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#BuiltinAtom"/>
+                        <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count"/>
+                        <swrl:arguments rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/lucag/ontologies/2023/5/untitled-ontology-4/t"/>
+                        </swrl:arguments>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi -->
+
