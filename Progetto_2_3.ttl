@@ -320,7 +320,7 @@ attendance-ontology:CL_2023_01 rdf:type owl:NamedIndividual ,
                                                                        attendance-ontology:DA_WebSemantico ;
                                attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                               attendance-ontology:STU_00002_LuigiVerdi ;
-                               attendance-ontology:class-year 2023 .
+                               attendance-ontology:class-year "2023"^^xsd:gYear .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement
@@ -328,7 +328,7 @@ attendance-ontology:DA_ProjectManagement rdf:type owl:NamedIndividual ,
                                                   attendance-ontology:DidacticActivity ;
                                          attendance-ontology:hasTeacher attendance-ontology:TR_MarcoAntonioBoschetti ;
                                          attendance-ontology:da-term 1 ;
-                                         attendance-ontology:da-year 2023 .
+                                         attendance-ontology:da-year "2023"^^xsd:gYear .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico
@@ -339,7 +339,7 @@ attendance-ontology:DA_WebSemantico rdf:type owl:NamedIndividual ,
                                                                   attendance-ontology:LEZ_WS_2023_05_22 ;
                                     attendance-ontology:hasTeacher attendance-ontology:TR_AntonellaCarbonaro ;
                                     attendance-ontology:da-term 2 ;
-                                    attendance-ontology:da-year 2023 .
+                                    attendance-ontology:da-year "2023"^^xsd:gYear .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30

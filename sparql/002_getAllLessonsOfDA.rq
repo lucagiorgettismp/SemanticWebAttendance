@@ -1,0 +1,11 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# All lessons of DA_WebSemantico
+SELECT (count(?lez) as ?tot_lez) WHERE {
+	?da att:hasLesson ?lez . 
+	FILTER (?da = att:DA_WebSemantico)
+}
