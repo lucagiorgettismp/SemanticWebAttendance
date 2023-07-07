@@ -1,0 +1,31 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Percentage of lessons in delay for students of DA_WebSemantico
+SELECT (?stu AS ?student) ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100 AS ?delay_percentage) WHERE {
+    {
+        SELECT ?stu (count(?att) AS ?tot_attendance) WHERE {
+            ?da att:hasLesson ?les.
+            ?les att:hasAttendance ?att.
+            ?att att:hasStudent ?stu .
+        }
+
+        GROUP BY ?stu
+    }
+
+    {
+        SELECT ?stu (count(?att) AS ?tot_delays) WHERE {
+            ?da att:hasLesson ?les.
+            ?les att:hasAttendance ?att.
+            ?att rdf:type att:AttendanceValidWithDelay ;
+                att:hasStudent ?stu .
+        }
+
+        GROUP BY ?stu
+    }
+}
+
+ORDER BY ?student
