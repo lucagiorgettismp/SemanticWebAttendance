@@ -5,24 +5,24 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # DA_WebSemantico attendance frequency
-SELECT (?stu AS ?student) ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
+SELECT ?student ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
 	{
-		SELECT ?stu (count(?lez) AS ?tot_freq) WHERE {
-			?da att:hasLesson ?lez .
-			?lez att:hasAttendance ?attend . 
-			?attend att:hasStudent ?stu
+		SELECT ?student (count(?lesson) AS ?tot_freq) WHERE {
+			?da att:hasLesson ?lesson .
+			?lesson att:hasAttendance ?attendance . 
+			?attendance att:hasStudent ?student .
 			FILTER (?da = att:DA_WebSemantico)
 		}
 
-		GROUP BY ?stu
+		GROUP BY ?student
 	}
 		{
-		SELECT (count(?lez) AS ?tot) WHERE {
-			?da att:hasLesson ?lez .
+		SELECT (count(?lesson) AS ?tot) WHERE {
+			?da att:hasLesson ?lesson .
 			FILTER (?da = att:DA_WebSemantico)
 		}
 	}
 }
 
-GROUP BY ?stu ?tot ?tot_freq
-ORDER BY ?stu
+GROUP BY ?student ?tot ?tot_freq
+ORDER BY ?student

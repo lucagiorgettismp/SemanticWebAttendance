@@ -6,7 +6,7 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Get all students
 SELECT ?stuid ?name ?surname WHERE {
-	?stu att:student-id ?stuid ; 
+	?student att:student-id ?stuid ; 
 		vcard:given-name ?name ; 
 		vcard:family-name ?surname .
 }

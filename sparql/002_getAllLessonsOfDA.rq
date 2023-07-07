@@ -5,9 +5,9 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # All lessons of DA_WebSemantico
-SELECT (?les AS ?lessons) WHERE {
-	?da att:hasLesson ?les .
+SELECT ?lessons WHERE {
+	?da att:hasLesson ?lesson .
 	FILTER (?da = att:DA_WebSemantico)
 }
 
-ORDER BY ?les
+ORDER BY ?lessons

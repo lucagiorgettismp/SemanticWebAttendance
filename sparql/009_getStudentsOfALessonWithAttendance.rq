@@ -6,16 +6,16 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Students of the specified lesson and their attendance.
 SELECT DISTINCT ?student ?type WHERE {
-    ?les att:hasStudent ?student . 
+    ?lesson att:hasStudent ?student . 
 
     OPTIONAL { 
-        ?les att:hasAttendance ?att .
-        ?att att:hasStudent ?student ;
+        ?lesson att:hasAttendance ?attendance .
+        ?attendance att:hasStudent ?student ;
             rdf:type ?type .
         ?type rdfs:subClassOf att:Attendance .
     }
 
-    FILTER (?les = att:LES_WS_2023_05_22)
+    FILTER (?lesson = att:LES_WS_2023_05_22)
 }
 
 ORDER BY ?student
