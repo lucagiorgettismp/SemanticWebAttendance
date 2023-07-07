@@ -5,7 +5,7 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
-SELECT ?stu ?percentage WHERE {
+SELECT (?stu AS ?student) ?percentage WHERE {
 	{
 		SELECT ?stu ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
 			{
@@ -27,6 +27,7 @@ SELECT ?stu ?percentage WHERE {
 		}
 
 		GROUP BY ?stu ?tot ?tot_freq
+		ORDER BY ?stu
 	}
 
 	FILTER (?percentage > 75)

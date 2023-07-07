@@ -306,6 +306,13 @@ attendance-ontology:AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI rdf:type owl:NamedIndi
                                                           attendance-ontology:hasStudent attendance-ontology:STU_00002_LuigiVerdi .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI
+attendance-ontology:AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                                                   attendance-ontology:AttendanceNotValidWithDelay ;
+                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 ;
+                                                          attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:AttendanceValidWithDelay ;
@@ -353,7 +360,8 @@ attendance-ontology:ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00
 attendance-ontology:ET_WS_2023_06_26_11_00 rdf:type owl:NamedIndividual ,
                                                     attendance-ontology:ExamTurn ;
-                                           attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI ;
+                                           attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI ,
+                                                                             attendance-ontology:AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                           attendance-ontology:STU_00002_LuigiVerdi ;
                                            attendance-ontology:end_time "2023-06-26T12:30:00"^^xsd:dateTime ;
