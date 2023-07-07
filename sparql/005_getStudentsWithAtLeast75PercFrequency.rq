@@ -1,0 +1,33 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
+SELECT ?stu ?percentage WHERE {
+	{
+		SELECT ?stu ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
+			{
+				SELECT ?stu (count(?lez) AS ?tot_freq) WHERE {
+					?da att:hasLesson ?lez .
+					?lez att:hasAttendance ?attend . 
+					?attend att:hasStudent ?stu .
+
+					FILTER (?da = att:DA_WebSemantico)
+				}
+				GROUP BY ?stu
+			}
+				{
+				SELECT (count(?lez) AS ?tot) WHERE {
+					?da att:hasLesson ?lez .
+					FILTER (?da = att:DA_WebSemantico)
+				}
+			}
+		}
+
+		GROUP BY ?stu ?tot ?tot_freq
+	}
+
+	FILTER (?percentage > 75)
+}
