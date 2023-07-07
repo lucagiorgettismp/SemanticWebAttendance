@@ -4,9 +4,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Get all students
-SELECT ?stuid ?name ?surname WHERE {
-	?stu att:student-id ?stuid ; 
-		vcard:given-name ?name ; 
-		vcard:family-name ?surname .
+# Description of this awesome query
+SELECT * WHERE {
+
 }

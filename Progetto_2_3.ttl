@@ -405,7 +405,7 @@ attendance-ontology:STU_00001_MarioRossi rdf:type owl:NamedIndividual ,
                                          attendance-ontology:student-id "00001" ;
                                          <http://www.w3.org/2006/vcard/ns#bday> "1995-09-12T00:00:00"^^xsd:dateTime ;
                                          <http://www.w3.org/2006/vcard/ns#family-name> "Rossi"^^xsd:string ;
-                                         <http://www.w3.org/2006/vcard/ns#given-name> "Martio"^^xsd:string .
+                                         <http://www.w3.org/2006/vcard/ns#given-name> "Mario"^^xsd:string .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi
