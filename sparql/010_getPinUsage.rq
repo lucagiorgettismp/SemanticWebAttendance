@@ -1,0 +1,14 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Get all pin usage.
+SELECT ?pin ?workgroup ?type WHERE {
+    ?pin rdf:type att:Pin ;
+        att:isPinOf ?attendance .
+    ?attendance att:isAttendanceOf ?workgroup .
+    ?workgroup rdf:type ?type .
+    ?type rdfs:subClassOf att:Workgroup .
+}

@@ -1,0 +1,2024 @@
+@prefix : <http://www.semanticweb.org/part-time-team/ontologies/2023/6/attendance-ontology-inferred#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/part-time-team/ontologies/2023/6/attendance-ontology-inferred> .
+
+<http://www.semanticweb.org/part-time-team/ontologies/2023/6/attendance-ontology-inferred> rdf:type owl:Ontology ;
+                                                                                            rdfs:comment "Ontology for vCard based on RFC6350"@en ;
+                                                                                            rdfs:label "Ontology for vCard"@en ;
+                                                                                            owl:versionInfo "Final"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#gYear
+xsd:gYear rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> rdf:type owl:ObjectProperty ;
+                                                                                                owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> ;
+                                                                                                rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                                rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasDidacticActivity
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasDidacticActivity> rdf:type owl:ObjectProperty ;
+                                                                                                      owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf> ;
+                                                                                                      rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class> ;
+                                                                                                      rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasExam
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasExam> rdf:type owl:ObjectProperty ;
+                                                                                          owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isExamOf> ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                          rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson> rdf:type owl:ObjectProperty ;
+                                                                                            owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> ;
+                                                                                            rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                            rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> rdf:type owl:ObjectProperty ;
+                                                                                         rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                         owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> ;
+                                                                                         rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ;
+                                                                                         rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> rdf:type owl:ObjectProperty ;
+                                                                                             owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                             rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTeacher
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTeacher> rdf:type owl:ObjectProperty ;
+                                                                                             owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTeacherOf> ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                             rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Teacher> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTurn
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTurn> rdf:type owl:ObjectProperty ;
+                                                                                          owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTurnOf> ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> ;
+                                                                                          rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTutor
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTutor> rdf:type owl:ObjectProperty ;
+                                                                                           owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTutorOf> ;
+                                                                                           rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
+                                                                                           rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Tutor> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isExamOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isExamOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTeacherOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTeacherOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTurnOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTurnOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTutorOf
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTutorOf> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdf:type owl:SymmetricProperty ,
+                               owl:TransitiveProperty ,
+                               owl:ReflexiveProperty .
+
+
+###  http://www.w3.org/2006/vcard/ns#adr
+<http://www.w3.org/2006/vcard/ns#adr> rdf:type owl:ObjectProperty ;
+                                      owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#hasAddress> ;
+                                      rdfs:comment "This object property has been mapped"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "address"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#email
+<http://www.w3.org/2006/vcard/ns#email> rdf:type owl:ObjectProperty ;
+                                        owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#hasEmail> ;
+                                        rdfs:comment "This object property has been mapped"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "email"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#geo
+<http://www.w3.org/2006/vcard/ns#geo> rdf:type owl:ObjectProperty ;
+                                      owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#hasGeo> ;
+                                      rdfs:comment "This object property has been mapped"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "geo"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasAddress
+<http://www.w3.org/2006/vcard/ns#hasAddress> rdf:type owl:ObjectProperty ;
+                                             rdfs:range <http://www.w3.org/2006/vcard/ns#Address> ;
+                                             rdfs:comment "To specify the components of the delivery address for the object"@en ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                             rdfs:label "has address"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasEmail
+<http://www.w3.org/2006/vcard/ns#hasEmail> rdf:type owl:ObjectProperty ;
+                                           rdfs:range <http://www.w3.org/2006/vcard/ns#Email> ;
+                                           rdfs:comment "To specify the electronic mail address for communication with the object"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "has email"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasGeo
+<http://www.w3.org/2006/vcard/ns#hasGeo> rdf:type owl:ObjectProperty ;
+                                         rdfs:comment "To specify information related to the global positioning of the object. May also be used as a property parameter."@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "has geo"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasKey
+<http://www.w3.org/2006/vcard/ns#hasKey> rdf:type owl:ObjectProperty ;
+                                         owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#key> ;
+                                         rdfs:comment "To specify a public key or authentication certificate associated with the object"@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "has key"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasLogo
+<http://www.w3.org/2006/vcard/ns#hasLogo> rdf:type owl:ObjectProperty ;
+                                          owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#logo> ;
+                                          rdfs:comment "To specify a graphic image of a logo associated with the object "@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:label "has logo"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasMember
+<http://www.w3.org/2006/vcard/ns#hasMember> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <http://www.w3.org/2006/vcard/ns#Group> ;
+                                            rdfs:range <http://www.w3.org/2006/vcard/ns#Kind> ;
+                                            rdfs:comment "To include a member in the group this object represents. (This property can only be used by Group individuals)"@en ;
+                                            rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                            rdfs:label "has member"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasName
+<http://www.w3.org/2006/vcard/ns#hasName> rdf:type owl:ObjectProperty ;
+                                          owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#n> ;
+                                          rdfs:range <http://www.w3.org/2006/vcard/ns#Name> ;
+                                          rdfs:comment "To specify the components of the name of the object"@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:label "has name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasPhoto
+<http://www.w3.org/2006/vcard/ns#hasPhoto> rdf:type owl:ObjectProperty ;
+                                           owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#photo> ;
+                                           rdfs:comment "To specify an image or photograph information that annotates some aspect of the object"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "has photo"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasSound
+<http://www.w3.org/2006/vcard/ns#hasSound> rdf:type owl:ObjectProperty ;
+                                           owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#sound> ;
+                                           rdfs:comment "To specify a digital sound content information that annotates some aspect of the object"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "has sound"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasTelephone
+<http://www.w3.org/2006/vcard/ns#hasTelephone> rdf:type owl:ObjectProperty ;
+                                               owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#tel> ;
+                                               rdfs:comment "To specify the telephone number for telephony communication with the object"@en ;
+                                               rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                               rdfs:label "has telephone"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasURL
+<http://www.w3.org/2006/vcard/ns#hasURL> rdf:type owl:ObjectProperty ;
+                                         owl:equivalentProperty <http://www.w3.org/2006/vcard/ns#url> ;
+                                         rdfs:comment "To specify a uniform resource locator associated with the object"@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "has url"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#key
+<http://www.w3.org/2006/vcard/ns#key> rdf:type owl:ObjectProperty ;
+                                      rdfs:comment "This object property has been mapped"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "key"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#logo
+<http://www.w3.org/2006/vcard/ns#logo> rdf:type owl:ObjectProperty ;
+                                       rdfs:comment "This object property has been mapped"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "logo"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#n
+<http://www.w3.org/2006/vcard/ns#n> rdf:type owl:ObjectProperty ;
+                                    rdfs:comment "This object property has been mapped"@en ;
+                                    rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                    rdfs:label "name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#photo
+<http://www.w3.org/2006/vcard/ns#photo> rdf:type owl:ObjectProperty ;
+                                        rdfs:comment "This object property has been mapped"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "photo"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#sound
+<http://www.w3.org/2006/vcard/ns#sound> rdf:type owl:ObjectProperty ;
+                                        rdfs:comment "This object property has been mapped"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "sound"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#tel
+<http://www.w3.org/2006/vcard/ns#tel> rdf:type owl:ObjectProperty ;
+                                      rdfs:comment "This object property has been mapped"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "telephone"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#url
+<http://www.w3.org/2006/vcard/ns#url> rdf:type owl:ObjectProperty ;
+                                      rdfs:comment "This object property has been mapped"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "url"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#class-year
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#class-year> rdf:type owl:DatatypeProperty ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class> ;
+                                                                                             rdfs:range xsd:gYear ;
+                                                                                             rdfs:label "class year" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-term
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-term> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                          rdfs:range xsd:int ;
+                                                                                          rdfs:comment "Term (part of the school year) of didactic activity." ;
+                                                                                          rdfs:label "da term" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-year
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-year> rdf:type owl:DatatypeProperty ;
+                                                                                          rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                          rdfs:range xsd:gYear ;
+                                                                                          rdfs:comment "Didactic activity year." ;
+                                                                                          rdfs:label "da year" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time> rdf:type owl:DatatypeProperty ;
+                                                                                           rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                           rdfs:range xsd:dateTime ;
+                                                                                           rdfs:comment "End date and time of workgroup." ;
+                                                                                           rdfs:label "end time" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#exam_date
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#exam_date> rdf:type owl:DatatypeProperty ;
+                                                                                            rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> ;
+                                                                                            rdfs:range xsd:dateTime ;
+                                                                                            rdfs:comment "Date of the exam. Different exam turns are specified by the specific class." ;
+                                                                                            rdfs:label "exam date" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#expiration-date
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#expiration-date> rdf:type owl:DatatypeProperty ;
+                                                                                                  rdfs:subPropertyOf owl:topDataProperty ;
+                                                                                                  rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> ;
+                                                                                                  rdfs:range xsd:dateTime ;
+                                                                                                  rdfs:comment "Pin expiration date. After this date pin is considered invalid." ;
+                                                                                                  rdfs:label "expiration date" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time> rdf:type owl:DatatypeProperty ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                             rdfs:range xsd:dateTime ;
+                                                                                             rdfs:comment "Start date and time of workgroup." ;
+                                                                                             rdfs:label "start time" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> rdf:type owl:DatatypeProperty ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                                                             rdfs:range xsd:string ;
+                                                                                             rdfs:comment "The student identifier" ;
+                                                                                             rdfs:label "student id" .
+
+
+###  http://www.w3.org/2006/vcard/ns#additional-name
+<http://www.w3.org/2006/vcard/ns#additional-name> rdf:type owl:DatatypeProperty ;
+                                                  rdfs:range xsd:string ;
+                                                  rdfs:comment "The additional name associated with the object"@en ;
+                                                  rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                  rdfs:label "additional name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#anniversary
+<http://www.w3.org/2006/vcard/ns#anniversary> rdf:type owl:DatatypeProperty ;
+                                              rdfs:range [ rdf:type rdfs:Datatype ;
+                                                           owl:unionOf ( xsd:dateTime
+                                                                         xsd:gYear
+                                                                       )
+                                                         ] ;
+                                              rdfs:comment "The date of marriage, or equivalent, of the object"@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:label "anniversary"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#bday
+<http://www.w3.org/2006/vcard/ns#bday> rdf:type owl:DatatypeProperty ;
+                                       rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ;
+                                       rdfs:range [ rdf:type rdfs:Datatype ;
+                                                    owl:unionOf ( xsd:dateTime
+                                                                  xsd:dateTimeStamp
+                                                                  xsd:gYear
+                                                                )
+                                                  ] ;
+                                       rdfs:comment "To specify the birth date of the object"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "birth date"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#category
+<http://www.w3.org/2006/vcard/ns#category> rdf:type owl:DatatypeProperty ;
+                                           rdfs:range xsd:string ;
+                                           rdfs:comment "The category information about the object, also known as tags"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "category"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#country-name
+<http://www.w3.org/2006/vcard/ns#country-name> rdf:type owl:DatatypeProperty ;
+                                               rdfs:range xsd:string ;
+                                               rdfs:comment "The country name associated with the address of the object"@en ;
+                                               rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                               rdfs:label "country name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#family-name
+<http://www.w3.org/2006/vcard/ns#family-name> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ;
+                                              rdfs:range xsd:string ;
+                                              rdfs:comment "The family name associated with the object"@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:label "family name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#fn
+<http://www.w3.org/2006/vcard/ns#fn> rdf:type owl:DatatypeProperty ;
+                                     rdfs:range xsd:string ;
+                                     rdfs:comment "The formatted text corresponding to the name of the object"@en ;
+                                     rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                     rdfs:label "formatted name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#given-name
+<http://www.w3.org/2006/vcard/ns#given-name> rdf:type owl:DatatypeProperty ;
+                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ;
+                                             rdfs:range xsd:string ;
+                                             rdfs:comment "The given name associated with the object"@en ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                             rdfs:label "given name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#honorific-prefix
+<http://www.w3.org/2006/vcard/ns#honorific-prefix> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:comment "The honorific prefix of the name associated with the object"@en ;
+                                                   rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                   rdfs:label "honorific prefix"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#honorific-suffix
+<http://www.w3.org/2006/vcard/ns#honorific-suffix> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:comment "The honorific suffix of the name associated with the object"@en ;
+                                                   rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                   rdfs:label "honorific suffix"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#locality
+<http://www.w3.org/2006/vcard/ns#locality> rdf:type owl:DatatypeProperty ;
+                                           rdfs:range xsd:string ;
+                                           rdfs:comment "The locality (e.g. city or town) associated with the address of the object"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "locality"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#nickname
+<http://www.w3.org/2006/vcard/ns#nickname> rdf:type owl:DatatypeProperty ;
+                                           rdfs:range xsd:string ;
+                                           rdfs:comment "The nick name associated with the object"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "nickname"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#note
+<http://www.w3.org/2006/vcard/ns#note> rdf:type owl:DatatypeProperty ;
+                                       rdfs:range xsd:string ;
+                                       rdfs:comment "A note associated with the object"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "note"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#organization-name
+<http://www.w3.org/2006/vcard/ns#organization-name> rdf:type owl:DatatypeProperty ;
+                                                    rdfs:range xsd:string ;
+                                                    rdfs:comment "To specify the organizational name associated with the object"@en ;
+                                                    rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                    rdfs:label "organization name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#organization-unit
+<http://www.w3.org/2006/vcard/ns#organization-unit> rdf:type owl:DatatypeProperty ;
+                                                    rdfs:subPropertyOf <http://www.w3.org/2006/vcard/ns#organization-name> ;
+                                                    rdfs:range xsd:string ;
+                                                    rdfs:comment "To specify the organizational unit name associated with the object"@en ;
+                                                    rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                    rdfs:label "organizational unit name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#postal-code
+<http://www.w3.org/2006/vcard/ns#postal-code> rdf:type owl:DatatypeProperty ;
+                                              rdfs:range xsd:string ;
+                                              rdfs:comment "The postal code associated with the address of the object"@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:label "postal code"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#prodid
+<http://www.w3.org/2006/vcard/ns#prodid> rdf:type owl:DatatypeProperty ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:comment "To specify the identifier for the product that created the object"@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "product id"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#region
+<http://www.w3.org/2006/vcard/ns#region> rdf:type owl:DatatypeProperty ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:comment "The region (e.g. state or province) associated with the address of the object"@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "region"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#rev
+<http://www.w3.org/2006/vcard/ns#rev> rdf:type owl:DatatypeProperty ;
+                                      rdfs:range xsd:dateTime ;
+                                      rdfs:comment "To specify revision information about the object"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "revision"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#role
+<http://www.w3.org/2006/vcard/ns#role> rdf:type owl:DatatypeProperty ;
+                                       rdfs:range xsd:string ;
+                                       rdfs:comment "To specify the function or part played in a particular situation by the object"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "role"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#sort-string
+<http://www.w3.org/2006/vcard/ns#sort-string> rdf:type owl:DatatypeProperty ;
+                                              rdfs:range xsd:string ;
+                                              rdfs:comment "To specify the string to be used for national-language-specific sorting. Used as a property parameter only."@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:label "sort as"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#street-address
+<http://www.w3.org/2006/vcard/ns#street-address> rdf:type owl:DatatypeProperty ;
+                                                 rdfs:range xsd:string ;
+                                                 rdfs:comment "The street address associated with the address of the object"@en ;
+                                                 rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                 rdfs:label "street address"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#title
+<http://www.w3.org/2006/vcard/ns#title> rdf:type owl:DatatypeProperty ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:comment "To specify the position or job of the object"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "title"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#tz
+<http://www.w3.org/2006/vcard/ns#tz> rdf:type owl:DatatypeProperty ;
+                                     rdfs:range xsd:string ;
+                                     rdfs:comment "To indicate time zone information that is specific to the object. May also be used as a property parameter."@en ;
+                                     rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                     rdfs:label "time zone"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> rdf:type owl:Class ;
+                                                                                             rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> rdf:type owl:Class ;
+                                                                                                     rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidAlreadySubmitted
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidAlreadySubmitted> rdf:type owl:Class ;
+                                                                                                                     rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidOutOfWorkgroup
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidOutOfWorkgroup> rdf:type owl:Class ;
+                                                                                                                   rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidWithDelay
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidWithDelay> rdf:type owl:Class ;
+                                                                                                              rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> rdf:type owl:Class ;
+                                                                                                  rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValidWithDelay
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValidWithDelay> rdf:type owl:Class ;
+                                                                                                           rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> rdf:type owl:Class ;
+                                                                                           rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> rdf:type owl:Class ;
+                                                                                         rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> rdf:type owl:Class ;
+                                                                                          rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Teacher
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Teacher> rdf:type owl:Class ;
+                                                                                          rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Tutor
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Tutor> rdf:type owl:Class ;
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> rdf:type owl:Class ;
+                                                                                            rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> .
+
+
+###  http://www.w3.org/2006/vcard/ns#Acquaintance
+<http://www.w3.org/2006/vcard/ns#Acquaintance> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                               rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                               rdfs:label "Acquaintance"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Address
+<http://www.w3.org/2006/vcard/ns#Address> rdf:type owl:Class ;
+                                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                                owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#country-name> ;
+                                                                                                       owl:someValuesFrom xsd:string
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#country-name> ;
+                                                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                              [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#locality> ;
+                                                                                                       owl:someValuesFrom xsd:string
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#locality> ;
+                                                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                              [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#postal-code> ;
+                                                                                                       owl:someValuesFrom xsd:string
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#postal-code> ;
+                                                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                              [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#region> ;
+                                                                                                       owl:someValuesFrom xsd:string
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#region> ;
+                                                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                              [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#street-address> ;
+                                                                                                       owl:someValuesFrom xsd:string
+                                                                                                     ]
+                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                       owl:onProperty <http://www.w3.org/2006/vcard/ns#street-address> ;
+                                                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                     ]
+                                                                                                   ) ;
+                                                                                rdf:type owl:Class
+                                                                              ]
+                                                                            )
+                                                              ] ;
+                                          rdfs:comment "To specify the components of the delivery address for the  object"@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:label "Address"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Agent
+<http://www.w3.org/2006/vcard/ns#Agent> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Agent"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#BBS
+<http://www.w3.org/2006/vcard/ns#BBS> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                      rdfs:comment "This class is deprecated"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "BBS"@en ;
+                                      owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Car
+<http://www.w3.org/2006/vcard/ns#Car> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                      rdfs:comment "This class is deprecated"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Car"@en ;
+                                      owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Cell
+<http://www.w3.org/2006/vcard/ns#Cell> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                       rdfs:comment "Also called mobile telephone"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Cell"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Child
+<http://www.w3.org/2006/vcard/ns#Child> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Child"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Colleague
+<http://www.w3.org/2006/vcard/ns#Colleague> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                            rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                            rdfs:label "Colleague"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Contact
+<http://www.w3.org/2006/vcard/ns#Contact> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:label "Contact"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Coresident
+<http://www.w3.org/2006/vcard/ns#Coresident> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                             rdfs:label "Coresident"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Coworker
+<http://www.w3.org/2006/vcard/ns#Coworker> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "Coworker"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Crush
+<http://www.w3.org/2006/vcard/ns#Crush> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Crush"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Date
+<http://www.w3.org/2006/vcard/ns#Date> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Date"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Dom
+<http://www.w3.org/2006/vcard/ns#Dom> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                      rdfs:comment "This class is deprecated"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Dom"@en ;
+                                      owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Email
+<http://www.w3.org/2006/vcard/ns#Email> rdf:type owl:Class ;
+                                        rdfs:comment "To specify the electronic mail address for communication with the object the vCard represents. Use the hasEmail object property."@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Email"@en ;
+                                        owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Emergency
+<http://www.w3.org/2006/vcard/ns#Emergency> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                            rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                            rdfs:label "Emergency"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Fax
+<http://www.w3.org/2006/vcard/ns#Fax> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Fax"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Female
+<http://www.w3.org/2006/vcard/ns#Female> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Gender> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Female"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Friend
+<http://www.w3.org/2006/vcard/ns#Friend> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Friend"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Gender
+<http://www.w3.org/2006/vcard/ns#Gender> rdf:type owl:Class ;
+                                         rdfs:comment "Used for gender codes. The URI of the gender code must be used as the value for Gender."@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Gender"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Group
+<http://www.w3.org/2006/vcard/ns#Group> rdf:type owl:Class ;
+                                        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.w3.org/2006/vcard/ns#hasMember> ;
+                                                                                     owl:someValuesFrom <http://www.w3.org/2006/vcard/ns#Kind>
+                                                                                   ]
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty <http://www.w3.org/2006/vcard/ns#hasMember> ;
+                                                                                     owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                     owl:onClass <http://www.w3.org/2006/vcard/ns#Kind>
+                                                                                   ]
+                                                                                 ) ;
+                                                              rdf:type owl:Class
+                                                            ] ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Kind> ,
+                                                        <http://www.w3.org/2006/vcard/ns#VCard> ;
+                                        owl:disjointWith <http://www.w3.org/2006/vcard/ns#Individual> ,
+                                                         <http://www.w3.org/2006/vcard/ns#Location> ,
+                                                         <http://www.w3.org/2006/vcard/ns#Organization> ;
+                                        rdfs:comment "Object representing a group of persons or entities.  A group object will usually contain hasMember properties to specify the members of the group."@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Group"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Home
+<http://www.w3.org/2006/vcard/ns#Home> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                       rdfs:comment "This implies that the property is related to an individual's personal life"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Home"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#ISDN
+<http://www.w3.org/2006/vcard/ns#ISDN> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                       rdfs:comment "This class is deprecated"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "ISDN"@en ;
+                                       owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Individual
+<http://www.w3.org/2006/vcard/ns#Individual> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Kind> ,
+                                                             <http://www.w3.org/2006/vcard/ns#VCard> ;
+                                             owl:disjointWith <http://www.w3.org/2006/vcard/ns#Location> ,
+                                                              <http://www.w3.org/2006/vcard/ns#Organization> ;
+                                             rdfs:comment "An object representing a single person or entity"@en ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                             rdfs:label "Individual"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Internet
+<http://www.w3.org/2006/vcard/ns#Internet> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                           rdfs:comment "This class is deprecated"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "Internet"@en ;
+                                           owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Intl
+<http://www.w3.org/2006/vcard/ns#Intl> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                       rdfs:comment "This class is deprecated"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Intl"@en ;
+                                       owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Kin
+<http://www.w3.org/2006/vcard/ns#Kin> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Kin"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Kind
+<http://www.w3.org/2006/vcard/ns#Kind> rdf:type owl:Class ;
+                                       owl:equivalentClass <http://www.w3.org/2006/vcard/ns#VCard> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <http://www.w3.org/2006/vcard/ns#fn> ;
+                                                             owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                             owl:onDataRange xsd:string
+                                                           ] ;
+                                       rdfs:comment "The parent class for all objects"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Kind"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Label
+<http://www.w3.org/2006/vcard/ns#Label> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                        rdfs:comment "This class is deprecated"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Label"@en ;
+                                        owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Location
+<http://www.w3.org/2006/vcard/ns#Location> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Kind> ,
+                                                           <http://www.w3.org/2006/vcard/ns#VCard> ;
+                                           owl:disjointWith <http://www.w3.org/2006/vcard/ns#Organization> ;
+                                           rdfs:comment "An object representing a named geographical place"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "Location"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Male
+<http://www.w3.org/2006/vcard/ns#Male> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Gender> ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Male"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Me
+<http://www.w3.org/2006/vcard/ns#Me> rdf:type owl:Class ;
+                                     rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                     rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                     rdfs:label "Me"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Met
+<http://www.w3.org/2006/vcard/ns#Met> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Met"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Modem
+<http://www.w3.org/2006/vcard/ns#Modem> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                        rdfs:comment "This class is deprecated"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Modem"@en ;
+                                        owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Msg
+<http://www.w3.org/2006/vcard/ns#Msg> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                      rdfs:comment "This class is deprecated"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Msg"@en ;
+                                      owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Muse
+<http://www.w3.org/2006/vcard/ns#Muse> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Muse"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Name
+<http://www.w3.org/2006/vcard/ns#Name> rdf:type owl:Class ;
+                                       owl:equivalentClass [ rdf:type owl:Class ;
+                                                             owl:unionOf ( [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#additional-name> ;
+                                                                                                    owl:someValuesFrom xsd:string
+                                                                                                  ]
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#additional-name> ;
+                                                                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                                                  ]
+                                                                                                ) ;
+                                                                             rdf:type owl:Class
+                                                                           ]
+                                                                           [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#family-name> ;
+                                                                                                    owl:someValuesFrom xsd:string
+                                                                                                  ]
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#family-name> ;
+                                                                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                  ]
+                                                                                                ) ;
+                                                                             rdf:type owl:Class
+                                                                           ]
+                                                                           [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#given-name> ;
+                                                                                                    owl:someValuesFrom xsd:string
+                                                                                                  ]
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#given-name> ;
+                                                                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                                                  ]
+                                                                                                ) ;
+                                                                             rdf:type owl:Class
+                                                                           ]
+                                                                           [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#honorific-prefix> ;
+                                                                                                    owl:someValuesFrom xsd:string
+                                                                                                  ]
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#honorific-prefix> ;
+                                                                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                                                  ]
+                                                                                                ) ;
+                                                                             rdf:type owl:Class
+                                                                           ]
+                                                                           [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#honorific-suffix> ;
+                                                                                                    owl:someValuesFrom xsd:string
+                                                                                                  ]
+                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                    owl:onProperty <http://www.w3.org/2006/vcard/ns#honorific-suffix> ;
+                                                                                                    owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                                                  ]
+                                                                                                ) ;
+                                                                             rdf:type owl:Class
+                                                                           ]
+                                                                         )
+                                                           ] ;
+                                       rdfs:comment "To specify the components of the name of the object"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Name"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Neighbor
+<http://www.w3.org/2006/vcard/ns#Neighbor> rdf:type owl:Class ;
+                                           rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "Neighbor"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#None
+<http://www.w3.org/2006/vcard/ns#None> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Gender> ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "None"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Organization
+<http://www.w3.org/2006/vcard/ns#Organization> rdf:type owl:Class ;
+                                               rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Kind> ,
+                                                               <http://www.w3.org/2006/vcard/ns#VCard> ;
+                                               rdfs:comment """An object representing an organization.  An organization is a single entity, and might represent a business or government, a department or division within a business or government, a club, an association, or the like.
+"""@en ;
+                                               rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                               rdfs:label "Organization"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Other
+<http://www.w3.org/2006/vcard/ns#Other> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Gender> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Other"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#PCS
+<http://www.w3.org/2006/vcard/ns#PCS> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                      rdfs:comment "This class is deprecated"@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "PCS"@en ;
+                                      owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Pager
+<http://www.w3.org/2006/vcard/ns#Pager> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Pager"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Parcel
+<http://www.w3.org/2006/vcard/ns#Parcel> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                         rdfs:comment "This class is deprecated"@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Parcel"@en ;
+                                         owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Parent
+<http://www.w3.org/2006/vcard/ns#Parent> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Parent"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Postal
+<http://www.w3.org/2006/vcard/ns#Postal> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                         rdfs:comment "This class is deprecated"@en ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Postal"@en ;
+                                         owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#Pref
+<http://www.w3.org/2006/vcard/ns#Pref> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                       rdfs:comment "This class is deprecated"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Pref"@en ;
+                                       owl:deprecated "true"^^xsd:boolean .
+
+
+###  http://www.w3.org/2006/vcard/ns#RelatedType
+<http://www.w3.org/2006/vcard/ns#RelatedType> rdf:type owl:Class ;
+                                              rdfs:comment "Used for relation type codes. The URI of the relation type code must be used as the value for the Relation Type."@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:label "Relation Type"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Sibling
+<http://www.w3.org/2006/vcard/ns#Sibling> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:label "Sibling"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Spouse
+<http://www.w3.org/2006/vcard/ns#Spouse> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                         rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:label "Spouse"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Sweetheart
+<http://www.w3.org/2006/vcard/ns#Sweetheart> rdf:type owl:Class ;
+                                             rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#RelatedType> ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                             rdfs:label "Sweetheart"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#TelephoneType
+<http://www.w3.org/2006/vcard/ns#TelephoneType> rdf:type owl:Class ;
+                                                rdfs:comment "Used for telephone type codes. The URI of the telephone type code must be used as the value for the Telephone Type."@en ;
+                                                rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                rdfs:label "Phone"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Text
+<http://www.w3.org/2006/vcard/ns#Text> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                       rdfs:comment "Also called sms telephone"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Text"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#TextPhone
+<http://www.w3.org/2006/vcard/ns#TextPhone> rdf:type owl:Class ;
+                                            rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                            rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                            rdfs:label "Text phone"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Type
+<http://www.w3.org/2006/vcard/ns#Type> rdf:type owl:Class ;
+                                       rdfs:comment "Used for type codes. The URI of the type code must be used as the value for Type."@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Type"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Unknown
+<http://www.w3.org/2006/vcard/ns#Unknown> rdf:type owl:Class ;
+                                          rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Gender> ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:label "Unknown"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#VCard
+<http://www.w3.org/2006/vcard/ns#VCard> rdf:type owl:Class ;
+                                        rdfs:comment "The vCard class is  equivalent to the new Kind class, which is the parent for the four explicit types of vCards (Individual, Organization, Location, Group)"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "VCard"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Video
+<http://www.w3.org/2006/vcard/ns#Video> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Video"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Voice
+<http://www.w3.org/2006/vcard/ns#Voice> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#TelephoneType> ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "Voice"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#Work
+<http://www.w3.org/2006/vcard/ns#Work> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                       rdfs:comment "This implies that the property is related to an individual's work place"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "Work"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#X400
+<http://www.w3.org/2006/vcard/ns#X400> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Type> ;
+                                       rdfs:comment "This class is deprecated"@en ;
+                                       rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                       rdfs:label "X400"@en ;
+                                       owl:deprecated "true"^^xsd:boolean .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI> rdf:type owl:NamedIndividual ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidWithDelay> ,
+                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValidWithDelay> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                               <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1> ;
+                                                                                                               <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
+                                                                                                               <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                               <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_3> ;
+                                                                                                               <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
+                                                                                                               <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01> rdf:type owl:NamedIndividual ,
+                                                                                                      <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class> ,
+                                                                                                      <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasDidacticActivity> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement> ,
+                                                                                                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico> ;
+                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
+                                                                                                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
+                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#class-year> "2023"^^xsd:gYear .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement> rdf:type owl:NamedIndividual ,
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTeacher> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-term> 1 ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-year> "2023"^^xsd:gYear .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico> rdf:type owl:NamedIndividual ,
+                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DidacticActivity> ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasExam> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26> ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> ,
+                                                                                                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTeacher> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro> ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01> ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-term> 2 ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-year> "2023"^^xsd:gYear .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30> rdf:type owl:NamedIndividual ,
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ,
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ,
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTurnOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time> "2023-06-26T11:00:00"^^xsd:dateTime ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time> "2023-06-26T09:30:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> rdf:type owl:NamedIndividual ,
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ,
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ,
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI> ,
+                                                                                                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
+                                                                                                                                                                                                      <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTurnOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time> "2023-06-26T12:30:00"^^xsd:dateTime ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time> "2023-06-26T11:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26> rdf:type owl:NamedIndividual ,
+                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> ;
+                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTurn> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30> ,
+                                                                                                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ;
+                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isExamOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico> ;
+                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#exam_date> "2023-06-26T00:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> rdf:type owl:NamedIndividual ,
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ,
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
+                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time> "2023-05-21T14:00:00"^^xsd:dateTime ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time> "2023-05-21T11:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> rdf:type owl:NamedIndividual ,
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ,
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
+                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTutor> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TUT_RobertoReda> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico> ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time> "2023-05-22T11:00:00"^^xsd:dateTime ;
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time> "2023-05-22T09:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1> rdf:type owl:NamedIndividual ,
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> ;
+                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI> ;
+                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#expiration-date> "2023-05-21T10:00:00Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2> rdf:type owl:NamedIndividual ,
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> ;
+                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI> ,
+                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI> ;
+                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#expiration-date> "2023-06-26T10:00:00Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_3
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_3> rdf:type owl:NamedIndividual ,
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> ,
+                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> ;
+                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI> ;
+                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#exam_date> "2023-06-26T10:00:00Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> rdf:type owl:NamedIndividual ,
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ,
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> "00001"^^xsd:string ;
+                                                                                                       <http://www.w3.org/2006/vcard/ns#bday> "1995-09-12T00:00:00"^^xsd:dateTime ;
+                                                                                                       <http://www.w3.org/2006/vcard/ns#family-name> "Rossi"^^xsd:string ;
+                                                                                                       <http://www.w3.org/2006/vcard/ns#given-name> "Mario"^^xsd:string .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> rdf:type owl:NamedIndividual ,
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ,
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> ,
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ;
+                                                                                                       <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> "00002"^^xsd:string ;
+                                                                                                       <http://www.w3.org/2006/vcard/ns#bday> "1997-11-04T00:00:00"^^xsd:dateTime ;
+                                                                                                       <http://www.w3.org/2006/vcard/ns#family-name> "Verdi"^^xsd:string ;
+                                                                                                       <http://www.w3.org/2006/vcard/ns#given-name> "Luigi"^^xsd:string .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro> rdf:type owl:NamedIndividual ,
+                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ,
+                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Teacher> ;
+                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTeacherOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico> ;
+                                                                                                        <http://www.w3.org/2006/vcard/ns#family-name> "Carbonaro"^^xsd:string ;
+                                                                                                        <http://www.w3.org/2006/vcard/ns#given-name> "Antonella"^^xsd:string .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti> rdf:type owl:NamedIndividual ,
+                                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ,
+                                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Teacher> ;
+                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTeacherOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement> ;
+                                                                                                           <http://www.w3.org/2006/vcard/ns#family-name> "Boschetti"^^xsd:string ;
+                                                                                                           <http://www.w3.org/2006/vcard/ns#given-name> "Marco Antonio"^^xsd:string .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TUT_RobertoReda
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TUT_RobertoReda> rdf:type owl:NamedIndividual ,
+                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ,
+                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Tutor> ;
+                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isTutorOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ;
+                                                                                                  <http://www.w3.org/2006/vcard/ns#family-name> "Reda"^^xsd:string ;
+                                                                                                  <http://www.w3.org/2006/vcard/ns#given-name> "Roberto"^^xsd:string .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+<http://www.w3.org/2006/vcard/ns#Tel> rdfs:comment "This class is deprecated. Use the hasTelephone object property."@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "Tel"@en ;
+                                      owl:deprecated "true"^^xsd:boolean .
+
+
+<http://www.w3.org/2006/vcard/ns#agent> owl:deprecated "true"^^xsd:boolean ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:comment "This object property has been deprecated"@en ;
+                                        rdfs:label "agent"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#class> rdfs:comment "This data property has been deprecated"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "class"@en ;
+                                        owl:deprecated "true"^^xsd:boolean .
+
+
+<http://www.w3.org/2006/vcard/ns#extended-address> rdfs:label "extended address"@en ;
+                                                   owl:deprecated "true"^^xsd:boolean ;
+                                                   rdfs:comment "This data property has been deprecated"@en ;
+                                                   rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasAdditionalName> rdfs:label "has additional name"@en ;
+                                                    rdfs:comment "Used to support property parameters for the additional name data property"@en ;
+                                                    rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasCalendarBusy> rdfs:label "has calendar busy"@en ;
+                                                  rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                  rdfs:comment "To specify the busy time associated with the object. (Was called FBURL in RFC6350)"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasCalendarLink> rdfs:label "has calendar link"@en ;
+                                                  rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                  rdfs:comment "To specify the calendar associated with the object. (Was called CALURI in RFC6350)"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasCalendarRequest> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                     rdfs:comment "To specify the calendar user address to which a scheduling request be sent for the object. (Was called CALADRURI in RFC6350)"@en ;
+                                                     rdfs:label "has calendar request"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasCategory> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:label "has category"@en ;
+                                              rdfs:comment "Used to support property parameters for the category data property"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasCountryName> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                 rdfs:comment "Used to support property parameters for the country name data property"@en ;
+                                                 rdfs:label "has country name"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasFN> rdfs:comment "Used to support property parameters for the formatted name data property"@en ;
+                                        rdfs:label "has formatted name"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasFamilyName> rdfs:comment "Used to support property parameters for the family name data property"@en ;
+                                                rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                rdfs:label "has family name"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasGender> rdfs:label "has gender"@en ;
+                                            rdfs:comment "To specify  the sex or gender identity of the object. URIs are recommended to enable interoperable sex and gender codes to be used."@en ;
+                                            rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasGivenName> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                               rdfs:label "has given name"@en ;
+                                               rdfs:comment "Used to support property parameters for the given name data property"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasHonorificPrefix> rdfs:label "has honorific prefix"@en ;
+                                                     rdfs:comment "Used to support property parameters for the honorific prefix data property"@en ;
+                                                     rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasHonorificSuffix> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                     rdfs:comment "Used to support property parameters for the honorific suffix data property"@en ;
+                                                     rdfs:label "has honorific suffix"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasInstantMessage> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                    rdfs:comment "To specify the instant messaging and presence protocol communications with the object. (Was called IMPP in RFC6350)"@en ;
+                                                    rdfs:label "has messaging"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasLanguage> rdfs:comment "Used to support property parameters for the language data property"@en ;
+                                              rdfs:label "has language"@en ;
+                                              rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasLocality> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:comment "Used to support property parameters for the locality data property"@en ;
+                                              rdfs:label "has locality"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasNickname> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                              rdfs:comment "Used to support property parameters for the nickname data property"@en ;
+                                              rdfs:seeAlso <http://www.w3.org/2006/vcard/ns#nickname> ;
+                                              rdfs:label "has nickname"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasNote> rdfs:label "has note"@en ;
+                                          rdfs:comment "Used to support property parameters for the note data property"@en ;
+                                          rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasOrganizationName> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                      rdfs:label "has organization name"@en ;
+                                                      rdfs:comment "Used to support property parameters for the organization name data property"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasOrganizationUnit> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                      rdfs:comment "Used to support property parameters for the organization unit name data property"@en ;
+                                                      rdfs:label "has organization unit name"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasPostalCode> rdfs:label "has postal code"@en ;
+                                                rdfs:comment "Used to support property parameters for the postal code data property"@en ;
+                                                rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasRegion> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                            rdfs:comment "Used to support property parameters for the region data property"@en ;
+                                            rdfs:label "has region"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasRelated> rdfs:label "has related"@en ;
+                                             rdfs:comment "To specify a relationship between another entity and the entity represented by this object"@en ;
+                                             rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasRole> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                          rdfs:comment "Used to support property parameters for the role data property"@en ;
+                                          rdfs:label "has role"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasSource> rdfs:comment "To identify the source of directory information of the object"@en ;
+                                            rdfs:label "has source"@en ;
+                                            rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasStreetAddress> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                   rdfs:comment "Used to support property parameters for the street address data property"@en ;
+                                                   rdfs:label "has street address"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasTitle> rdfs:label "has title"@en ;
+                                           rdfs:comment "Used to support property parameters for the title data property"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#hasUID> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         rdfs:comment "To specify a value that represents a globally unique identifier corresponding to the object"@en ;
+                                         rdfs:label "has uid"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#hasValue> rdfs:comment "Used to indicate the resource value of an object property that requires property parameters"@en ;
+                                           rdfs:label "has value"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#label> owl:deprecated "true"^^xsd:boolean ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                        rdfs:label "label"@en ;
+                                        rdfs:comment "This data property has been deprecated"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#language> rdfs:comment "To specify the language that may be used for contacting the object. May also be used as a property parameter."@en ;
+                                           rdfs:label "language"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+<http://www.w3.org/2006/vcard/ns#latitude> rdfs:comment "This data property has been deprecated. See hasGeo"@en ;
+                                           rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                           rdfs:label "latitude"@en ;
+                                           owl:deprecated "true"^^xsd:boolean .
+
+
+<http://www.w3.org/2006/vcard/ns#longitude> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                            owl:deprecated "true"^^xsd:boolean ;
+                                            rdfs:label "longitude"@en ;
+                                            rdfs:comment "This data property has been deprecated. See hasGeo"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#mailer> rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                         owl:deprecated "true"^^xsd:boolean ;
+                                         rdfs:comment "This data property has been deprecated"@en ;
+                                         rdfs:label "mailer"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#org> rdfs:comment "This object property has been mapped. Use the organization-name data property."@en ;
+                                      rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                      rdfs:label "organization"@en .
+
+
+<http://www.w3.org/2006/vcard/ns#post-office-box> rdfs:label "post office box"@en ;
+                                                  rdfs:comment "This data property has been deprecated"@en ;
+                                                  rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> ;
+                                                  owl:deprecated "true"^^xsd:boolean .
+
+
+<http://www.w3.org/2006/vcard/ns#value> rdfs:comment "Used to indicate the literal value of a data property that requires property parameters"@en ;
+                                        rdfs:label "value"@en ;
+                                        rdfs:isDefinedBy <http://www.w3.org/2006/vcard/ns> .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<http://www.semanticweb.org/owl/owlapi/turtle#et> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#a> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#s> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#e> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#l> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#c> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#da> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#t> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Count classes" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#c>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#c>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Get all lessons" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Get lessons number for DA" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#da> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#da>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count> ;
+                                                                  <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                                                                             )
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Count stundents" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Get all stundents" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Get student by studentId" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> "00001"
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Count teachers" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Teacher> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#t>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#count> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#t>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Get exams partecipated by Luigi Verdi" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#et> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#a>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#a>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTurn> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#e> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#et>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> "00002"
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#et>
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Exam> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#e>
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#a> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest rdf:nil
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#e>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#et>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Get lessons partecipated by Mario Rossi" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#a>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#s> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> "00001"
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#l> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#a>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#a> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#s>
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#l>
+                                                                                                  )
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

@@ -55,7 +55,6 @@ attendance-ontology:hasExam rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson
 attendance-ontology:hasLesson rdf:type owl:ObjectProperty ;
                               owl:inverseOf attendance-ontology:isLessonOf ;
-                              rdf:type owl:TransitiveProperty ;
                               rdfs:domain attendance-ontology:DidacticActivity ;
                               rdfs:range attendance-ontology:Lesson .
 
@@ -428,7 +427,8 @@ attendance-ontology:PIN_WS_2 rdf:type owl:NamedIndividual ,
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_3
-attendance-ontology:PIN_WS_3 rdf:type owl:NamedIndividual ;
+attendance-ontology:PIN_WS_3 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
                              attendance-ontology:exam_date "2023-06-26T10:00:00Z"^^xsd:dateTime .
 
 

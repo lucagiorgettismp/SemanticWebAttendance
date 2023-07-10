@@ -13,8 +13,6 @@ SELECT ?student (COUNT(?attendance) AS ?tries) WHERE {
     { ?attendance rdf:type att:AttendanceValid }
     UNION 
     { ?attendance rdf:type att:AttendanceValidWithDelay }
-    UNION 
-    { ?attendance rdf:type att:AttendanceNotValidWithDelay}
 
     FILTER (?da = att:DA_WebSemantico)
 }
