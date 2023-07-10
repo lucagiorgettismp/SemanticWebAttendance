@@ -38,6 +38,13 @@ attendance-ontology:hasAttendance rdf:type owl:ObjectProperty ;
                                   rdfs:range attendance-ontology:Attendance .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant
+attendance-ontology:hasAttendant rdf:type owl:ObjectProperty ;
+                                 owl:inverseOf attendance-ontology:isAttendantOf ;
+                                 rdfs:domain attendance-ontology:Attendance ;
+                                 rdfs:range attendance-ontology:Person .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasDidacticActivity
 attendance-ontology:hasDidacticActivity rdf:type owl:ObjectProperty ;
                                         owl:inverseOf attendance-ontology:isDidacticActivityOf ;
@@ -99,6 +106,10 @@ attendance-ontology:hasTutor rdf:type owl:ObjectProperty ;
 attendance-ontology:isAttendanceOf rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendantOf
+attendance-ontology:isAttendantOf rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf
 attendance-ontology:isDidacticActivityOf rdf:type owl:ObjectProperty .
 
@@ -131,6 +142,11 @@ attendance-ontology:isTurnOf rdf:type owl:ObjectProperty .
 attendance-ontology:isTutorOf rdf:type owl:ObjectProperty .
 
 
+###  http://www.w3.org/2006/vcard/ns#hasGender
+<http://www.w3.org/2006/vcard/ns#hasGender> rdfs:domain attendance-ontology:Person ;
+                                            rdfs:range <http://www.w3.org/2006/vcard/ns#Gender> .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -158,8 +174,8 @@ attendance-ontology:da-year rdf:type owl:DatatypeProperty ;
                             rdfs:label "da year" .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end_time
-attendance-ontology:end_time rdf:type owl:DatatypeProperty ;
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time
+attendance-ontology:end-time rdf:type owl:DatatypeProperty ;
                              rdfs:domain attendance-ontology:Workgroup ;
                              rdfs:range xsd:dateTime ;
                              rdfs:comment "End date and time of workgroup." ;
@@ -183,8 +199,8 @@ attendance-ontology:expiration-date rdf:type owl:DatatypeProperty ;
                                     rdfs:label "expiration date" .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start_time
-attendance-ontology:start_time rdf:type owl:DatatypeProperty ;
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start-time
+attendance-ontology:start-time rdf:type owl:DatatypeProperty ;
                                rdfs:domain attendance-ontology:Workgroup ;
                                rdfs:range xsd:dateTime ;
                                rdfs:comment "Start date and time of workgroup." ;
@@ -216,8 +232,7 @@ attendance-ontology:student-id rdf:type owl:DatatypeProperty ;
 #################################################################
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance
-attendance-ontology:Attendance rdf:type owl:Class ;
-                               rdfs:subClassOf attendance-ontology:StudentGroup .
+attendance-ontology:Attendance rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid
@@ -312,29 +327,29 @@ attendance-ontology:Workgroup rdf:type owl:Class ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI
 attendance-ontology:AT_ET_WS_2023_06_26_11_30_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                                                    attendance-ontology:AttendanceValid ;
-                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 ;
-                                                          attendance-ontology:hasStudent attendance-ontology:STU_00002_LuigiVerdi .
+                                                          attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
+                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI
 attendance-ontology:AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                                    attendance-ontology:AttendanceNotValidWithDelay ;
-                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 ;
-                                                          attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi .
+                                                          attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
+                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:AttendanceValidWithDelay ;
-                                                 attendance-ontology:hasPin attendance-ontology:PIN_WS_1 ;
-                                                 attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi .
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
+                                                 attendance-ontology:hasPin attendance-ontology:PIN_WS_1 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:AttendanceValid ;
-                                                 attendance-ontology:hasPin attendance-ontology:PIN_WS_3 ;
-                                                 attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi .
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
+                                                 attendance-ontology:hasPin attendance-ontology:PIN_WS_3 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01
@@ -361,6 +376,8 @@ attendance-ontology:DA_WebSemantico rdf:type owl:NamedIndividual ,
                                     attendance-ontology:hasExam attendance-ontology:EX_WS_2023_06_26 ;
                                     attendance-ontology:hasLesson attendance-ontology:LES_WS_2023_05_21 ,
                                                                   attendance-ontology:LES_WS_2023_05_22 ;
+                                    attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
+                                                                   attendance-ontology:STU_00002_LuigiVerdi ;
                                     attendance-ontology:hasTeacher attendance-ontology:TR_AntonellaCarbonaro ;
                                     attendance-ontology:da-term 2 ;
                                     attendance-ontology:da-year "2023"^^xsd:gYear .
@@ -370,8 +387,8 @@ attendance-ontology:DA_WebSemantico rdf:type owl:NamedIndividual ,
 attendance-ontology:ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
                                                     attendance-ontology:ExamTurn ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ;
-                                           attendance-ontology:end_time "2023-06-26T11:00:00"^^xsd:dateTime ;
-                                           attendance-ontology:start_time "2023-06-26T09:30:00"^^xsd:dateTime .
+                                           attendance-ontology:end-time "2023-06-26T11:00:00"^^xsd:dateTime ;
+                                           attendance-ontology:start-time "2023-06-26T09:30:00"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00
@@ -381,8 +398,8 @@ attendance-ontology:ET_WS_2023_06_26_11_00 rdf:type owl:NamedIndividual ,
                                                                              attendance-ontology:AT_ET_WS_2023_06_26_11_30_MARIO_ROSSI ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                           attendance-ontology:STU_00002_LuigiVerdi ;
-                                           attendance-ontology:end_time "2023-06-26T12:30:00"^^xsd:dateTime ;
-                                           attendance-ontology:start_time "2023-06-26T11:00:00"^^xsd:dateTime .
+                                           attendance-ontology:end-time "2023-06-26T12:30:00"^^xsd:dateTime ;
+                                           attendance-ontology:start-time "2023-06-26T11:00:00"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26
@@ -393,14 +410,39 @@ attendance-ontology:EX_WS_2023_06_26 rdf:type owl:NamedIndividual ,
                                      attendance-ontology:exam_date "2023-06-26T00:00:00"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Female
+attendance-ontology:GEN_Female rdf:type owl:NamedIndividual ,
+                                        <http://www.w3.org/2006/vcard/ns#Female> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Male
+attendance-ontology:GEN_Male rdf:type owl:NamedIndividual ,
+                                      <http://www.w3.org/2006/vcard/ns#Male> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_None
+attendance-ontology:GEN_None rdf:type owl:NamedIndividual ,
+                                      <http://www.w3.org/2006/vcard/ns#None> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Other
+attendance-ontology:GEN_Other rdf:type owl:NamedIndividual ,
+                                       <http://www.w3.org/2006/vcard/ns#Other> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Unknown
+attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
+                                         <http://www.w3.org/2006/vcard/ns#Unknown> .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
 attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
                                       attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI ;
                                       attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                      attendance-ontology:STU_00002_LuigiVerdi ;
-                                      attendance-ontology:end_time "2023-05-21T14:00:00"^^xsd:dateTime ;
-                                      attendance-ontology:start_time "2023-05-21T11:00:00"^^xsd:dateTime .
+                                      attendance-ontology:end-time "2023-05-21T14:00:00"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2023-05-21T11:00:00"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22
@@ -410,8 +452,8 @@ attendance-ontology:LES_WS_2023_05_22 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                      attendance-ontology:STU_00002_LuigiVerdi ;
                                       attendance-ontology:hasTutor attendance-ontology:TUT_RobertoReda ;
-                                      attendance-ontology:end_time "2023-05-22T11:00:00"^^xsd:dateTime ;
-                                      attendance-ontology:start_time "2023-05-22T09:00:00"^^xsd:dateTime .
+                                      attendance-ontology:end-time "2023-05-22T11:00:00"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2023-05-22T09:00:00"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
@@ -435,6 +477,7 @@ attendance-ontology:PIN_WS_3 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi
 attendance-ontology:STU_00001_MarioRossi rdf:type owl:NamedIndividual ,
                                                   attendance-ontology:Student ;
+                                         <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Male ;
                                          attendance-ontology:student-id "00001" ;
                                          <http://www.w3.org/2006/vcard/ns#bday> "1995-09-12T00:00:00"^^xsd:dateTime ;
                                          <http://www.w3.org/2006/vcard/ns#family-name> "Rossi"^^xsd:string ;
@@ -444,6 +487,7 @@ attendance-ontology:STU_00001_MarioRossi rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi
 attendance-ontology:STU_00002_LuigiVerdi rdf:type owl:NamedIndividual ,
                                                   attendance-ontology:Student ;
+                                         <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Male ;
                                          attendance-ontology:student-id "00002" ;
                                          <http://www.w3.org/2006/vcard/ns#bday> "1997-11-04T00:00:00"^^xsd:dateTime ;
                                          <http://www.w3.org/2006/vcard/ns#family-name> "Verdi"^^xsd:string ;
@@ -453,6 +497,7 @@ attendance-ontology:STU_00002_LuigiVerdi rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro
 attendance-ontology:TR_AntonellaCarbonaro rdf:type owl:NamedIndividual ,
                                                    attendance-ontology:Teacher ;
+                                          <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Female ;
                                           <http://www.w3.org/2006/vcard/ns#family-name> "Carbonaro"^^xsd:string ;
                                           <http://www.w3.org/2006/vcard/ns#given-name> "Antonella"^^xsd:string .
 
@@ -460,6 +505,7 @@ attendance-ontology:TR_AntonellaCarbonaro rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_MarcoAntonioBoschetti
 attendance-ontology:TR_MarcoAntonioBoschetti rdf:type owl:NamedIndividual ,
                                                       attendance-ontology:Teacher ;
+                                             <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Male ;
                                              <http://www.w3.org/2006/vcard/ns#family-name> "Boschetti"^^xsd:string ;
                                              <http://www.w3.org/2006/vcard/ns#given-name> "Marco Antonio"^^xsd:string .
 

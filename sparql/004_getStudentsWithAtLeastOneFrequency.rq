@@ -8,11 +8,12 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ?stuid ?surname ?name WHERE {
 	?da att:hasLesson ?lesson .
 	?lesson att:hasAttendance ?attendance .
+
 	{ ?attendance rdf:type att:AttendanceValid . } 
 	UNION 
-	{ ?attendance rdf:type att:AttendanceValidWithDelay . }
+	{ ?attendance rdfs:subClassOf att:AttendanceValid . }
 
-	?attendance att:hasStudent ?student .
+	?attendance att:hasAttendant ?student .
 
 	?student att:student-id ?stuid ;
 		vcard:given-name ?name ;

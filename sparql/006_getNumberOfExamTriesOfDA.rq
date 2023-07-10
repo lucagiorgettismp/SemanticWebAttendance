@@ -4,15 +4,16 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
+#TODO: Fixare con lista studenti del esame
 # Number of DA_WebSemantico exam tried from a student
 SELECT ?student (COUNT(?attendance) AS ?tries) WHERE {
     ?da att:hasExam ?exam .
     ?exam att:hasTurn ?turn . 
     ?turn att:hasAttendance ?attendance .
-    ?attendance att:hasStudent ?student .
-    { ?attendance rdf:type att:AttendanceValid }
+    ?attendance att:hasAttendant ?student .
+    { ?attendance rdf:type att:AttendanceValid . } 
     UNION 
-    { ?attendance rdf:type att:AttendanceValidWithDelay }
+    { ?attendance rdfs:subClassOf att:AttendanceValid . }
 
     FILTER (?da = att:DA_WebSemantico)
 }

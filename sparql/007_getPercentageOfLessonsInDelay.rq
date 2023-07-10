@@ -10,7 +10,7 @@ SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100
         SELECT ?student (count(?attendance) AS ?tot_attendance) WHERE {
             ?da att:hasLesson ?lesson .
             ?lesson att:hasAttendance ?attendance .
-            ?attendance att:hasStudent ?student .
+            ?attendance att:hasAttendant ?student .
         }
 
         GROUP BY ?student
@@ -21,7 +21,7 @@ SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100
             ?da att:hasLesson ?lesson .
             ?lesson att:hasAttendance ?attendance .
             ?attendance rdf:type att:AttendanceValidWithDelay ;
-                att:hasStudent ?student .
+                att:hasAttendant ?student .
         }
 
         GROUP BY ?student

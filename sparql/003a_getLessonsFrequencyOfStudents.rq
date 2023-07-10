@@ -7,16 +7,26 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 # DA_WebSemantico attendance frequency
 SELECT ?student ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
 	{
-		SELECT ?student (count(?lesson) AS ?tot_freq) WHERE {
-			?da att:hasLesson ?lesson .
-			?lesson att:hasAttendance ?attendance . 
-			?attendance att:hasStudent ?student .
+		SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
+			?da att:hasStudent ?student .
+
+			OPTIONAL {
+				?da att:hasLesson ?lesson .
+				?lesson att:hasAttendance ?attendance .
+				?attendance att:hasAttendant ?student .
+
+				{ ?attendance rdf:type att:AttendanceValid . } 
+				UNION 
+				{ ?attendance rdfs:subClassOf att:AttendanceValid . }
+				
+				?attendance att:hasAttendant att:STU_00001_MarioRossi .
+			}
 			FILTER (?da = att:DA_WebSemantico)
 		}
 
 		GROUP BY ?student
 	}
-		{
+	{
 		SELECT (count(?lesson) AS ?tot) WHERE {
 			?da att:hasLesson ?lesson .
 			FILTER (?da = att:DA_WebSemantico)

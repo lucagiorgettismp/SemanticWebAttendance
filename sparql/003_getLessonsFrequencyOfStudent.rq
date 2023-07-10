@@ -10,7 +10,10 @@ SELECT ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
 		SELECT (count(?lesson) AS ?tot_freq) WHERE {
 			?da att:hasLesson ?lesson .
 			?lesson att:hasAttendance ?attendance . 
-			?attendance att:hasStudent att:STU_00001_MarioRossi .
+			{ ?attendance rdf:type att:AttendanceValid . } 
+			UNION 
+			{ ?attendance rdfs:subClassOf att:AttendanceValid . }
+			?attendance	att:hasAttendant att:STU_00001_MarioRossi .
 			FILTER (?da = att:DA_WebSemantico)
 		}
 	}
