@@ -124,7 +124,7 @@ Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame s
 
 Rappresenta un codice a 6 cifre che le persone usano per registrare la loro presenza ad un [Attendable](#attendable).
 
-### Attendace
+### Attendance
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
@@ -150,7 +150,11 @@ Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero
 
 * [L'ultimo pin creato per un Attendable](#lultimo-pin-creato-per-un-attendable)
 
-## L'ultimo pin creato per un Attendable
+## Ultimo pin valido per un determinato attendable
+## Tutti i workgroup attivi per un determinato utente
+## Estrai uno studente presente casualmente
+## Studenti che possono sostenere l'esame (presenze > di tot %)
+## Registro delle presenze
 
 ```sparql
 SELECT ...

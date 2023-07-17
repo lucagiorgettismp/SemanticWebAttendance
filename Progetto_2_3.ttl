@@ -34,7 +34,7 @@ ns:term_status rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance
 attendance-ontology:hasAttendance rdf:type owl:ObjectProperty ;
                                   owl:inverseOf attendance-ontology:isAttendanceOf ;
-                                  rdfs:domain attendance-ontology:Workgroup ;
+                                  rdfs:domain attendance-ontology:Pin ;
                                   rdfs:range attendance-ontology:Attendance .
 
 
@@ -45,10 +45,17 @@ attendance-ontology:hasAttendant rdf:type owl:ObjectProperty ;
                                  rdfs:range attendance-ontology:Person .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasClass
+attendance-ontology:hasClass rdf:type owl:ObjectProperty ;
+                             owl:inverseOf attendance-ontology:isClassOf ;
+                             rdfs:domain attendance-ontology:Workgroup ;
+                             rdfs:range attendance-ontology:Class .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasDidacticActivity
 attendance-ontology:hasDidacticActivity rdf:type owl:ObjectProperty ;
                                         owl:inverseOf attendance-ontology:isDidacticActivityOf ;
-                                        rdfs:domain attendance-ontology:Class ;
+                                        rdfs:domain attendance-ontology:Workgroup ;
                                         rdfs:range attendance-ontology:DidacticActivity .
 
 
@@ -66,11 +73,19 @@ attendance-ontology:hasLesson rdf:type owl:ObjectProperty ;
                               rdfs:range attendance-ontology:Lesson .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent
+attendance-ontology:hasManualStudent rdf:type owl:ObjectProperty ;
+                                     rdfs:subPropertyOf attendance-ontology:hasStudent ;
+                                     owl:inverseOf attendance-ontology:isManualStudentOf ;
+                                     rdfs:domain attendance-ontology:StudentGroup ;
+                                     rdfs:range attendance-ontology:Student .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin
 attendance-ontology:hasPin rdf:type owl:ObjectProperty ;
                            rdfs:subPropertyOf owl:topObjectProperty ;
                            owl:inverseOf attendance-ontology:isPinOf ;
-                           rdfs:domain attendance-ontology:Attendance ;
+                           rdfs:domain attendance-ontology:Attendable ;
                            rdfs:range attendance-ontology:Pin .
 
 
@@ -84,7 +99,7 @@ attendance-ontology:hasStudent rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTeacher
 attendance-ontology:hasTeacher rdf:type owl:ObjectProperty ;
                                owl:inverseOf attendance-ontology:isTeacherOf ;
-                               rdfs:domain attendance-ontology:DidacticActivity ;
+                               rdfs:domain attendance-ontology:Workgroup ;
                                rdfs:range attendance-ontology:Teacher .
 
 
@@ -110,6 +125,10 @@ attendance-ontology:isAttendanceOf rdf:type owl:ObjectProperty .
 attendance-ontology:isAttendantOf rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isClassOf
+attendance-ontology:isClassOf rdf:type owl:ObjectProperty .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isDidacticActivityOf
 attendance-ontology:isDidacticActivityOf rdf:type owl:ObjectProperty .
 
@@ -120,6 +139,11 @@ attendance-ontology:isExamOf rdf:type owl:ObjectProperty .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf
 attendance-ontology:isLessonOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf
+attendance-ontology:isManualStudentOf rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf attendance-ontology:isStudentOf .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf
@@ -150,29 +174,6 @@ attendance-ontology:isTutorOf rdf:type owl:ObjectProperty .
 #################################################################
 #    Data properties
 #################################################################
-
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#class-year
-attendance-ontology:class-year rdf:type owl:DatatypeProperty ;
-                               rdfs:domain attendance-ontology:Class ;
-                               rdfs:range xsd:gYear ;
-                               rdfs:label "class year" .
-
-
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-term
-attendance-ontology:da-term rdf:type owl:DatatypeProperty ;
-                            rdfs:domain attendance-ontology:DidacticActivity ;
-                            rdfs:range xsd:int ;
-                            rdfs:comment "Term (part of the school year) of didactic activity." ;
-                            rdfs:label "da term" .
-
-
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#da-year
-attendance-ontology:da-year rdf:type owl:DatatypeProperty ;
-                            rdfs:domain attendance-ontology:DidacticActivity ;
-                            rdfs:range xsd:gYear ;
-                            rdfs:comment "Didactic activity year." ;
-                            rdfs:label "da year" .
-
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time
 attendance-ontology:end-time rdf:type owl:DatatypeProperty ;
@@ -215,6 +216,22 @@ attendance-ontology:student-id rdf:type owl:DatatypeProperty ;
                                rdfs:label "student id" .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#wrk-term
+attendance-ontology:wrk-term rdf:type owl:DatatypeProperty ;
+                             rdfs:domain attendance-ontology:Workgroup ;
+                             rdfs:range xsd:int ;
+                             rdfs:comment "Term (part of the school year) of workgroup." ;
+                             rdfs:label "wrk term" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#wrk-year
+attendance-ontology:wrk-year rdf:type owl:DatatypeProperty ;
+                             rdfs:domain attendance-ontology:Workgroup ;
+                             rdfs:range xsd:gYear ;
+                             rdfs:comment "workgroup year." ;
+                             rdfs:label "wrk year" .
+
+
 ###  http://www.w3.org/2006/vcard/ns#bday
 <http://www.w3.org/2006/vcard/ns#bday> rdfs:domain attendance-ontology:Person .
 
@@ -230,6 +247,11 @@ attendance-ontology:student-id rdf:type owl:DatatypeProperty ;
 #################################################################
 #    Classes
 #################################################################
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable
+attendance-ontology:Attendable rdf:type owl:Class ;
+                               rdfs:subClassOf attendance-ontology:StudentGroup .
+
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance
 attendance-ontology:Attendance rdf:type owl:Class .
@@ -280,12 +302,12 @@ attendance-ontology:Exam rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn
 attendance-ontology:ExamTurn rdf:type owl:Class ;
-                             rdfs:subClassOf attendance-ontology:Workgroup .
+                             rdfs:subClassOf attendance-ontology:Attendable .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson
 attendance-ontology:Lesson rdf:type owl:Class ;
-                           rdfs:subClassOf attendance-ontology:Workgroup .
+                           rdfs:subClassOf attendance-ontology:Attendable .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person
@@ -316,8 +338,7 @@ attendance-ontology:Tutor rdf:type owl:Class ;
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup
-attendance-ontology:Workgroup rdf:type owl:Class ;
-                              rdfs:subClassOf attendance-ontology:StudentGroup .
+attendance-ontology:Workgroup rdf:type owl:Class .
 
 
 #################################################################
@@ -327,67 +348,49 @@ attendance-ontology:Workgroup rdf:type owl:Class ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI
 attendance-ontology:AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                                    attendance-ontology:AttendanceNotValidWithDelay ;
-                                                          attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
-                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 .
+                                                          attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI
 attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                                                    attendance-ontology:AttendanceValid ;
-                                                          attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
-                                                          attendance-ontology:hasPin attendance-ontology:PIN_WS_2 .
+                                                          attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:AttendanceValidWithDelay ;
-                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
-                                                 attendance-ontology:hasPin attendance-ontology:PIN_WS_1 .
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:AttendanceValid ;
-                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
-                                                 attendance-ontology:hasPin attendance-ontology:PIN_WS_3 .
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_2023_01
-attendance-ontology:CL_2023_01 rdf:type owl:NamedIndividual ,
-                                        attendance-ontology:Class ;
-                               attendance-ontology:hasDidacticActivity attendance-ontology:DA_ProjectManagement ,
-                                                                       attendance-ontology:DA_WebSemantico ;
-                               attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
-                                                              attendance-ontology:STU_00002_LuigiVerdi ;
-                               attendance-ontology:class-year "2023"^^xsd:gYear .
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001
+attendance-ontology:CL_001 rdf:type owl:NamedIndividual ,
+                                    attendance-ontology:Class ;
+                           attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
+                                                          attendance-ontology:STU_00002_LuigiVerdi ,
+                                                          attendance-ontology:STU_00003_ChiaraBianchi .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement
 attendance-ontology:DA_ProjectManagement rdf:type owl:NamedIndividual ,
-                                                  attendance-ontology:DidacticActivity ;
-                                         attendance-ontology:hasTeacher attendance-ontology:TR_MarcoAntonioBoschetti ;
-                                         attendance-ontology:da-term 1 ;
-                                         attendance-ontology:da-year "2023"^^xsd:gYear .
+                                                  attendance-ontology:DidacticActivity .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_WebSemantico
 attendance-ontology:DA_WebSemantico rdf:type owl:NamedIndividual ,
-                                             attendance-ontology:DidacticActivity ;
-                                    attendance-ontology:hasExam attendance-ontology:EX_WS_2023_06_26 ;
-                                    attendance-ontology:hasLesson attendance-ontology:LES_WS_2023_05_21 ,
-                                                                  attendance-ontology:LES_WS_2023_05_22 ;
-                                    attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
-                                                                   attendance-ontology:STU_00002_LuigiVerdi ,
-                                                                   attendance-ontology:STU_00003_ChiaraBianchi ;
-                                    attendance-ontology:hasTeacher attendance-ontology:TR_AntonellaCarbonaro ;
-                                    attendance-ontology:da-term 2 ;
-                                    attendance-ontology:da-year "2023"^^xsd:gYear .
+                                             attendance-ontology:DidacticActivity .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30
 attendance-ontology:ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
                                                     attendance-ontology:ExamTurn ;
-                                           attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI ;
+                                           attendance-ontology:hasPin attendance-ontology:PIN_WS_3 ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ;
                                            attendance-ontology:end-time "2023-06-26T11:00:00"^^xsd:dateTime ;
                                            attendance-ontology:start-time "2023-06-26T09:30:00"^^xsd:dateTime .
@@ -396,7 +399,7 @@ attendance-ontology:ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00
 attendance-ontology:ET_WS_2023_06_26_11_00 rdf:type owl:NamedIndividual ,
                                                     attendance-ontology:ExamTurn ;
-                                           attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI ;
+                                           attendance-ontology:hasPin attendance-ontology:PIN_WS_4 ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00002_LuigiVerdi ,
                                                                           attendance-ontology:STU_00003_ChiaraBianchi ;
                                            attendance-ontology:end-time "2023-06-26T12:30:00"^^xsd:dateTime ;
@@ -439,9 +442,10 @@ attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
 attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
-                                      attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_WS_1 ;
                                       attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
-                                                                     attendance-ontology:STU_00002_LuigiVerdi ;
+                                                                     attendance-ontology:STU_00002_LuigiVerdi ,
+                                                                     attendance-ontology:STU_00003_ChiaraBianchi ;
                                       attendance-ontology:end-time "2023-05-21T14:00:00"^^xsd:dateTime ;
                                       attendance-ontology:start-time "2023-05-21T11:00:00"^^xsd:dateTime .
 
@@ -449,9 +453,10 @@ attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22
 attendance-ontology:LES_WS_2023_05_22 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
-                                      attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_WS_2 ;
                                       attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
-                                                                     attendance-ontology:STU_00002_LuigiVerdi ;
+                                                                     attendance-ontology:STU_00002_LuigiVerdi ,
+                                                                     attendance-ontology:STU_00003_ChiaraBianchi ;
                                       attendance-ontology:hasTutor attendance-ontology:TUT_RobertoReda ;
                                       attendance-ontology:end-time "2023-05-22T11:00:00"^^xsd:dateTime ;
                                       attendance-ontology:start-time "2023-05-22T09:00:00"^^xsd:dateTime .
@@ -460,19 +465,29 @@ attendance-ontology:LES_WS_2023_05_22 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
 attendance-ontology:PIN_WS_1 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
+                             attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI ;
                              attendance-ontology:expiration-date "2023-05-21T10:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2
 attendance-ontology:PIN_WS_2 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
+                             attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI ;
                              attendance-ontology:expiration-date "2023-06-26T10:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_3
 attendance-ontology:PIN_WS_3 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
-                             attendance-ontology:exam_date "2023-06-26T10:00:00Z"^^xsd:dateTime .
+                             attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI ;
+                             attendance-ontology:expiration-date "2023-06-26T10:00:00Z"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_4
+attendance-ontology:PIN_WS_4 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI ;
+                             attendance-ontology:expiration-date "2023-06-26T11:30:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi
@@ -498,7 +513,11 @@ attendance-ontology:STU_00002_LuigiVerdi rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi
 attendance-ontology:STU_00003_ChiaraBianchi rdf:type owl:NamedIndividual ,
                                                      attendance-ontology:Student ;
-                                            <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Female .
+                                            <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Female ;
+                                            attendance-ontology:student-id "00003" ;
+                                            <http://www.w3.org/2006/vcard/ns#bday> "1997-10-22T00:00:00"^^xsd:dateTime ;
+                                            <http://www.w3.org/2006/vcard/ns#family-name> "Bianchi" ;
+                                            <http://www.w3.org/2006/vcard/ns#given-name> "Chiara" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro
@@ -523,6 +542,29 @@ attendance-ontology:TUT_RobertoReda rdf:type owl:NamedIndividual ,
                                     <http://www.w3.org/2006/vcard/ns#hasGender> attendance-ontology:GEN_Male ;
                                     <http://www.w3.org/2006/vcard/ns#family-name> "Reda" ;
                                     <http://www.w3.org/2006/vcard/ns#given-name> "Roberto" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023
+attendance-ontology:WRK_CL_001_DA_ProjectManagement_2023 rdf:type owl:NamedIndividual ,
+                                                                  attendance-ontology:Workgroup ;
+                                                         attendance-ontology:hasClass attendance-ontology:CL_001 ;
+                                                         attendance-ontology:hasDidacticActivity attendance-ontology:DA_ProjectManagement ;
+                                                         attendance-ontology:hasTeacher attendance-ontology:TR_MarcoAntonioBoschetti ;
+                                                         attendance-ontology:wrk-term "1"^^xsd:int ;
+                                                         attendance-ontology:wrk-year "2023"^^xsd:gYear .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_WebSemantico_2023
+attendance-ontology:WRK_CL_001_DA_WebSemantico_2023 rdf:type owl:NamedIndividual ,
+                                                             attendance-ontology:Workgroup ;
+                                                    attendance-ontology:hasClass attendance-ontology:CL_001 ;
+                                                    attendance-ontology:hasDidacticActivity attendance-ontology:DA_WebSemantico ;
+                                                    attendance-ontology:hasExam attendance-ontology:EX_WS_2023_06_26 ;
+                                                    attendance-ontology:hasLesson attendance-ontology:LES_WS_2023_05_21 ,
+                                                                                  attendance-ontology:LES_WS_2023_05_22 ;
+                                                    attendance-ontology:hasTeacher attendance-ontology:TR_AntonellaCarbonaro ;
+                                                    attendance-ontology:wrk-term "2"^^xsd:int ;
+                                                    attendance-ontology:wrk-year "2023"^^xsd:gYear .
 
 
 #################################################################
