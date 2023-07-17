@@ -1,0 +1,12 @@
+{
+    "saveAndRun": {
+        "commands": [
+            {
+                "match": "\\.rq$",
+                "cmd": "arq --data Progetto_2_3.ttl --query ${file}",
+                "useShortcut": false,
+                "silent": false
+              }
+          ]
+    }
+}
