@@ -5,22 +5,20 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Description of this awesome query
-SELECT ?student ?ex WHERE {
+SELECT ?student ?attendance WHERE {
     ?exam att:hasTurn ?turn .
     ?turn att:hasStudent ?student .
 
     OPTIONAL {
         ?turn att:hasAttendance ?attendance .
-        ?attendance att:hasAttendant ?student
+        ?attendance att:hasAttendant ?student .
+        { ?attendance rdf:type att:AttendanceValid . } 
+        UNION 
+        { ?attendance rdfs:subClassOf att:AttendanceValid . }
     }
 
-    BIND ( 
-        EXISTS {
-            { ?attendance rdf:type att:AttendanceValid . } 
-            UNION 
-            { ?attendance rdfs:subClassOf att:AttendanceValid . } 
-        } 
-    AS ?ex )
+
+FILTER (?exam = att:EX_WS_2023_06_26)
 }
 
-GROUP BY ?student ?ex
+ORDER BY ?student
