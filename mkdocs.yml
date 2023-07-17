@@ -1,0 +1,15 @@
+site_name: Web semantico
+site_description: Relazione Web semantico
+site_url: https://lucagiorgettismp.github.io/SemanticWebAttendance
+
+repo_url: https://github.com/lucagiorgettismp/SemanticWebAttendance.git
+
+nav:
+  - Index: index.md
+    
+plugins:
+  - search
+  - mermaid2:
+      version: 10.2.4
+      arguments:
+        securityLevel: 'loose'
