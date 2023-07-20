@@ -160,8 +160,6 @@ Selezioniamo l'ultimo pin valido per un attendable. Questa interrogazione viene 
 
 In questo caso l'Attendable da usare è già noto, basta ordinare per data di creazione decresente i Pin che sono di un certo Attendable e prendere solo il primo.
 
-> Da notare come in questo caso, una query con questo linguaggio risulti più verbosa rispetto ad una query SQL o ad uno script a livello applicativo.
-
 ```sparql
 SELECT ?pin WHERE {
     ?attendable att:hasPin ?pin .
@@ -175,8 +173,31 @@ SELECT ?pin WHERE {
 
 ORDER BY DESC(?creationDate) LIMIT 1
 ```
+
 ## Tutti i workgroup attivi per un determinato utente
+
+Selezioniamo tutti i workgroup attivi per un utente per capire quali lezioni dovrà seguire o quali esami sostenere.
+
 ## Estrai uno studente presente casualmente
+
+Seleziono uno studente preso a caso tra i presenti a lezione per verificare se realmente sia presente o è stato registrato da qualcun altro in modo malizioso.
+
+In questo caso devo recuperare da tutti pin usati per la lezione tutte le presenze di un qualsiasi tipo valido e ne leggo soltanto una, la prima tra tutte quelle recuperate riordinate a caso.
+
+```sparql
+# Retrieve all attendance from an attendable.
+SELECT ?attendance WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:hasAttendance ?attendance .
+    ?attendance rdf:type att:AttendanceValid .
+
+    FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
+}
+
+# Then order them randomly and take the first one.
+ORDER BY RAND() LIMIT 1
+```
+
 ## Studenti che possono sostenere l'esame (presenze > di tot %)
 ## Registro delle presenze
 

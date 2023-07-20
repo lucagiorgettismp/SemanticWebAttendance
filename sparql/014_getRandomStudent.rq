@@ -1,0 +1,18 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Retrieve all attendance from an attendable.
+SELECT ?attendance WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:hasAttendance ?attendance .
+    ?attendance rdf:type att:AttendanceValid .
+
+    FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
+}
+
+# Then order them randomly and take the first one.
+ORDER BY RAND() LIMIT 1
