@@ -9,10 +9,15 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?attendance WHERE {
     ?attendable att:hasPin ?pin .
     ?pin att:hasAttendance ?attendance .
-    ?attendance rdf:type att:AttendanceValid .
+    #?attendance rdf:type ?type .
+    
+    { ?attendance rdf:type att:AttendanceValid . } 
+    UNION 
+    { ?attendance rdf:type att:AttendanceValidWithDelay . } 
 
     FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
 }
 
 # Then order them randomly and take the first one.
 ORDER BY RAND() LIMIT 1
+
