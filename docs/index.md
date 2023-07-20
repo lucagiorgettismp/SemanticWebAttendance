@@ -124,6 +124,10 @@ Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame s
 
 Rappresenta un codice a 6 cifre che le persone usano per registrare la loro presenza ad un [Attendable](#attendable).
 
+Possiede una data di creazione (*creation_date*) da valorizzare quando viene generato il Pin che è usata per calcolare tramite la regola ... la data di scadenza dello stesso. Allo scoccare della scadenza non sarà più possibile registrare una presenza sul Pin.
+
+Elenco delle proprietà ???
+
 ### Attendance
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
@@ -151,6 +155,26 @@ Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero
 * [L'ultimo pin creato per un Attendable](#lultimo-pin-creato-per-un-attendable)
 
 ## Ultimo pin valido per un determinato attendable
+
+Selezioniamo l'ultimo pin valido per un attendable. Questa interrogazione viene usata quando si vuole presentare il pin sul quale gli studenti possono registrare la loro presenza.
+
+In questo caso l'Attendable da usare è già noto, basta ordinare per data di creazione decresente i Pin che sono di un certo Attendable e prendere solo il primo.
+
+> Da notare come in questo caso, una query con questo linguaggio risulti più verbosa rispetto ad una query SQL o ad uno script a livello applicativo.
+
+```sparql
+SELECT ?pin WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:creation-date ?creationDate .
+    ?pin att:expiration-date ?expirationDate .
+
+    BIND( now() AS ?currentDateTime ) # Get current date time
+    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
+    FILTER (?expirationDate >= ?currentDateTime)
+}
+
+ORDER BY DESC(?creationDate) LIMIT 1
+```
 ## Tutti i workgroup attivi per un determinato utente
 ## Estrai uno studente presente casualmente
 ## Studenti che possono sostenere l'esame (presenze > di tot %)

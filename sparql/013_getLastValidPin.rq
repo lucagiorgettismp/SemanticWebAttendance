@@ -1,0 +1,17 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+SELECT ?pin WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:creation-date ?creationDate .
+    ?pin att:expiration-date ?expirationDate .
+
+    BIND( now() AS ?currentDateTime ) # Get current date time
+    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
+    FILTER (?expirationDate >= ?currentDateTime)
+}
+
+ORDER BY DESC(?creationDate) LIMIT 1

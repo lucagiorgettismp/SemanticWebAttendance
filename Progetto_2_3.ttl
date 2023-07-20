@@ -443,6 +443,8 @@ attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
 attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
                                       attendance-ontology:hasPin attendance-ontology:PIN_WS_1 ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_WS_5 ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_WS_6 ;
                                       attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                      attendance-ontology:STU_00002_LuigiVerdi ,
                                                                      attendance-ontology:STU_00003_ChiaraBianchi ;
@@ -468,6 +470,15 @@ attendance-ontology:PIN_WS_1 rdf:type owl:NamedIndividual ,
                              attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI ;
                              attendance-ontology:expiration-date "2023-05-21T10:00:00Z"^^xsd:dateTime .
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_5
+attendance-ontology:PIN_WS_5 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:expiration-date "2023-09-21T11:00:00Z"^^xsd:dateTime .
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_6
+attendance-ontology:PIN_WS_6 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:expiration-date "2023-08-22T11:00:00Z"^^xsd:dateTime .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2
 attendance-ontology:PIN_WS_2 rdf:type owl:NamedIndividual ,

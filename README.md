@@ -11,6 +11,10 @@
 
 sparql --data=doc/Tutorial/vc-db-1.rdf --query=doc/Tutorial/q1.rq
 
+## Save and Run
+
+Use the extension `wk-j.save-and-run` to execute the query using arq from jena whenever you save any query with file extension *.rq*.
+
 ## How to render the docs
 
 First install requirements:
