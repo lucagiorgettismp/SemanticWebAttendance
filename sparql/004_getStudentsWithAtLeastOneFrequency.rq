@@ -6,8 +6,9 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # DA_WebSemantico attendance stundents with at least 1 presences
 SELECT ?stuid ?surname ?name WHERE {
-	?da att:hasLesson ?lesson .
-	?lesson att:hasAttendance ?attendance .
+	?wrk att:hasLesson ?lesson .
+	?lesson att:hasPin ?pin .
+	?pin att:hasAttendance ?attendance .
 
 	{ ?attendance rdf:type att:AttendanceValid . } 
 	UNION 
@@ -19,7 +20,7 @@ SELECT ?stuid ?surname ?name WHERE {
 		vcard:given-name ?name ;
 		vcard:family-name ?surname .
 
-	FILTER (?da = att:DA_WebSemantico)
+	FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 }
 
 group by ?student ?stuid ?name ?surname

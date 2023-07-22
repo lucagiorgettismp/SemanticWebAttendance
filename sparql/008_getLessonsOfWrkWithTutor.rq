@@ -4,10 +4,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Lessons of DA_WebSemantico with tutor
+# Lessons of WRK_CL_001_DA_WebSemantico_2023 with tutor
 SELECT ?lesson ?tutor WHERE {
-    ?da att:hasLesson ?lesson .
+    ?wrk att:hasLesson ?lesson .
     ?lesson att:hasTutor ?tutor .
 
-    FILTER (?da = att:DA_WebSemantico)
+    FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 }

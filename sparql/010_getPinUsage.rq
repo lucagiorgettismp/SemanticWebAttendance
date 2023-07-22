@@ -5,12 +5,11 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Get all pin usage.
-SELECT DISTINCT ?pin ?workgroup ?type WHERE {
+SELECT DISTINCT ?pin ?attendable ?type WHERE {
     ?pin rdf:type att:Pin ;
-        att:isPinOf ?attendance .
-    ?attendance att:isAttendanceOf ?workgroup .
-    ?workgroup rdf:type ?type .
-    ?type rdfs:subClassOf att:Workgroup .
+        att:isPinOf ?attendable .
+    ?attendable rdf:type ?type .
+    ?type rdfs:subClassOf att:Attendable .
 }
 
 ORDER BY ?pin

@@ -9,7 +9,8 @@ SELECT DISTINCT ?student ?type WHERE {
     ?lesson att:hasStudent ?student . 
 
     OPTIONAL { 
-        ?lesson att:hasAttendance ?attendance .
+        ?lesson att:hasPin ?pin .
+        ?pin att:hasAttendance ?attendance .
         ?attendance att:hasAttendant ?student ;
             rdf:type ?type .
         ?type rdfs:subClassOf att:Attendance .

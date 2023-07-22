@@ -5,8 +5,9 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Get all students
-SELECT ?stuid ?name ?surname WHERE {
+SELECT ?stuid ?name ?surname ?gender WHERE {
 	?student att:student-id ?stuid ; 
 		vcard:given-name ?name ; 
-		vcard:family-name ?surname .
+		vcard:family-name ?surname ;
+		vcard:hasGender ?gender .
 }

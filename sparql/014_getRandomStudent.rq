@@ -6,18 +6,19 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 # Retrieve all attendance from an attendable.
-SELECT ?attendance WHERE {
+SELECT ?student WHERE {
     ?attendable att:hasPin ?pin .
     ?pin att:hasAttendance ?attendance .
     #?attendance rdf:type ?type .
     
     { ?attendance rdf:type att:AttendanceValid . } 
     UNION 
-    { ?attendance rdf:type att:AttendanceValidWithDelay . } 
+    { ?attendance rdfs:subClassOf att:AttendanceValid . }
 
     FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
+
+    ?attendance att:hasAttendant ?student .
 }
 
 # Then order them randomly and take the first one.
 ORDER BY RAND() LIMIT 1
-

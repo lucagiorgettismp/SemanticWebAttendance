@@ -4,13 +4,15 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Exam turn register
-SELECT ?student ?attendance WHERE {
-    ?exam att:hasTurn ?turn .
-    ?turn att:hasStudent ?student .
+# Number of WRK_CL_001_DA_WebSemantico_2023 exam tried from a student
+SELECT ?student (COUNT(?attendance) AS ?tries) WHERE {
+    ?wrk att:hasClass ?class .
+    ?class att:hasStudent ?student .
 
     OPTIONAL {
-        ?turn att:hasPin ?pin . 
+        ?wrk att:hasExam ?exam .
+        ?exam att:hasTurn ?turn . 
+        ?turn att:hasPin ?pin .
         ?pin att:hasAttendance ?attendance .
         ?attendance att:hasAttendant ?student .
         { ?attendance rdf:type att:AttendanceValid . } 
@@ -19,7 +21,8 @@ SELECT ?student ?attendance WHERE {
     }
 
 
-FILTER (?exam = att:EX_WS_2023_06_26)
+    FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 }
 
+GROUP BY ?student
 ORDER BY ?student

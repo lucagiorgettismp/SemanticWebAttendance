@@ -4,15 +4,15 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# All lessons of DA_WebSemantico
-SELECT ?lesson ?stime ?etime WHERE {
-	?da att:hasLesson ?lesson .
+# All lessons of WRK_CL_001_DA_WebSemantico_2023
+SELECT ?lesson ?starttime ?endtime WHERE {
+	?wrk att:hasLesson ?lesson .
 	OPTIONAL { 
-		?lesson att:start-time ?stime  ;
-			att:end-time ?etime .  
+		?lesson att:start-time ?starttime  ;
+			att:end-time ?endtime .  
 	}
 
-	FILTER (?da = att:DA_WebSemantico)
+	FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 }
 
 ORDER BY ?lessons

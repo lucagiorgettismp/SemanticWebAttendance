@@ -8,19 +8,20 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
 	{
 		SELECT (count(?lesson) AS ?tot_freq) WHERE {
-			?da att:hasLesson ?lesson .
-			?lesson att:hasAttendance ?attendance . 
+			?wrk att:hasLesson ?lesson .
+			?lesson att:hasPin ?pin .
+			?pin att:hasAttendance ?attendance . 
 			{ ?attendance rdf:type att:AttendanceValid . } 
 			UNION 
 			{ ?attendance rdfs:subClassOf att:AttendanceValid . }
 			?attendance	att:hasAttendant att:STU_00001_MarioRossi .
-			FILTER (?da = att:DA_WebSemantico)
+			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 		}
 	}
 		{
 		SELECT (count(?lesson) AS ?tot) WHERE {
-			?da att:hasLesson ?lesson .
-			FILTER (?da = att:DA_WebSemantico)
+			?wrk att:hasLesson ?lesson .
+			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 		}
 	}
 }

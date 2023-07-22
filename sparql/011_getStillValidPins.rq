@@ -5,6 +5,13 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Description of this awesome query
-SELECT * WHERE {
+SELECT ?pin ?attendable ?expirationDate WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:creation-date ?creationDate .
+    ?pin att:expiration-date ?expirationDate .
 
+    BIND( now() AS ?currentDateTime ) # Get current date time
+    FILTER (?expirationDate >= ?currentDateTime)
 }
+
+ORDER BY ?pin

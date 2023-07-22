@@ -4,13 +4,16 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Percentage of lessons in delay for students of DA_WebSemantico
+# Percentage of lessons in delay for students of WRK_CL_001_DA_WebSemantico_2023
 SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100 AS ?delay_percentage) WHERE {
     {
         SELECT ?student (count(?attendance) AS ?tot_attendance) WHERE {
-            ?da att:hasLesson ?lesson .
-            ?lesson att:hasAttendance ?attendance .
+            ?wrk att:hasLesson ?lesson .
+            ?lesson att:hasPin ?pin .
+            ?pin att:hasAttendance ?attendance .
             ?attendance att:hasAttendant ?student .
+
+			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
         }
 
         GROUP BY ?student
@@ -18,10 +21,14 @@ SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100
 
     {
         SELECT ?student (count(?attendance) AS ?tot_delays) WHERE {
-            ?da att:hasLesson ?lesson .
-            ?lesson att:hasAttendance ?attendance .
+            ?wrk att:hasLesson ?lesson .
+            ?lesson att:hasPin ?pin .
+            ?pin att:hasAttendance ?attendance .
             ?attendance rdf:type att:AttendanceValidWithDelay ;
                 att:hasAttendant ?student .
+
+            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+
         }
 
         GROUP BY ?student
