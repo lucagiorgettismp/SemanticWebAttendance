@@ -1,0 +1,19 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Description of this awesome query
+SELECT ?workgroup ?da ?teacher ?term WHERE {
+    ?student att:isStudentOf ?class . 
+    ?class att:isClassOf ?workgroup .
+    ?workgroup att:hasDidacticActivity ?da ;
+        att:hasTeacher ?teacher ;
+        att:wrk-term ?term .
+
+    
+    FILTER (?student = att:STU_00001_MarioRossi)
+}
+
+ORDER BY ?term

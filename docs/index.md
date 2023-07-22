@@ -178,6 +178,22 @@ ORDER BY DESC(?creationDate) LIMIT 1
 
 Selezioniamo tutti i workgroup attivi per un utente per capire quali lezioni dovrà seguire o quali esami sostenere.
 
+```sparql
+# Retrieve all workgroup for a student.
+SELECT ?workgroup ?da ?teacher ?term WHERE {
+    ?student att:isStudentOf ?class . 
+    ?class att:isClassOf ?workgroup .
+    ?workgroup att:hasDidacticActivity ?da ;
+        att:hasTeacher ?teacher ;
+        att:wrk-term ?term .
+
+    
+    FILTER (?student = att:STU_00001_MarioRossi)
+}
+
+ORDER BY ?term
+```
+
 ## Estrai uno studente presente casualmente
 
 Seleziono uno studente preso a caso tra i presenti a lezione per verificare se realmente sia presente o è stato registrato da qualcun altro in modo malizioso.
@@ -199,8 +215,62 @@ ORDER BY RAND() LIMIT 1
 ```
 
 ## Studenti che possono sostenere l'esame (presenze > di tot %)
+
+```sparql
+# Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
+SELECT ?student ?percentage WHERE {
+		{
+		SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
+			?wrk att:hasClass ?class .
+			?class att:hasStudent ?student .
+
+			OPTIONAL {
+				?wrk att:hasLesson ?lesson .
+				?lesson att:hasPin ?pin .
+				?pin att:hasAttendance ?attendance .
+				?attendance att:hasAttendant ?student .
+
+				{ ?attendance rdf:type att:AttendanceValid . } 
+				UNION 
+				{ ?attendance rdfs:subClassOf att:AttendanceValid . }
+				
+				?attendance att:hasAttendant att:STU_00001_MarioRossi .
+			}
+			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+		}
+
+		GROUP BY ?student
+	}
+	{
+		SELECT (count(?lesson) AS ?tot) WHERE {
+			?wrk att:hasLesson ?lesson .
+			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+		}
+	}
+
+	FILTER (?percentage > 75)
+}
+```
 ## Registro delle presenze
 
 ```sparql
-SELECT ...
+# Exam turn register
+SELECT ?student ?attendance WHERE {
+    ?exam att:hasTurn ?turn .
+    ?turn att:hasStudent ?student .
+
+    OPTIONAL {
+        ?turn att:hasPin ?pin . 
+        ?pin att:hasAttendance ?attendance .
+        ?attendance att:hasAttendant ?student .
+        { ?attendance rdf:type att:AttendanceValid . } 
+        UNION 
+        { ?attendance rdfs:subClassOf att:AttendanceValid . }
+    }
+
+
+FILTER (?exam = att:EX_WS_2023_06_26)
+}
+
+ORDER BY ?student
 ```
