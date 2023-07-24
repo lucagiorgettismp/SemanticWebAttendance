@@ -1,0 +1,33 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# Description of this awesome query
+SELECT ?location WHERE {
+    ?location att:location-code ?code ;
+        rdf:type ?type .
+    ?type rdfs:subClassOf att:Location . 
+
+    {
+        ?location rdf:type att:Lab .
+    } 
+    UNION 
+    {
+        ?location rdf:type att:Room . 
+    }
+    
+    MINUS {
+        SELECT ?location WHERE {
+            ?attendable rdf:type att:Lesson .
+            BIND( "2023-07-24T17:00:00"^^xsd:dateTime AS ?currentDateTime ) # Get current date time
+
+            ?attendable att:start-time ?starttime ;
+                att:end-time ?endtime .
+            ?attendable att:hasLocation ?location . 
+            FILTER (?starttime <= ?currentDateTime && ?endtime >= ?currentDateTime)
+        }
+    }
+}

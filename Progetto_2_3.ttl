@@ -63,14 +63,14 @@ attendance-ontology:hasDidacticActivity rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasExam
 attendance-ontology:hasExam rdf:type owl:ObjectProperty ;
                             owl:inverseOf attendance-ontology:isExamOf ;
-                            rdfs:domain attendance-ontology:DidacticActivity ;
+                            rdfs:domain attendance-ontology:Workgroup ;
                             rdfs:range attendance-ontology:Exam .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson
 attendance-ontology:hasLesson rdf:type owl:ObjectProperty ;
                               owl:inverseOf attendance-ontology:isLessonOf ;
-                              rdfs:domain attendance-ontology:DidacticActivity ;
+                              rdfs:domain attendance-ontology:Workgroup ;
                               rdfs:range attendance-ontology:Lesson .
 
 
@@ -197,7 +197,7 @@ attendance-ontology:creation-date rdf:type owl:DatatypeProperty ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time
 attendance-ontology:end-time rdf:type owl:DatatypeProperty ;
-                             rdfs:domain attendance-ontology:Workgroup ;
+                             rdfs:domain attendance-ontology:Attendable ;
                              rdfs:range xsd:dateTime ;
                              rdfs:comment "End date and time of workgroup." ;
                              rdfs:label "end time" .
@@ -247,7 +247,7 @@ attendance-ontology:remote rdf:type owl:DatatypeProperty ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start-time
 attendance-ontology:start-time rdf:type owl:DatatypeProperty ;
-                               rdfs:domain attendance-ontology:Workgroup ;
+                               rdfs:domain attendance-ontology:Attendable ;
                                rdfs:range xsd:dateTime ;
                                rdfs:comment "Start date and time of workgroup." ;
                                rdfs:label "start time" .
@@ -568,6 +568,14 @@ attendance-ontology:LES_WS_2023_05_22 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:start-time "2023-05-22T09:00:00"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_07_24
+attendance-ontology:LES_WS_2023_07_24 rdf:type owl:NamedIndividual ,
+                                               attendance-ontology:Lesson ;
+                                      attendance-ontology:hasLocation attendance-ontology:LOC_ROOM_AULA_2.10 ;
+                                      attendance-ontology:end-time "2023-07-24T23:00:00"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2023-07-24T08:00:00"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_LAB_3.1
 attendance-ontology:LOC_LAB_3.1 rdf:type owl:NamedIndividual ,
                                          attendance-ontology:Lab ;
@@ -764,7 +772,8 @@ attendance-ontology:WRK_CL_001_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
                                                     attendance-ontology:hasDidacticActivity attendance-ontology:DA_WebSemantico ;
                                                     attendance-ontology:hasExam attendance-ontology:EX_WS_2023_06_26 ;
                                                     attendance-ontology:hasLesson attendance-ontology:LES_WS_2023_05_21 ,
-                                                                                  attendance-ontology:LES_WS_2023_05_22 ;
+                                                                                  attendance-ontology:LES_WS_2023_05_22 ,
+                                                                                  attendance-ontology:LES_WS_2023_07_24 ;
                                                     attendance-ontology:hasTeacher attendance-ontology:TR_AntonellaCarbonaro ;
                                                     attendance-ontology:wrk-term "2"^^xsd:int ;
                                                     attendance-ontology:wrk-year "2023"^^xsd:gYear .
