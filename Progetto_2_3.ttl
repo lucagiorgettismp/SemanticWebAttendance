@@ -74,6 +74,12 @@ attendance-ontology:hasLesson rdf:type owl:ObjectProperty ;
                               rdfs:range attendance-ontology:Lesson .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation
+attendance-ontology:hasLocation rdf:type owl:ObjectProperty ;
+                                rdfs:domain attendance-ontology:Attendable ;
+                                rdfs:range attendance-ontology:Location .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent
 attendance-ontology:hasManualStudent rdf:type owl:ObjectProperty ;
                                      rdfs:subPropertyOf attendance-ontology:hasStudent ;
@@ -208,10 +214,20 @@ attendance-ontology:expiration-date rdf:type owl:DatatypeProperty ;
                                     rdfs:label "expiration date" .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#location-code
+attendance-ontology:location-code rdf:type owl:DatatypeProperty ;
+                                  rdfs:domain attendance-ontology:Location ;
+                                  rdfs:range xsd:string ;
+                                  rdfs:comment "Location where the Attendable takes place." ;
+                                  rdfs:label "location code" .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#pin-code
 attendance-ontology:pin-code rdf:type owl:DatatypeProperty ;
                              rdfs:domain attendance-ontology:Pin ;
-                             rdfs:range xsd:token .
+                             rdfs:range xsd:token ;
+                             rdfs:comment "The pin code sent to attendants." ;
+                             rdfs:label "pin code" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#pin-duration
@@ -334,9 +350,28 @@ attendance-ontology:ExamTurn rdf:type owl:Class ;
                              rdfs:subClassOf attendance-ontology:Attendable .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lab
+attendance-ontology:Lab rdf:type owl:Class ;
+                        rdfs:subClassOf attendance-ontology:Location .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson
 attendance-ontology:Lesson rdf:type owl:Class ;
                            rdfs:subClassOf attendance-ontology:Attendable .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Location
+attendance-ontology:Location rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Office
+attendance-ontology:Office rdf:type owl:Class ;
+                           rdfs:subClassOf attendance-ontology:Location .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Other
+attendance-ontology:Other rdf:type owl:Class ;
+                          rdfs:subClassOf attendance-ontology:Location .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person
@@ -350,6 +385,11 @@ attendance-ontology:Pin rdf:type owl:Class .
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#RemoteAttendance
 attendance-ontology:RemoteAttendance rdf:type owl:Class ;
                                      rdfs:subClassOf attendance-ontology:Attendance .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Room
+attendance-ontology:Room rdf:type owl:Class ;
+                         rdfs:subClassOf attendance-ontology:Location .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student
@@ -445,6 +485,7 @@ attendance-ontology:DA_WebSemantico rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30
 attendance-ontology:ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
                                                     attendance-ontology:ExamTurn ;
+                                           attendance-ontology:hasLocation attendance-ontology:LOC_LAB_3.1 ;
                                            attendance-ontology:hasPin attendance-ontology:PIN_WS_3 ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ;
                                            attendance-ontology:end-time "2023-06-26T11:00:00"^^xsd:dateTime ;
@@ -454,6 +495,7 @@ attendance-ontology:ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00
 attendance-ontology:ET_WS_2023_06_26_11_00 rdf:type owl:NamedIndividual ,
                                                     attendance-ontology:ExamTurn ;
+                                           attendance-ontology:hasLocation attendance-ontology:LOC_LAB_3.1 ;
                                            attendance-ontology:hasPin attendance-ontology:PIN_WS_4 ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00002_LuigiVerdi ,
                                                                           attendance-ontology:STU_00003_ChiaraBianchi ;
@@ -497,6 +539,7 @@ attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
 attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
+                                      attendance-ontology:hasLocation attendance-ontology:LOC_ROOM_AULA_2.10 ;
                                       attendance-ontology:hasPin attendance-ontology:PIN_WS_1 ,
                                                                  attendance-ontology:PIN_WS_5 ,
                                                                  attendance-ontology:PIN_WS_6 ;
@@ -510,6 +553,7 @@ attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22
 attendance-ontology:LES_WS_2023_05_22 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
+                                      attendance-ontology:hasLocation attendance-ontology:LOC_ROOM_AULA_2.6 ;
                                       attendance-ontology:hasPin attendance-ontology:PIN_WS_2 ;
                                       attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                      attendance-ontology:STU_00002_LuigiVerdi ,
@@ -517,6 +561,47 @@ attendance-ontology:LES_WS_2023_05_22 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:hasTutor attendance-ontology:TUT_RobertoReda ;
                                       attendance-ontology:end-time "2023-05-22T11:00:00"^^xsd:dateTime ;
                                       attendance-ontology:start-time "2023-05-22T09:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_LAB_3.1
+attendance-ontology:LOC_LAB_3.1 rdf:type owl:NamedIndividual ,
+                                         attendance-ontology:Lab ;
+                                attendance-ontology:location-code "3.1" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_LAB_3.2
+attendance-ontology:LOC_LAB_3.2 rdf:type owl:NamedIndividual ,
+                                         attendance-ontology:Lab ;
+                                attendance-ontology:location-code "3.2" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_OFFICE_1245
+attendance-ontology:LOC_OFFICE_1245 rdf:type owl:NamedIndividual ,
+                                             attendance-ontology:Office ;
+                                    attendance-ontology:location-code "1245" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_OFFICE_1267
+attendance-ontology:LOC_OFFICE_1267 rdf:type owl:NamedIndividual ,
+                                             attendance-ontology:Office ;
+                                    attendance-ontology:location-code "1267" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_OTHER
+attendance-ontology:LOC_OTHER rdf:type owl:NamedIndividual ,
+                                       attendance-ontology:Other .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_ROOM_AULA_2.10
+attendance-ontology:LOC_ROOM_AULA_2.10 rdf:type owl:NamedIndividual ,
+                                                attendance-ontology:Room ;
+                                       attendance-ontology:location-code "2.10" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_ROOM_AULA_2.6
+attendance-ontology:LOC_ROOM_AULA_2.6 rdf:type owl:NamedIndividual ,
+                                               attendance-ontology:Room ;
+                                      attendance-ontology:location-code "2.6" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
