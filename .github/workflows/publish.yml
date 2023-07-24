@@ -1,0 +1,31 @@
+name: Publish doc
+
+on: 
+    push:
+        tags:
+            - '*'
+    workflow_dispatch:
+
+concurrency: production
+
+jobs:
+    test:
+        uses: lucagiorgettismp/SemanticWebAttendance/.github/workflows/test.yml@main
+    
+    publish:
+        needs: [test]
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - uses: actions/checkout@v3.5.3
+            - run: |
+                python -m pip install -r requirements.txt
+                python -m mkdocs build
+                apt install wkhtmltopdf
+                wkhtmltopdf ./site/index.html ./doc.pdf
+            -   uses: ncipollo/release-action@v1.12.0
+                with:
+                    artifacts: "./doc.pdf, site/*"
+                    body: "Release"
+                    generateReleaseNotes: true
