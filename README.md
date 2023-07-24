@@ -8,8 +8,22 @@
 ## Jena ARQ
 - java version sdk 17
 - jena version 4.8.0
+- arq is the query executor
+- riot is the reasoner
 
 sparql --data=doc/Tutorial/vc-db-1.rdf --query=doc/Tutorial/q1.rq
+
+## Infer
+
+You can infer using:
+
+```
+# Unix
+riot --format=turtle Progetto_2_3.ttl > inferred.ttl
+
+# Windows
+riot --format=turtle Progetto_2_3.ttl | Out-File inferred.ttl -Encoding UTF8
+```
 
 ## Save and Run
 
