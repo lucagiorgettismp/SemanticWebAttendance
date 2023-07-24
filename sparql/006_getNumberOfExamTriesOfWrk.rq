@@ -14,10 +14,9 @@ SELECT ?student (COUNT(?attendance) AS ?tries) WHERE {
         ?exam att:hasTurn ?turn . 
         ?turn att:hasPin ?pin .
         ?pin att:hasAttendance ?attendance .
-        ?attendance att:hasAttendant ?student .
-        { ?attendance rdf:type att:AttendanceValid . } 
-        UNION 
-        { ?attendance rdfs:subClassOf att:AttendanceValid . }
+        ?attendance att:hasAttendant ?student ;
+            rdf:type ?type .
+        ?type rdfs:subClassOf att:AttendanceValid .
     }
 
 

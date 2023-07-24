@@ -10,17 +10,19 @@ SELECT ?stuid ?surname ?name WHERE {
 	?lesson att:hasPin ?pin .
 	?pin att:hasAttendance ?attendance .
 
-	{ ?attendance rdf:type att:AttendanceValid . } 
-	UNION 
-	{ ?attendance rdfs:subClassOf att:AttendanceValid . }
+	?attendance att:hasAttendant ?attendant ;
+		rdf:type ?type .
+	?type rdfs:subClassOf att:AttendanceValid .
 
-	?attendance att:hasAttendant ?student .
+	?attendance att:hasAttendant ?attendant .
 
-	?student att:student-id ?stuid ;
+	?attendant rdf:type att:Student ;
+		att:student-id ?stuid ;
 		vcard:given-name ?name ;
 		vcard:family-name ?surname .
 
 	FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 }
 
-group by ?student ?stuid ?name ?surname
+ GROUP BY ?student ?stuid ?name ?surname
+ ORDER BY ?stuid

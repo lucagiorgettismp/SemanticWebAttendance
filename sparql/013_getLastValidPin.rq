@@ -4,14 +4,15 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-SELECT ?pin WHERE {
+SELECT ?pin ?code ?expirationDate WHERE {
     ?attendable att:hasPin ?pin .
-    ?pin att:creation-date ?creationDate .
-    ?pin att:expiration-date ?expirationDate .
+    ?pin att:creation-date ?creationDate ;
+        att:expiration-date ?expirationDate ;
+        att:pin-code ?code .
 
     BIND( now() AS ?currentDateTime ) # Get current date time
-    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
     FILTER (?expirationDate >= ?currentDateTime)
+    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
 }
 
 ORDER BY DESC(?creationDate) LIMIT 1

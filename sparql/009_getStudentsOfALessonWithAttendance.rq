@@ -13,7 +13,13 @@ SELECT DISTINCT ?student ?type WHERE {
         ?pin att:hasAttendance ?attendance .
         ?attendance att:hasAttendant ?student ;
             rdf:type ?type .
-        ?type rdfs:subClassOf att:Attendance .
+        {        
+            ?type rdfs:subClassOf att:AttendanceValid .
+        }
+        UNION
+        {        
+            ?type rdfs:subClassOf att:AttendanceNotValid .
+        }
     }
 
     FILTER (?lesson = att:LES_WS_2023_05_22)

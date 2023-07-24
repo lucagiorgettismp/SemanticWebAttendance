@@ -15,13 +15,9 @@ SELECT ?student ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
 				?wrk att:hasLesson ?lesson .
 				?lesson att:hasPin ?pin .
 				?pin att:hasAttendance ?attendance .
-				?attendance att:hasAttendant ?student .
-
-				{ ?attendance rdf:type att:AttendanceValid . } 
-				UNION 
-				{ ?attendance rdfs:subClassOf att:AttendanceValid . }
-				
-				?attendance att:hasAttendant att:STU_00001_MarioRossi .
+				?attendance att:hasAttendant ?student ;
+					rdf:type ?type .
+				?type rdfs:subClassOf att:AttendanceValid .
 			}
 			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 		}
