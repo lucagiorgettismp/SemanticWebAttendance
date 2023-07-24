@@ -153,6 +153,7 @@ Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero
 **Query**:
 
 * [L'ultimo pin creato per un Attendable](#lultimo-pin-creato-per-un-attendable)
+* [Workgroup poco partecipati](#workgroup-poco-partecipati)
 
 ## Ultimo pin valido per un determinato attendable
 
@@ -274,3 +275,7 @@ FILTER (?exam = att:EX_WS_2023_06_26)
 
 ORDER BY ?student
 ```
+
+## Workgroup poco partecipati
+
+Secondo noi è anche interessante sapere quali siano i Workgroup con scarsa partecipazione. Possiamo avere bisogno di sapere quali siano le Attività Didattiche che riscontrano poco successo tra gli studenti per capire come migliorarle o come sostituirle negli anni successivi.

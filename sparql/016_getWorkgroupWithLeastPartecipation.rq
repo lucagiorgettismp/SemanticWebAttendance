@@ -1,0 +1,42 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Recupero tutti i workgroup che hanno avuto poca partecipazione.
+SELECT ?wrk ?rapporto WHERE {
+    {
+        # Recupero tutte le presenze di un workgroup e ne ottengo il numero totale.
+        SELECT ?wrk (count(?attendance) AS ?tot_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
+            
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+                ?lesson att:hasPin ?pin .
+                ?pin att:hasAttendance ?attendance .
+                ?attendance att:hasAttendant ?student ;
+                    rdf:type ?type .
+                ?type rdfs:subClassOf att:AttendanceValid .
+            }
+        }
+
+        # Lo devo rapportare al numero totale di presenze che mi sarei aspettato in quel workgroup.
+        GROUP BY ?wrk
+    }
+    {
+        SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
+            
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+            }
+        }
+        
+        GROUP BY ?wrk
+    }
+    BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
+    FILTER (?rapporto < 30)
+}
