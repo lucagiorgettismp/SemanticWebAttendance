@@ -4,7 +4,6 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Description of this awesome query
 SELECT ?workgroup ?da ?teacher ?term WHERE {
     ?student att:isStudentOf ?class . 
     ?class att:isClassOf ?workgroup .
@@ -12,7 +11,6 @@ SELECT ?workgroup ?da ?teacher ?term WHERE {
         att:hasTeacher ?teacher ;
         att:wrk-term ?term .
 
-    
     FILTER (?student = att:STU_00001_MarioRossi)
 }
 
