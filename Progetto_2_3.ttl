@@ -76,6 +76,7 @@ attendance-ontology:hasLesson rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation
 attendance-ontology:hasLocation rdf:type owl:ObjectProperty ;
+                                owl:inverseOf attendance-ontology:isLocationOf ;
                                 rdfs:domain attendance-ontology:Attendable ;
                                 rdfs:range attendance-ontology:Location .
 
@@ -146,6 +147,10 @@ attendance-ontology:isExamOf rdf:type owl:ObjectProperty .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf
 attendance-ontology:isLessonOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLocationOf
+attendance-ontology:isLocationOf rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf
