@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Relazione Web semantico" name="description"/>
+<link href="https://lucagiorgettismp.github.io/SemanticWebAttendance/" rel="canonical"/>
+<link href="img/favicon.ico" rel="shortcut icon"/>
+<title>Web semantico</title>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/font-awesome.min.css" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" rel="stylesheet"/>
+<script defer="" src="js/jquery-1.10.2.min.js"></script>
+<script defer="" src="js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body class="homepage">
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href=".">Web semantico</a>
+<!-- Expander button -->
+<button class="navbar-toggler" data-target="#navbar-collapse" data-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<ul class="nav navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link" data-target="#mkdocs_search_modal" data-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="https://github.com/lucagiorgettismp/SemanticWebAttendance.git/edit/master/docs/index.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-target="#toc-collapse" data-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-secondary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-level="1"><a class="nav-link" href="#sviluppo-ontologia">Sviluppo Ontologia</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-level="2"><a class="nav-link" href="#classi">Classi</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#object-properties">Object Properties</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-item" data-level="1"><a class="nav-link" href="#regole-semantiche">Regole Semantiche</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-level="1"><a class="nav-link" href="#interrogazioni">Interrogazioni</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-level="2"><a class="nav-link" href="#ultimo-pin-valido-per-un-determinato-attendable">Ultimo pin valido per un determinato attendable</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#tutti-i-workgroup-attivi-per-un-determinato-utente">Tutti i workgroup attivi per un determinato utente</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#estrai-uno-studente-presente-casualmente">Estrai uno studente presente casualmente</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#studenti-che-possono-sostenere-lesame-presenze-di-tot">Studenti che possono sostenere l'esame (presenze &gt; di tot %)</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#registro-delle-presenze">Registro delle presenze</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1><center>Attendance</center></h1>
+<h3><center>Ontologia per la registrazione delle presenze in aula</center></h3>
+<h5><center>Relazione elaborato Web Semantico</center></h5>
+<table>
+<tbody>
+<td>
+<span><center>Luca Giorgietti</center></span>
+<span><center>luca.giorgietti7@studio.unibo.it</center></span>
+</td>
+<td>
+<span><center>Daniele Tentoni</center></span>
+<span><center>daniele.tentoni2@studio.unibo.it</center></span>
+</td>
+</tbody>
+</table>
+<h1 id="sviluppo-ontologia">Sviluppo Ontologia</h1>
+<h2 id="classi">Classi</h2>
+<p>Di seguito viene riportato uno schema di massima della nostra ontologia:</p>
+<div class="mermaid">classDiagram
+`Didactic Activity` &lt;-- Workgroup : Association
+Class &lt;-- Workgroup
+Teacher &lt;-- Workgroup
+class `Didactic Activity` {
+    +string Name
+}
+class Class {
+    +int Number
+}
+class Workgroup {
+    +Year
+    isValid()
+}
+Workgroup *.. Exam : Composition
+class Exam {
+    +List~turn~ hasTurn
+}
+Workgroup *.. Lesson
+class Lesson {
+    +List&lt;Student&gt; hasStudent : from inheritance
+}
+turn &lt;|-- Exam
+class turn["Exam Turn"] {
+    +List&lt;Student&gt; hasStudent : from inheritance
+}
+link turn "/SemanticWebAttendance#exam-turn"
+Lesson &lt;|-- Attendable : Inheritance
+Exam Turn &lt;|-- Attendable : Inheritance
+class Attendable {
+    +List&lt;Student&gt; hasStudentManual
+}
+Pin &lt;-- Attendable
+class Pin {
+    +string Code
+}
+Person o-- Teacher : Aggregation
+Person o-- Tutor
+Person o-- Student
+link Person "/SemanticWebAttendance#person"
+class Person {
+    string GivenName
+    string FamilyName
+}
+class group["Student Group"] {
+    +List~Student~ 
+}
+link group "/SemanticWebAttendance#student-group"
+group --|&gt; Class
+group --|&gt; turn
+group --|&gt; Lesson
+group "n" --&gt; "m" Student : hasStudent
+</div>
+<p><img alt="Schema di massima" src="img/schema_di_massima.jpg"/></p>
+<p><em>Sopra: uno schema di massima della nostra ontologia</em></p>
+<p>Vengono riportate le classi modellate in due classi più rilevanti e le altre (???).</p>
+<h3 id="person">Person</h3>
+<p>Questo sostantivo rappresenta una qualunque persona interagisca con un sistema scolastico. Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nello specifico:</p>
+<ul>
+<li>
+<p><a id="teacher">Teacher</a>: chi tiene le lezioni</p>
+</li>
+<li>
+<p><a id="tutor">Tutor</a>: chi aiuta a gestire uno specifico workgroup</p>
+</li>
+<li>
+<p><a id="student">Student</a>: chi segue le lezioni</p>
+</li>
+</ul>
+<h3 id="workgroup">Workgroup</h3>
+<p>Rappresenta una <a href="#classe">Classe</a> che partecipa in un determinato anno didattico e semestre ad una <a href="#attivita-didattica">Attività Didattica</a>.</p>
+<h4 id="classe">Classe</h4>
+<p>Rappresenta un gruppo di studenti iscritti in un certo anno accademico.</p>
+<h4 id="attivita-didattica">Attività Didattica</h4>
+<p>Rappresenta un corso di studio insegnato nella scuola. Un esempio può essere <em>Matematica</em> o <em>Economia</em>.</p>
+<h3 id="attendable">Attendable</h3>
+<p>Rappresenta un concetto(???) sul quale può essere registrata una presenza.</p>
+<h3 id="lesson">Lesson</h3>
+<p>Rappresenta un quanto di tempo dove gli <a href="#student">studenti</a> seguono un <a href="#teacher">professore</a>. Eventualemnte, il professore può essere aiutato o sostituito da un <a href="#tutor">tutor</a>.</p>
+<h3 id="exam">Exam</h3>
+<p>Rappresenta un quanto di tempo dove gli <a href="#student">studenti</a>, divisi in <a href="#exam-turn">turni</a> svolgono la propria prova.</p>
+<h4 id="exam-turn">Exam Turn</h4>
+<p>Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova.</p>
+<h3 id="pin">Pin</h3>
+<p>Rappresenta un codice a 6 cifre che le persone usano per registrare la loro presenza ad un <a href="#attendable">Attendable</a>.</p>
+<p>Possiede una data di creazione (<em>creation_date</em>) da valorizzare quando viene generato il Pin che è usata per calcolare tramite la regola ... la data di scadenza dello stesso. Allo scoccare della scadenza non sarà più possibile registrare una presenza sul Pin.</p>
+<p>Elenco delle proprietà ???</p>
+<h3 id="attendance">Attendance</h3>
+<p>Rappresenta una registrazione di una presenza. Essa quindi richiede un <a href="#pin">Pin</a> associato ad un <a href="#attendable">Attendable</a>, cioè un impegno sul quale possa essere registrata una presenza.</p>
+<h3 id="student-group">Student Group</h3>
+<p>Rappresenta un gruppo di studenti. Questa classe è usata esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi</p>
+<h2 id="object-properties">Object Properties</h2>
+<p>Di seguito vengono specificate le principali Object Properties modellate. <em>Vengono elencate ma non esaustivamente spiegate le properties usate dalle ontologie importate.</em></p>
+<h3 id="hasstudent-vs-hasstudentmanual">hasStudent vs hasStudentManual</h3>
+<p>La prima proprietà esprime un elenco di studenti che appartengono ad un determinato Student Group a priori, mentre la seconda un elenco di studenti aggiunti a posteriori ad un Attendable.</p>
+<h1 id="regole-semantiche">Regole Semantiche</h1>
+<h1 id="interrogazioni">Interrogazioni</h1>
+<p>Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero essere svolte sulla nostra ontologia.</p>
+<p><strong>Query</strong>:</p>
+<ul>
+<li><a href="#lultimo-pin-creato-per-un-attendable">L'ultimo pin creato per un Attendable</a></li>
+</ul>
+<h2 id="ultimo-pin-valido-per-un-determinato-attendable">Ultimo pin valido per un determinato attendable</h2>
+<p>Selezioniamo l'ultimo pin valido per un attendable. Questa interrogazione viene usata quando si vuole presentare il pin sul quale gli studenti possono registrare la loro presenza.</p>
+<p>In questo caso l'Attendable da usare è già noto, basta ordinare per data di creazione decresente i Pin che sono di un certo Attendable e prendere solo il primo.</p>
+<pre><code class="language-sparql">SELECT ?pin WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:creation-date ?creationDate .
+    ?pin att:expiration-date ?expirationDate .
+
+    BIND( now() AS ?currentDateTime ) # Get current date time
+    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
+    FILTER (?expirationDate &gt;= ?currentDateTime)
+}
+
+ORDER BY DESC(?creationDate) LIMIT 1
+</code></pre>
+<h2 id="tutti-i-workgroup-attivi-per-un-determinato-utente">Tutti i workgroup attivi per un determinato utente</h2>
+<p>Selezioniamo tutti i workgroup attivi per un utente per capire quali lezioni dovrà seguire o quali esami sostenere.</p>
+<pre><code class="language-sparql"># Retrieve all workgroup for a student.
+SELECT ?workgroup ?da ?teacher ?term WHERE {
+    ?student att:isStudentOf ?class . 
+    ?class att:isClassOf ?workgroup .
+    ?workgroup att:hasDidacticActivity ?da ;
+        att:hasTeacher ?teacher ;
+        att:wrk-term ?term .
+
+
+    FILTER (?student = att:STU_00001_MarioRossi)
+}
+
+ORDER BY ?term
+</code></pre>
+<h2 id="estrai-uno-studente-presente-casualmente">Estrai uno studente presente casualmente</h2>
+<p>Seleziono uno studente preso a caso tra i presenti a lezione per verificare se realmente sia presente o è stato registrato da qualcun altro in modo malizioso.</p>
+<p>In questo caso devo recuperare da tutti pin usati per la lezione tutte le presenze di un qualsiasi tipo valido e ne leggo soltanto una, la prima tra tutte quelle recuperate riordinate a caso.</p>
+<pre><code class="language-sparql"># Retrieve all attendance from an attendable.
+SELECT ?attendance WHERE {
+    ?attendable att:hasPin ?pin .
+    ?pin att:hasAttendance ?attendance .
+    ?attendance rdf:type att:AttendanceValid .
+
+    FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
+}
+
+# Then order them randomly and take the first one.
+ORDER BY RAND() LIMIT 1
+</code></pre>
+<h2 id="studenti-che-possono-sostenere-lesame-presenze-di-tot">Studenti che possono sostenere l'esame (presenze &gt; di tot %)</h2>
+<pre><code class="language-sparql"># Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
+SELECT ?student ?percentage WHERE {
+        {
+        SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
+
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+                ?lesson att:hasPin ?pin .
+                ?pin att:hasAttendance ?attendance .
+                ?attendance att:hasAttendant ?student .
+
+                { ?attendance rdf:type att:AttendanceValid . } 
+                UNION 
+                { ?attendance rdfs:subClassOf att:AttendanceValid . }
+
+                ?attendance att:hasAttendant att:STU_00001_MarioRossi .
+            }
+            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+        }
+
+        GROUP BY ?student
+    }
+    {
+        SELECT (count(?lesson) AS ?tot) WHERE {
+            ?wrk att:hasLesson ?lesson .
+            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+        }
+    }
+
+    FILTER (?percentage &gt; 75)
+}
+</code></pre>
+<h2 id="registro-delle-presenze">Registro delle presenze</h2>
+<pre><code class="language-sparql"># Exam turn register
+SELECT ?student ?attendance WHERE {
+    ?exam att:hasTurn ?turn .
+    ?turn att:hasStudent ?student .
+
+    OPTIONAL {
+        ?turn att:hasPin ?pin . 
+        ?pin att:hasAttendance ?attendance .
+        ?attendance att:hasAttendant ?student .
+        { ?attendance rdf:type att:AttendanceValid . } 
+        UNION 
+        { ?attendance rdfs:subClassOf att:AttendanceValid . }
+    }
+
+
+FILTER (?exam = att:EX_WS_2023_06_26)
+}
+
+ORDER BY ?student
+</code></pre></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script defer="" src="js/base.js"></script>
+<script defer="" src="search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/mermaid@10.2.4/dist/mermaid.min.js"></script><script>mermaid.initialize({
+    securityLevel: "loose"
+});</script></body>
+</html>
+<!--
+MkDocs version : 1.4.2
+Build Date UTC : 2023-07-24 08:40:27.120857+00:00
+-->
