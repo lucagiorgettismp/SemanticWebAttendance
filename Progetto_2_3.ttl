@@ -636,6 +636,62 @@ attendance-ontology:WRK_CL_001_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
                                                     attendance-ontology:wrk-year "2023"^^xsd:gYear .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00004_EMMA_MARRONE
+attendance-ontology:STU_00004_EMMA_MARRONE rdf:type owl:NamedIndividual ,
+                                                  attendance-ontology:Student ;
+                                         vcard:hasGender attendance-ontology:GEN_Female ;
+                                         attendance-ontology:student-id "00004" ;
+                                         vcard:bday "1997-09-13T00:00:00"^^xsd:dateTime ;
+                                         vcard:family-name "Marrone" ;
+                                         vcard:given-name "Emma" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00005_ELVIRA_RUSSO
+attendance-ontology:STU_00005_ELVIRA_RUSSO rdf:type owl:NamedIndividual ,
+                                                  attendance-ontology:Student ;
+                                         vcard:hasGender attendance-ontology:GEN_Female ;
+                                         attendance-ontology:student-id "00005" ;
+                                         vcard:bday "1996-09-13T00:00:00"^^xsd:dateTime ;
+                                         vcard:family-name "Russo" ;
+                                         vcard:given-name "Giacomina" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00006_GIACOMINO_LAMBORGHINI
+attendance-ontology:STU_00006_GIACOMINO_LAMBORGHINI rdf:type owl:NamedIndividual ,
+                                                  attendance-ontology:Student ;
+                                         vcard:hasGender attendance-ontology:GEN_Male ;
+                                         attendance-ontology:student-id "00006" ;
+                                         vcard:bday "1970-10-13T00:00:00"^^xsd:dateTime ;
+                                         vcard:family-name "Lamborghini" ;
+                                         vcard:given-name "Giacomino" .
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001
+attendance-ontology:CL_002 rdf:type owl:NamedIndividual ,
+                                    attendance-ontology:Class ;
+                           attendance-ontology:hasStudent attendance-ontology:STU_00004_EMMA_MARRONE ,
+                                                          attendance-ontology:STU_00005_ELVIRA_RUSSO ,
+                                                          attendance-ontology:STU_00006_GIACOMINO_LAMBORGHINI .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_002_DA_WebSemantico_2023
+attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual ,
+                                                             attendance-ontology:Workgroup ;
+                                                    attendance-ontology:hasClass attendance-ontology:CL_002 ;
+                                                    attendance-ontology:hasDidacticActivity attendance-ontology:DA_WebSemantico ;
+                                                    attendance-ontology:hasTeacher attendance-ontology:TR_AntonellaCarbonaro ;
+                                                    attendance-ontology:wrk-term "2"^^xsd:int ;
+                                                    attendance-ontology:wrk-year "2023"^^xsd:gYear .
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_002_DA_ProjectManagement_2023
+attendance-ontology:WRK_CL_002_DA_ProjectManagement_2023 rdf:type owl:NamedIndividual ,
+                                                                  attendance-ontology:Workgroup ;
+                                                         attendance-ontology:hasClass attendance-ontology:CL_002 ;
+                                                         attendance-ontology:hasDidacticActivity attendance-ontology:DA_ProjectManagement ;
+                                                         attendance-ontology:hasTeacher attendance-ontology:TR_MarcoAntonioBoschetti ;
+                                                         attendance-ontology:wrk-term "1"^^xsd:int ;
+                                                         attendance-ontology:wrk-year "2023"^^xsd:gYear .
+
+
 #################################################################
 #    Rules
 #################################################################
