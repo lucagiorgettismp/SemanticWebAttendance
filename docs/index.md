@@ -17,6 +17,22 @@
 
 # Sviluppo Ontologia
 
+In questa ontologia ci siamo prefissati di usare le seguenti tecnologie:
+
+* **RDF**: linguaggio usato per la definizione di triplette di dati che permettono di creare delle informazioni utili a chi dovrà usare quegli stessi dati
+
+* **RDFS**: linguaggio per fornire informazioni aggiuntive dai dati rappresentati usando RDF e che con il supporto di tool specifici chiamati *reasoner*, permette anche di comprendere maggiore conoscenza tramite l'uso di regole semantiche
+
+* **OWL**: estensione di RDFS, permette di generare ancora più informazione
+
+* **SPARQL**: linguaggio usato per interrogare ontologie e basi di dati semantiche come quelle in questione
+
+* **Turtle**: sintassi usata in questi ambiti che risulta di più facile lettura anche da utenti umani
+
+## Presentazione del contesto
+
+L'ontologia in questione nasce dall'esigenza dei due componenti del gruppo di esprimere la conoscenza di un dominio applicativo reale visto durante gli anni di lavoro presso un'azienda di sviluppo software locale.
+
 ## Classi
 
 Di seguito viene riportato uno schema di massima della nostra ontologia:
@@ -90,7 +106,7 @@ Questo sostantivo rappresenta una qualunque persona interagisca con un sistema s
 
 * <a id="tutor">Tutor</a>: chi aiuta a gestire uno specifico workgroup
 
-* <a id="student">Student</a>: chi segue le lezioni
+* <a id="student">Student</a>: chi principalmente partecipa alle lezioni
 
 ### Workgroup
 
@@ -106,7 +122,7 @@ Rappresenta un corso di studio insegnato nella scuola. Un esempio può essere *M
 
 ### Attendable
 
-Rappresenta un concetto(???) sul quale può essere registrata una presenza.
+Rappresenta un concetto(???) sul quale può essere registrata una presenza. Da notare che questo concetto non viene completamente esaurito in questa ontologia. Infatti possiamo immaginare che nel solo ambito accademico possono essere ancora rappresentati altri tipi di eventi che possono avere interesse del registrare la presenza degli utenti, come a riunioni di docenti e di altro personale o ricevimenti privati.
 
 ### Lesson
 
@@ -132,9 +148,11 @@ Elenco delle proprietà ???
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
+Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di "Sei Presente" o "Sei Assente". La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
+
 ### Student Group
 
-Rappresenta un gruppo di studenti. Questa classe è usata esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi
+Rappresenta un gruppo di studenti. Questa classe è usata esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi.
 
 ## Object Properties
 
@@ -152,7 +170,11 @@ Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero
 
 **Query**:
 
-* [L'ultimo pin creato per un Attendable](#lultimo-pin-creato-per-un-attendable)
+* [Ultimo pin creato per un Attendable](#ultimo-pin-valido-per-un-determinato-attendable)
+* [Tutti i workgroup attivi per un determinato utente](#tutti-i-workgroup-attivi-per-un-determinato-utente)
+* [Estrai uno studente presente casualmente](#estrai-uno-studente-presente-casualmente)
+* [Studenti che possono sostenere l'esame (presenze > di tot %)](#studenti-che-possono-sostenere-lesame-presenze--di-tot)
+* [Registro delle presenze](#registro-delle-presenze)
 * [Workgroup poco partecipati](#workgroup-poco-partecipati)
 
 ## Ultimo pin valido per un determinato attendable
@@ -252,6 +274,7 @@ SELECT ?student ?percentage WHERE {
 	FILTER (?percentage > 75)
 }
 ```
+
 ## Registro delle presenze
 
 ```sparql
@@ -279,3 +302,50 @@ ORDER BY ?student
 ## Workgroup poco partecipati
 
 Secondo noi è anche interessante sapere quali siano i Workgroup con scarsa partecipazione. Possiamo avere bisogno di sapere quali siano le Attività Didattiche che riscontrano poco successo tra gli studenti per capire come migliorarle o come sostituirle negli anni successivi.
+
+```sparql
+SELECT ?wrk ?rapporto WHERE {
+    {
+        # Recupero tutte le presenze di un workgroup e ne ottengo il numero totale.
+        SELECT ?wrk (count(?attendance) AS ?tot_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
+            
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+                ?lesson att:hasPin ?pin .
+                ?pin att:hasAttendance ?attendance .
+                ?attendance att:hasAttendant ?student ;
+                    rdf:type ?type .
+                ?type rdfs:subClassOf att:AttendanceValid .
+            }
+        }
+
+        GROUP BY ?wrk
+    }
+    {
+        # Lo devo rapportare al numero totale di presenze che mi sarei aspettato in quel workgroup.
+        SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
+            
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+            }
+        }
+        
+        GROUP BY ?wrk
+    }
+    
+    # Calcolo e filtro il rapporto.
+    BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
+    FILTER (?rapporto < 30)
+}
+
+```
+
+> Questa query è contenuta nel file `sparql/016_getWorkgroupWithLeastPartecipation.rq`.
+
+# Conclusioni
+
+Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere pronti al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo ciò avviene poco o proprio per niente. In questo caso particolare, potrebbe essere utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale. Basti pensare alla realtà dei test d'ingresso alle varie facoltà, che richiedono poi un grandissimo sforzo di comunicazione tra i vari atenei sia per chi riesce ad essere ammesso agli stessi e chi no. Nel nostro caso, le esigenze di registrazione delle presenze da parte dei vari istituti potrebbe essere molto differente e richiedere meno sforzi nel momento in cui vengano sfruttate queste facilitazioni.

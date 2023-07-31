@@ -13,3 +13,4 @@ plugins:
       version: 10.2.4
       arguments:
         securityLevel: 'loose'
+  - pdf-export

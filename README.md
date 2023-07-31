@@ -49,6 +49,8 @@ To build it use:
 mkdocs build
 ```
 
+Pdf produced using mkdocs plugin, find it in site/ folder.
+
 ## DL queries
 https://github.com/lucagiorgettismp/SemanticWebAttendance/wiki/DL-queries
 
