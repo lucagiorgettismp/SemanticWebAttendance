@@ -6,5 +6,14 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Description of this awesome query
 SELECT * WHERE {
+	?wrk att:hasExam ?exam .
+	?exam att:hasTurn ?turn .
+	?turn att:hasStudent ?student .
 
+	OPTIONAL {
+		?turn att:hasPin ?pin .
+		?pin att:hasAttendant ?student .
+	}
+	
+	FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
 }

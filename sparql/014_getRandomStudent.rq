@@ -14,7 +14,6 @@ SELECT ?student WHERE {
     ?type rdfs:subClassOf att:AttendanceValid .
 
     FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
-
 }
 
 # Then order them randomly and take the first one.

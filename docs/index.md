@@ -29,9 +29,15 @@ In questa ontologia ci siamo prefissati di usare le seguenti tecnologie:
 
 * **Turtle**: sintassi usata in questi ambiti che risulta di più facile lettura anche da utenti umani
 
+Come piattaforma per l'esecuzione delle query e la preparazione dell'ontologia, abbiamo usato principalmente Protégé, affiancato all'uso di reasoner e query enginer a riga ma che non avevano le stesse funzioni di Protégé e il risultato ottenuto non era mai uguale, per questo li abbiamo usati solo per contesti molto limitati.
+
 ## Presentazione del contesto
 
 L'ontologia in questione nasce dall'esigenza dei due componenti del gruppo di esprimere la conoscenza di un dominio applicativo reale visto durante gli anni di lavoro presso un'azienda di sviluppo software locale.
+
+Il requisito principale è quello di avere un sistema informatico per registrare la [presenza](#attendance) degli studenti quando sia necessario. Potrebbero essere [Lezioni](#lesson), [Esami](#exam) o altri momenti della vita accademica.
+
+> L'adozione delle tecnologie sopracitate consentirà a chi usufruisce di questa ontologia di espanderla per includere gli impegni che richiedono la registrazione della presenza che gli servono.
 
 ## Classi
 
@@ -100,17 +106,57 @@ Vengono riportate le classi modellate in due classi più rilevanti e le altre (?
 
 ### Person
 
-Questo sostantivo rappresenta una qualunque persona interagisca con un sistema scolastico. Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nello specifico:
+Questo sostantivo rappresenta una qualunque persona interagisca con un sistema scolastico.
 
-* <a id="teacher">Teacher</a>: chi tiene le lezioni
+**Data Properties**
 
-* <a id="tutor">Tutor</a>: chi aiuta a gestire uno specifico workgroup
+| Nome | Tipo |
+| --- | --- |
+| Given Name | string |
+| Family Name | string |
+| Birth Date | date |
 
-* <a id="student">Student</a>: chi principalmente partecipa alle lezioni
+**Object Properties**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| has Gender | Person | Gender |
+| has Attendant | Person | Gender |
+
+Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nello specifico:
+
+* <a id="teacher">Teacher</a>(Teacher): chi tiene le lezioni
+
+* <a id="tutor">Tutor</a>(Tutor): chi aiuta a gestire uno specifico workgroup
+
+* <a id="student">Student</a>(Studente): chi principalmente partecipa alle lezioni.
+
+    **Data Properties**
+
+    | Nome | Tipo |
+    | --- | --- |
+    | studentId | string |
 
 ### Workgroup
 
 Rappresenta una [Classe](#classe) che partecipa in un determinato anno didattico e semestre ad una [Attività Didattica](#attivita-didattica).
+
+**Data Property**
+
+| Nome | Tipo |
+| --- | --- |
+| wrk term | number |
+| wrk year | number |
+
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasClass | Workgroup | Class |
+| hasDidacticActivity | Workgroup | DidacticActivity |
+| hasExam | Workgroup | Exam |
+| hasLesson | Workgroup | Lesson |
+| hasTeacher | Workgroup | Teacher |
 
 #### Classe
 
@@ -124,13 +170,45 @@ Rappresenta un corso di studio insegnato nella scuola. Un esempio può essere *M
 
 Rappresenta un concetto(???) sul quale può essere registrata una presenza. Da notare che questo concetto non viene completamente esaurito in questa ontologia. Infatti possiamo immaginare che nel solo ambito accademico possono essere ancora rappresentati altri tipi di eventi che possono avere interesse del registrare la presenza degli utenti, come a riunioni di docenti e di altro personale o ricevimenti privati.
 
+**Data Property**
+
+| Nome | Tipo |
+| --- | --- |
+| end time | date |
+| start time | date |
+
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasLocation | Attendable | [Location](#location) |
+| hasPin | Attendable | [Pin](#pin) |
+
 ### Lesson
 
 Rappresenta un quanto di tempo dove gli [studenti](#student) seguono un [professore](#teacher). Eventualemnte, il professore può essere aiutato o sostituito da un [tutor](#tutor).
 
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasTutor | Lesson | [Tutor](#tutor) |
+
 ### Exam
 
 Rappresenta un quanto di tempo dove gli [studenti](#student), divisi in [turni](#exam-turn) svolgono la propria prova.
+
+**Data Property**
+
+| Nome | Tipo |
+| --- | --- |
+| exam date | date |
+
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasTurn | Exam | [Exam Turn](#exam-turn) |
 
 #### Exam Turn
 
@@ -144,15 +222,49 @@ Possiede una data di creazione (*creation_date*) da valorizzare quando viene gen
 
 Elenco delle proprietà ???
 
+**Data Property**
+
+| Nome | Tipo |
+| --- | --- |
+| creation date | date |
+| expiration date | date |
+| code | string |
+
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasAttendance | Pin | [Attendance](#attendance) |
+
 ### Attendance
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
 Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di "Sei Presente" o "Sei Assente". La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
 
+**Data Property**
+
+| Nome | Tipo |
+| --- | --- |
+| remote | boolean |
+
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasAttendant | Attendance | Person |
+
+
 ### Student Group
 
 Rappresenta un gruppo di studenti. Questa classe è usata esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi.
+
+**Object Property**
+
+| Nome | Dominio | Range |
+| --- | --- | --- |
+| hasManualStudent | StudentGroup | Student |
+| hasStudent | StudentGroup | Student |
 
 ## Object Properties
 
@@ -341,7 +453,6 @@ SELECT ?wrk ?rapporto WHERE {
     BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
     FILTER (?rapporto < 30)
 }
-
 ```
 
 > Questa query è contenuta nel file `sparql/016_getWorkgroupWithLeastPartecipation.rq`.
@@ -349,3 +460,5 @@ SELECT ?wrk ?rapporto WHERE {
 # Conclusioni
 
 Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere pronti al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo ciò avviene poco o proprio per niente. In questo caso particolare, potrebbe essere utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale. Basti pensare alla realtà dei test d'ingresso alle varie facoltà, che richiedono poi un grandissimo sforzo di comunicazione tra i vari atenei sia per chi riesce ad essere ammesso agli stessi e chi no. Nel nostro caso, le esigenze di registrazione delle presenze da parte dei vari istituti potrebbe essere molto differente e richiedere meno sforzi nel momento in cui vengano sfruttate queste facilitazioni.
+
+Inoltre, come già citato in questa relazione, abbiamo notato che non esistono degli strumenti efficaci per lavorare con queste tecnologie a parte Protégé che fossero gratuiti e open. Moltissimi software non sono più mantenuti da molto tempo oppure hanno una scarsa documentazione e supporto da una comunità di utilizzo, per questo anche soluzioni a problemi comuni che abbiamo riscontrato non avevano risposte sui forum online o su Stack Overflow.

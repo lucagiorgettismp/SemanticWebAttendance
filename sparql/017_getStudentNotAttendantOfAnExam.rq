@@ -1,0 +1,56 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Description of this awesome query
+SELECT ?student ?percentage ?ttype WHERE {
+    # Get all students attending the exam.
+    {
+        SELECT ?wrk ?student ?ttype WHERE {
+            ?wrk att:hasExam ?exam .
+            ?exam att:hasTurn ?turn .
+            ?turn att:hasStudent ?student .
+
+            OPTIONAL {
+                ?turn att:hasPin ?pin .
+                ?pin att:hasAttendant ?student ;
+                    rdf:type ?ttype .
+                ?ttype rdfs:SubClassOf att:AttendanceValid .
+            }
+        }
+    }
+    # Get all attendances of them.
+    {
+        SELECT ?wrk ?student (count(?attendance) AS ?tot_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
+            
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+                ?lesson att:hasPin ?pin .
+                ?pin att:hasAttendance ?attendance .
+                ?attendance att:hasAttendant ?student ;
+                    rdf:type ?type .
+                ?type rdfs:subClassOf att:AttendanceValid .
+            }
+        }
+        
+        GROUP BY ?wrk ?student
+    }
+    # Get all expected attendances by them.
+    {
+        SELECT ?wrk (count(?lesson) AS ?tot) WHERE {
+            ?wrk att:hasLesson ?lesson .
+        }
+
+        GROUP BY ?wrk
+    }
+
+    # Get the percentage of attended lessons.
+    BIND ((?tot_freq / ?tot * 100) AS ?percentage)
+    # Filter them by Workgroup and percentage.
+    # FILTER (?percentage <= 50)
+    FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+}

@@ -1,0 +1,21 @@
+# This is a failing query because doesn't exists any Didactic Activity with name "DA_WebSemantico1"
+# Don't try to make this query work!!!
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# All lessons of DA_WebSemantico
+SELECT ?lesson ?stime ?etime WHERE {
+	?da att:hasLesson ?lesson .
+	OPTIONAL { 
+		?lesson att:start-time ?stime  ;
+			att:end-time ?etime .  
+	}
+
+	FILTER (?da = att:DA_WebSemantico1)
+}
+
+ORDER BY ?lessons

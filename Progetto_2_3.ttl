@@ -477,6 +477,11 @@ attendance-ontology:CL_002 rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:STU_00006_GIACOMINO_LAMBORGHINI .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_PervasiveComputing
+attendance-ontology:DA_PervasiveComputing rdf:type owl:NamedIndividual ,
+                                                   attendance-ontology:DidacticActivity .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement
 attendance-ontology:DA_ProjectManagement rdf:type owl:NamedIndividual ,
                                                   attendance-ontology:DidacticActivity .
@@ -539,6 +544,11 @@ attendance-ontology:GEN_Other rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Unknown
 attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
                                          vcard:Unknown .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17
+attendance-ontology:LES_PC_2022_10_17 rdf:type owl:NamedIndividual ,
+                                               attendance-ontology:Lesson .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
@@ -671,6 +681,22 @@ attendance-ontology:PIN_WS_6 rdf:type owl:NamedIndividual ,
                              attendance-ontology:pin-code "001238"^^xsd:token .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_7
+attendance-ontology:PIN_WS_7 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:creation-date "2023-08-23T11:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-08-23T11:15:00Z"^^xsd:dateTime ;
+                             attendance-ontology:pin-code "101238"^^xsd:token .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_8
+attendance-ontology:PIN_WS_8 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:creation-date "2023-08-24T11:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-08-24T11:15:00Z"^^xsd:dateTime ;
+                             attendance-ontology:pin-code "061238"^^xsd:token .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi
 attendance-ontology:STU_00001_MarioRossi rdf:type owl:NamedIndividual ,
                                                   attendance-ontology:Student ;
@@ -718,7 +744,7 @@ attendance-ontology:STU_00005_ELVIRA_RUSSO rdf:type owl:NamedIndividual ,
                                            attendance-ontology:student-id "00005" ;
                                            vcard:bday "1996-09-13T00:00:00"^^xsd:dateTime ;
                                            vcard:family-name "Russo" ;
-                                           vcard:given-name "Giacomina" .
+                                           vcard:given-name "Elvira" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00006_GIACOMINO_LAMBORGHINI
@@ -729,6 +755,24 @@ attendance-ontology:STU_00006_GIACOMINO_LAMBORGHINI rdf:type owl:NamedIndividual
                                                     vcard:bday "1970-10-13T00:00:00"^^xsd:dateTime ;
                                                     vcard:family-name "Lamborghini" ;
                                                     vcard:given-name "Giacomino" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00007_DALIA_LABALIA
+attendance-ontology:STU_00007_DALIA_LABALIA rdf:type owl:NamedIndividual ,
+                                                     attendance-ontology:Student ;
+                                            vcard:hasGender attendance-ontology:GEN_Female ;
+                                            attendance-ontology:student-id "00007" ;
+                                            vcard:bday "1990-10-13T00:00:00"^^xsd:dateTime ;
+                                            vcard:family-name "La Balia" ;
+                                            vcard:given-name "Dalia" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AlessandroRicci
+attendance-ontology:TR_AlessandroRicci rdf:type owl:NamedIndividual ,
+                                                attendance-ontology:Teacher ;
+                                       vcard:hasGender attendance-ontology:GEN_Male ;
+                                       vcard:family-name "Ricci" ;
+                                       vcard:given-name "Alessandro" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro
@@ -753,6 +797,16 @@ attendance-ontology:TUT_RobertoReda rdf:type owl:NamedIndividual ,
                                     vcard:hasGender attendance-ontology:GEN_Male ;
                                     vcard:family-name "Reda" ;
                                     vcard:given-name "Roberto" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_PervasiveComputing_2023
+attendance-ontology:WRK_CL_001_DA_PervasiveComputing_2023 rdf:type owl:NamedIndividual ,
+                                                                   attendance-ontology:Workgroup ;
+                                                          attendance-ontology:hasClass attendance-ontology:CL_001 ;
+                                                          attendance-ontology:hasDidacticActivity attendance-ontology:DA_PervasiveComputing ;
+                                                          attendance-ontology:hasTeacher attendance-ontology:TR_AlessandroRicci ;
+                                                          attendance-ontology:wrk-term 1 ;
+                                                          attendance-ontology:wrk-year 2023 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023

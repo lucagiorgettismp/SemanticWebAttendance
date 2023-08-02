@@ -22,10 +22,10 @@ SELECT ?wrk ?rapporto WHERE {
             }
         }
 
-        # Lo devo rapportare al numero totale di presenze che mi sarei aspettato in quel workgroup.
         GROUP BY ?wrk
     }
     {
+        # Lo devo rapportare al numero totale di presenze che mi sarei aspettato in quel workgroup.
         SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
             ?wrk att:hasClass ?class .
             ?class att:hasStudent ?student .
@@ -37,6 +37,8 @@ SELECT ?wrk ?rapporto WHERE {
         
         GROUP BY ?wrk
     }
+    
+    # Calcolo e filtro il rapporto.
     BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
     FILTER (?rapporto < 30)
 }
