@@ -42,7 +42,6 @@ Come ontologie esterne abbiamo pensato di includere:
     * [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
     * [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
 
-
 ## Presentazione del contesto
 
 L'ontologia in questione nasce dall'esigenza dei due componenti del gruppo di esprimere la conoscenza di un dominio applicativo reale visto durante gli anni di lavoro presso un'azienda di sviluppo software locale.
@@ -266,7 +265,6 @@ Questa registrazione possiede la particolarità di non dover per forza essere bi
 | --- | --- | --- |
 | hasAttendant | Attendance | Person |
 
-
 ### Student Group
 
 Rappresenta un gruppo di studenti. Questa classe è usata esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi.
@@ -300,6 +298,8 @@ Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero
 * [Studenti che possono sostenere l'esame (presenze > di tot %)](#studenti-che-possono-sostenere-lesame-presenze--di-tot)
 * [Registro delle presenze](#registro-delle-presenze)
 * [Workgroup poco partecipati](#workgroup-poco-partecipati)
+
+Il codice di tutte le query generate per il progetto può essere consultato su [Github](https://github.com/lucagiorgietti)
 
 ## Ultimo pin valido per un determinato attendable
 
@@ -474,3 +474,5 @@ SELECT ?wrk ?rapporto WHERE {
 Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere pronti al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo ciò avviene poco o proprio per niente. In questo caso particolare, potrebbe essere utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale. Basti pensare alla realtà dei test d'ingresso alle varie facoltà, che richiedono poi un grandissimo sforzo di comunicazione tra i vari atenei sia per chi riesce ad essere ammesso agli stessi e chi no. Nel nostro caso, le esigenze di registrazione delle presenze da parte dei vari istituti potrebbe essere molto differente e richiedere meno sforzi nel momento in cui vengano sfruttate queste facilitazioni.
 
 Inoltre, come già citato in questa relazione, abbiamo notato che non esistono degli strumenti efficaci per lavorare con queste tecnologie a parte Protégé che fossero gratuiti e open. Moltissimi software non sono più mantenuti da molto tempo oppure hanno una scarsa documentazione e supporto da una comunità di utilizzo, per questo anche soluzioni a problemi comuni che abbiamo riscontrato non avevano risposte sui forum online o su Stack Overflow.
+
+Per il problema sopracitato, nonostante i nostri sforzi, non siamo quindi riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto.

@@ -806,7 +806,7 @@ attendance-ontology:WRK_CL_001_DA_PervasiveComputing_2023 rdf:type owl:NamedIndi
                                                           attendance-ontology:hasDidacticActivity attendance-ontology:DA_PervasiveComputing ;
                                                           attendance-ontology:hasTeacher attendance-ontology:TR_AlessandroRicci ;
                                                           attendance-ontology:wrk-term 1 ;
-                                                          attendance-ontology:wrk-year 2023 .
+                                                          attendance-ontology:wrk-year "2023"^^xsd:gYear .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023

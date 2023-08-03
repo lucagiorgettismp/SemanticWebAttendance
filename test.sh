@@ -17,6 +17,14 @@ GQ=$(cat <<-END
 002_getAllLessonsOfWrk,4
 003_getLessonsFrequencyOfStudents,4
 004_getStudentsWithAtLeastOneFrequency,4
+005_getStudentsWithAtLeast75PercFrequency,2
+006_getNumberOfExamTriesOfWrk,4
+007_getPercentageOfLessonsInDelay,4
+008_getLessonsOfWrkWithTutor,2
+009_getStudentsOfALessonWithAttendance,4
+011_getStillValidPins,3
+012_getRegisterOfAnExam,4
+013_getLastValidPin,2
 016_getWorkgroupWithLeastPartecipation,4
 END
 )
