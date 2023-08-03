@@ -2,6 +2,7 @@
 <h3><center>Ontologia per la registrazione delle presenze in aula</center></h3>
 <h5><center>Relazione elaborato Web Semantico</center></h5>
 
+<center>
 <table>
 <tbody>
 <td>
@@ -14,6 +15,7 @@
 </td>
 </tbody>
 </table>
+</center>
 
 # Sviluppo Ontologia
 
@@ -30,6 +32,16 @@ In questa ontologia ci siamo prefissati di usare le seguenti tecnologie:
 * **Turtle**: sintassi usata in questi ambiti che risulta di più facile lettura anche da utenti umani
 
 Come piattaforma per l'esecuzione delle query e la preparazione dell'ontologia, abbiamo usato principalmente Protégé, affiancato all'uso di reasoner e query enginer a riga ma che non avevano le stesse funzioni di Protégé e il risultato ottenuto non era mai uguale, per questo li abbiamo usati solo per contesti molto limitati.
+
+Come ontologie esterne abbiamo pensato di includere:
+
+* [**VCard**](https://www.w3.org/TR/vcard-rdf/): per descrivere le persone e le organizzazioni. Tramite questa ontologia si potrebbero meglio rappresentare anche le istituzioni di cui fanno parte le persone descritte, permettendo a questa ontologia di modellare una realtà più grande di un solo istituto accademico, ma di un intero sistema, campus condiviso da più atenei ecc...
+
+* [**Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone descritte. Di questa conoscenza ne viene usata tuttavia solamente una piccola parte, dato che a noi interessa esclusivamente, a questo livello, descrivere le relative lavorative tra esse. Di essa può essere usato anche:
+
+    * [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
+    * [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
+
 
 ## Presentazione del contesto
 

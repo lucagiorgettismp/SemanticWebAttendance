@@ -14,3 +14,4 @@ plugins:
       arguments:
         securityLevel: 'loose'
   - pdf-export
+  - with-pdf
