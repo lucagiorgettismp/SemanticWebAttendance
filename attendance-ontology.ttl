@@ -1456,7 +1456,8 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
         :hasStudent :STU_00001_MarioRossi ,
                     :STU_00002_LuigiVerdi ,
                     :STU_00003_ChiaraBianchi ;
-        :isClassOf :WRK_CL_001_DA_ProjectManagement_2023 ,
+        :isClassOf :WRK_CL_001_DA_PervasiveComputing_2023 ,
+                   :WRK_CL_001_DA_ProjectManagement_2023 ,
                    :WRK_CL_001_DA_WebSemantico_2023 .
 
 
@@ -1469,6 +1470,12 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                     :STU_00006_GIACOMINO_LAMBORGHINI ;
         :isClassOf :WRK_CL_002_DA_ProjectManagement_2023 ,
                    :WRK_CL_002_DA_WebSemantico_2023 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_PervasiveComputing
+:DA_PervasiveComputing rdf:type owl:NamedIndividual ,
+                                :DidacticActivity ;
+                       :isDidacticActivityOf :WRK_CL_001_DA_PervasiveComputing_2023 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_ProjectManagement
@@ -1549,6 +1556,13 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 :GEN_Unknown rdf:type owl:NamedIndividual ,
                       <http://www.w3.org/2006/vcard/ns#Gender> ,
                       <http://www.w3.org/2006/vcard/ns#Unknown> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17
+:LES_PC_2022_10_17 rdf:type owl:NamedIndividual ,
+                            :Attendable ,
+                            :Lesson ,
+                            :StudentGroup .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
@@ -1822,6 +1836,16 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                          <http://www.w3.org/2006/vcard/ns#given-name> "Dalia" .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AlessandroRicci
+:TR_AlessandroRicci rdf:type owl:NamedIndividual ,
+                             :Person ,
+                             :Teacher ;
+                    :isTeacherOf :WRK_CL_001_DA_PervasiveComputing_2023 ;
+                    <http://www.w3.org/2006/vcard/ns#hasGender> :GEN_Male ;
+                    <http://www.w3.org/2006/vcard/ns#family-name> "Ricci" ;
+                    <http://www.w3.org/2006/vcard/ns#given-name> "Alessandro" .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro
 :TR_AntonellaCarbonaro rdf:type owl:NamedIndividual ,
                                 :Person ,
@@ -1852,6 +1876,16 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                  <http://www.w3.org/2006/vcard/ns#hasGender> :GEN_Male ;
                  <http://www.w3.org/2006/vcard/ns#family-name> "Reda" ;
                  <http://www.w3.org/2006/vcard/ns#given-name> "Roberto" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_PervasiveComputing_2023
+:WRK_CL_001_DA_PervasiveComputing_2023 rdf:type owl:NamedIndividual ,
+                                                :Workgroup ;
+                                       :hasClass :CL_001 ;
+                                       :hasDidacticActivity :DA_PervasiveComputing ;
+                                       :hasTeacher :TR_AlessandroRicci ;
+                                       :wrk-term "1"^^xsd:int ;
+                                       :wrk-year "2023"^^xsd:gYear .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023

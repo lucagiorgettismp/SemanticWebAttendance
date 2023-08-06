@@ -5,19 +5,33 @@
 #     You should omit those printings, especially while running on CI.
 
 SIMPLE_DATA='Progetto_2_3.ttl'
-INFERRED_DATA='inferred.ttl'
+INFERRED_DATA='attendance-ontology.ttl'
 EXT='.rq'
 ERRORS=''
+CMD="lib/apache-jena-4.9.0/bin/arq"
+
+# Get options
+while [ True ]; do
+    if [ "$1" = "-v" -o "$1" = "--verbose" ]; then
+        VERBOSE="1"
+        shift 1
+    elif [ "$1" = "-i" -o "$1" = "--inferred" ]; then
+        INFERRED="1"
+        shift 1
+    else
+        break
+    fi
+done
 
 # Good resulting queries
 # GQ="001_getAllStudents,7 002_getAllLessonsOfWrk,3"
 #     TODO: Those queries should be gatether using an input stream.
 GQ=$(cat <<-END
-001_getAllStudents,7
+001_getAllStudents,8
 002_getAllLessonsOfWrk,4
 003_getLessonsFrequencyOfStudents,4
 004_getStudentsWithAtLeastOneFrequency,4
-005_getStudentsWithAtLeast75PercFrequency,2
+005_getStudentsWithAtLeast75PercFrequency,1
 006_getNumberOfExamTriesOfWrk,4
 007_getPercentageOfLessonsInDelay,4
 008_getLessonsOfWrkWithTutor,2
@@ -25,18 +39,18 @@ GQ=$(cat <<-END
 011_getStillValidPins,3
 012_getRegisterOfAnExam,4
 013_getLastValidPin,2
-016_getWorkgroupWithLeastPartecipation,4
+016_getWorkgroupWithLeastPartecipation,5
 END
 )
 for query in $GQ
 do
     ARG="$(echo $query | cut -d',' -f1)" # Get first param
     EXP="$(echo $query | cut -d',' -f2)" # Get second param
-    RES=`arq --data=${SIMPLE_DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
+    RES=`${CMD} --data=${INFERRED_DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
     if [ $RES -ne $EXP ]; then
         ERRORS="${ERRORS}\r\nNope! $ARG expected $EXP instead of $RES\r\n\r\n"
     else
-        [ "$1" = "-v" ] && echo $ARG
+        [ "$VERBOSE" = "-v" ] && echo $ARG
     fi
 done
 
@@ -46,7 +60,7 @@ for query in $BQ
 do
     ARG="$(echo $query | cut -d',' -f1)" # Get first param
     EXP="$(echo $query | cut -d',' -f2)" # Get second param
-    RES=`arq --data=${SIMPLE_DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
+    RES=`${CMD} --data=${INFERRED_DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
     if [ $RES -ne $EXP ]; then
         ERRORS="${ERRORS}\r\nNope! $ARG expected $EXP instead of $RES\r\n\r\n"
     fi
