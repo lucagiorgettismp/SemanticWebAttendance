@@ -31,7 +31,7 @@ In questa ontologia ci siamo prefissati di usare le seguenti tecnologie:
 
 * **Turtle**: sintassi usata in questi ambiti che risulta di più facile lettura anche da utenti umani
 
-Come piattaforma per l'esecuzione delle query e la preparazione dell'ontologia, abbiamo usato principalmente Protégé, affiancato all'uso di reasoner e query enginer a riga ma che non avevano le stesse funzioni di Protégé e il risultato ottenuto non era mai uguale, per questo li abbiamo usati solo per contesti molto limitati.
+Come piattaforma per l'esecuzione delle query e la preparazione dell'ontologia, abbiamo usato principalmente Protégé, affiancato all'uso di reasoner e query enginer a riga di comando. Purtroppo essi non avevano le stesse funzioni di Protégé e il risultato ottenuto non era mai uguale, per questo li abbiamo usati solo per contesti molto limitati.
 
 Come ontologie esterne abbiamo pensato di includere:
 
@@ -197,7 +197,7 @@ Rappresenta un concetto(???) sul quale può essere registrata una presenza. Da n
 
 ### Lesson
 
-Rappresenta un quanto di tempo dove gli [studenti](#student) seguono un [professore](#teacher). Eventualemnte, il professore può essere aiutato o sostituito da un [tutor](#tutor).
+Rappresenta un quanto di tempo dove gli [studenti](#student) seguono un [professore](#teacher). Eventualmente, il professore può essere aiutato o sostituito da un [tutor](#tutor).
 
 **Object Property**
 
@@ -223,7 +223,7 @@ Rappresenta un quanto di tempo dove gli [studenti](#student), divisi in [turni](
 
 #### Exam Turn
 
-Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova.
+Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova. Questa divisione è necessaria in quanto non sempre negli atenei sono presenti aule abbastanza capienti per contenere tutti gli studenti che svolgono una prova un determinato giorno. Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra gli attendenti (in un'aula da 200 persone, potrebbero riuscirci a stare soltato 50 persone durante un'esame).
 
 ### Pin
 
@@ -251,7 +251,7 @@ Elenco delle proprietà ???
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
-Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di "Sei Presente" o "Sei Assente". La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
+Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di *"Sei Presente"* o *"Sei Assente"*. La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
 
 **Data Property**
 
@@ -475,4 +475,4 @@ Le tecnologie studiate durante questo corso trovano molto successo in ambienti n
 
 Inoltre, come già citato in questa relazione, abbiamo notato che non esistono degli strumenti efficaci per lavorare con queste tecnologie a parte Protégé che fossero gratuiti e open. Moltissimi software non sono più mantenuti da molto tempo oppure hanno una scarsa documentazione e supporto da una comunità di utilizzo, per questo anche soluzioni a problemi comuni che abbiamo riscontrato non avevano risposte sui forum online o su Stack Overflow.
 
-Per il problema sopracitato, nonostante i nostri sforzi, non siamo quindi riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto.
+Per il problema sopracitato, nonostante i nostri sforzi, non siamo quindi riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto. Infatti, tramite le Github Actions riusciamo soltanto a controllare che le query eseguite sull'ontologia già inferita. Come *artefatto* risultato di una computazione, non è bene che sia tracciato sul sistema di versioning, dovrebbe essere generato all'occorrenza.
