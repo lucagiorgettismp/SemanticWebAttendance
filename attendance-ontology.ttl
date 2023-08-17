@@ -1492,6 +1492,16 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                        :WRK_CL_002_DA_WebSemantico_2023 .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_PM_2023_05_25_09_30
+:ET_PM_2023_05_25_09_30 rdf:type owl:NamedIndividual ,
+                                 :Attendable ,
+                                 :ExamTurn ,
+                                 :StudentGroup ;
+                        :hasLocation :LOC_ROOM_AULA_2.10 ;
+                        :hasPin :PIN_WS_7 ;
+                        :isTurnOf :EX_PM_2023_05_25 .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30
 :ET_WS_2023_06_26_09_30 rdf:type owl:NamedIndividual ,
                                  :Attendable ,
@@ -1517,6 +1527,13 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                         :isTurnOf :EX_WS_2023_06_26 ;
                         :end-time "2023-06-26T12:30:00"^^xsd:dateTime ;
                         :start-time "2023-06-26T11:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_PM_2023_05_25
+:EX_PM_2023_05_25 rdf:type owl:NamedIndividual ,
+                           :Exam ;
+                  :hasTurn :ET_PM_2023_05_25_09_30 ;
+                  :isExamOf :WRK_CL_001_DA_ProjectManagement_2023 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_WS_2023_06_26
@@ -1649,7 +1666,8 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 :LOC_ROOM_AULA_2.10 rdf:type owl:NamedIndividual ,
                              :Location ,
                              :Room ;
-                    :isLocationOf :LES_WS_2023_05_21 ,
+                    :isLocationOf :ET_PM_2023_05_25_09_30 ,
+                                  :LES_WS_2023_05_21 ,
                                   :LES_WS_2023_07_24 ;
                     :location-code "2.10" .
 
@@ -1725,8 +1743,9 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_7
 :PIN_WS_7 rdf:type owl:NamedIndividual ,
                    :Pin ;
-          :creation-date "2023-08-23T11:00:00Z"^^xsd:dateTime ;
-          :expiration-date "2023-08-23T11:15:00Z"^^xsd:dateTime ;
+          :isPinOf :ET_PM_2023_05_25_09_30 ;
+          :creation-date "2023-05-25T09:25:00Z"^^xsd:dateTime ;
+          :expiration-date "2023-05-25T09:40:00Z"^^xsd:dateTime ;
           :pin-code "101238"^^xsd:token .
 
 
@@ -1893,6 +1912,7 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                                :Workgroup ;
                                       :hasClass :CL_001 ;
                                       :hasDidacticActivity :DA_ProjectManagement ;
+                                      :hasExam :EX_PM_2023_05_25 ;
                                       :hasTeacher :TR_MarcoAntonioBoschetti ;
                                       :wrk-term "1"^^xsd:int ;
                                       :wrk-year "2023"^^xsd:gYear .
