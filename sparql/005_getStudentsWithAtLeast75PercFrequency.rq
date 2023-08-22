@@ -6,34 +6,33 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
 SELECT ?student ?percentage WHERE {
-	{
-		SELECT ?student ((?tot_freq / ?tot * 100) AS ?percentage) WHERE {
-			{
-				SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
-					?wrk att:hasClass ?class .
-					?class att:hasStudent ?student .
+    {
+        SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
 
-					OPTIONAL {
-						?wrk att:hasLesson ?lesson .
-						?lesson att:hasPin ?pin .
-						?pin att:hasAttendance ?attendance .
-						?attendance att:hasAttendant ?student ;
-							rdf:type ?type .
-						?type rdfs:subClassOf att:AttendanceValid .
-					}
-					FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
-				}
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+                ?lesson att:hasPin ?pin .
+                ?pin att:hasAttendance ?attendance .
+                ?attendance att:hasAttendant ?student ;
+                    rdf:type ?type .
+                ?type rdfs:subClassOf att:AttendanceValid .
+            }
 
-				GROUP BY ?student
-			}
-			{
-				SELECT (count(?lesson) AS ?tot) WHERE {
-					?wrk att:hasLesson ?lesson .
-					FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
-				}
-			}
-		}
-	}
+            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+        }
 
-	FILTER (?percentage > 75)
+        GROUP BY ?student
+    }
+    {
+        SELECT (count(?lesson) AS ?tot) WHERE {
+            ?wrk att:hasLesson ?lesson .
+            
+            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+        }
+    }
+
+    BIND ((?tot_freq / ?tot * 100) AS ?percentage)
+	FILTER (?percentage > 50)
 }

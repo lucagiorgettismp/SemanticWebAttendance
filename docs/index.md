@@ -39,8 +39,14 @@ Come ontologie esterne abbiamo pensato di includere:
 
 * [**Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone descritte. Di questa conoscenza ne viene usata tuttavia solamente una piccola parte, dato che a noi interessa esclusivamente, a questo livello, descrivere le relative lavorative tra esse. Di essa può essere usato anche:
 
+    * [foaf:knows](http://xmlns.com/foaf/0.1/#term_knows)
+
+        Potrebbero essere create proprietà da inferire come: compagni di classe (tra studenti), colleghi di lavoro (tra docenti), ecc...
+
     * [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
     * [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
+
+        Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
 
 ## Presentazione del contesto
 
@@ -286,6 +292,29 @@ La prima proprietà esprime un elenco di studenti che appartengono ad un determi
 
 # Regole Semantiche
 
+## PinExpirationDate
+
+```
+attendance-ontology:Pin(?pin) ^
+attendance-ontology:creation-date(?pin, ?creationDate) ^
+swrlb:dayTimeDuration(?pinDuration, 0, 0, 15, 0) ^
+swrlb:addDayTimeDurationToDateTime(?result, ?creationDate, ?pinDuration)
+-> attendance-ontology:expiration-date(?pin, ?result)
+```
+
+Questa regola consente di valorizzare l'orario di scadenza di un Pin in base alla sua data di creazione. Nell'ontologia di esempio proposta, abbiamo assunto che tutti i Pin abbiano una durata di 15 minuti di durata. Tuttavia la regola non viene effettivamente utilizzata poiché Protégé non riesce ad elaborarla attraverso il tool integrato in esso *Drool rule engine* o *Pellet*. Abbiamo infatti realizzato la query `PinExpirationDateQueryRule`, per dimostrare che la regola PinExpirationDate sia formulata correttamente.
+
+## RemoteAttendance
+
+```
+attendance-ontology:Attendance(?attendance) ^
+attendance-ontology:remote(?attendance, ?isRemote) ^
+swrlb:equal(?isRemote, true) 
+-> attendance-ontology:RemoteAttendance(?attendance)
+```
+
+Questa regola permette di inferire l'appartenenza alla classe RemoteAttendance per tutti gli Attendance che hanno la data property *remote* valorizzata a `true`. Ciò consente di assumere <u>certamente</u> che una presenza con valore `remote true` sia da remoto, ma non che una presenza senza quella proprietà valorizzata sia <u>sicuramente</u> in presenza.
+
 # Interrogazioni
 
 Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero essere svolte sulla nostra ontologia.
@@ -310,8 +339,9 @@ In questo caso l'Attendable da usare è già noto, basta ordinare per data di cr
 ```sparql
 SELECT ?pin WHERE {
     ?attendable att:hasPin ?pin .
-    ?pin att:creation-date ?creationDate .
-    ?pin att:expiration-date ?expirationDate .
+    ?pin att:creation-date ?creationDate ;
+        att:expiration-date ?expirationDate ;
+        att:pin-code ?code .
 
     BIND( now() AS ?currentDateTime ) # Get current date time
     FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
@@ -319,6 +349,16 @@ SELECT ?pin WHERE {
 }
 
 ORDER BY DESC(?creationDate) LIMIT 1
+```
+
+Eseguendo questa interrogazione viene prodotto il risultato:
+
+```sh
+----------------------------------------------------
+| pin          | code     | expirationDate         |
+====================================================
+| att:PIN_WS_5 | "666799" | "2023-09-21T11:15:00Z" |
+----------------------------------------------------
 ```
 
 ## Tutti i workgroup attivi per un determinato utente
@@ -333,12 +373,23 @@ SELECT ?workgroup ?da ?teacher ?term WHERE {
     ?workgroup att:hasDidacticActivity ?da ;
         att:hasTeacher ?teacher ;
         att:wrk-term ?term .
-
     
     FILTER (?student = att:STU_00001_MarioRossi)
 }
 
 ORDER BY ?term
+```
+
+Eseguendo questa interrogazione viene prodotto il risultato:
+
+```sh
+---------------------------------------------------------------------------------------------------------------
+| workgroup                                 | da                        | teacher                      | term |
+===============================================================================================================
+| att:WRK_CL_001_DA_PervasiveComputing_2023 | att:DA_PervasiveComputing | att:TR_AlessandroRicci       | "1"  |
+| att:WRK_CL_001_DA_ProjectManagement_2023  | att:DA_ProjectManagement  | att:TR_MarcoAntonioBoschetti | "1"  |
+| att:WRK_CL_001_DA_WebSemantico_2023       | att:DA_WebSemantico       | att:TR_AntonellaCarbonaro    | "2"  |
+---------------------------------------------------------------------------------------------------------------
 ```
 
 ## Estrai uno studente presente casualmente
@@ -352,7 +403,9 @@ In questo caso devo recuperare da tutti pin usati per la lezione tutte le presen
 SELECT ?attendance WHERE {
     ?attendable att:hasPin ?pin .
     ?pin att:hasAttendance ?attendance .
-    ?attendance rdf:type att:AttendanceValid .
+    ?attendance att:hasAttendant ?student ;
+        rdf:type ?type .
+    ?type rdfs:subClassOf att:AttendanceValid .
 
     FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
 }
@@ -361,32 +414,41 @@ SELECT ?attendance WHERE {
 ORDER BY RAND() LIMIT 1
 ```
 
+Eseguendo questa interrogazione viene prodotto il risultato:
+
+```sh
+----------------------------
+| student                  |
+============================
+| att:STU_00001_MarioRossi |
+----------------------------
+```
+
 ## Studenti che possono sostenere l'esame (presenze > di tot %)
 
+Otteniamo tutti gli studenti che hanno una percentuale di presenza maggiore rispetto ad una certa soglia (nel nostro esempio 50%).
+
 ```sparql
-# Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
+# Students having a presence frequency at DA_WebSemantico higher (or equal) to 50%
 SELECT ?student ?percentage WHERE {
 		{
 		SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
-			?wrk att:hasClass ?class .
-			?class att:hasStudent ?student .
+            ?wrk att:hasClass ?class .
+            ?class att:hasStudent ?student .
 
-			OPTIONAL {
-				?wrk att:hasLesson ?lesson .
-				?lesson att:hasPin ?pin .
-				?pin att:hasAttendance ?attendance .
-				?attendance att:hasAttendant ?student .
+            OPTIONAL {
+                ?wrk att:hasLesson ?lesson .
+                ?lesson att:hasPin ?pin .
+                ?pin att:hasAttendance ?attendance .
+                ?attendance att:hasAttendant ?student ;
+                    rdf:type ?type .
+                ?type rdfs:subClassOf att:AttendanceValid .
+            }
 
-				{ ?attendance rdf:type att:AttendanceValid . } 
-				UNION 
-				{ ?attendance rdfs:subClassOf att:AttendanceValid . }
-				
-				?attendance att:hasAttendant att:STU_00001_MarioRossi .
-			}
-			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
-		}
+            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+        }
 
-		GROUP BY ?student
+        GROUP BY ?student
 	}
 	{
 		SELECT (count(?lesson) AS ?tot) WHERE {
@@ -395,32 +457,56 @@ SELECT ?student ?percentage WHERE {
 		}
 	}
 
-	FILTER (?percentage > 75)
+	FILTER (?percentage > 50)
 }
+```
+
+Eseguendo questa interrogazione viene prodotto il risultato:
+
+```sh
+--------------------------------------------------------
+| student                  | percentage                |
+========================================================
+| att:STU_00001_MarioRossi | 66.6666666666666666666667 |
+--------------------------------------------------------
 ```
 
 ## Registro delle presenze
 
 ```sparql
-# Exam turn register
-SELECT ?student ?attendance WHERE {
-    ?exam att:hasTurn ?turn .
-    ?turn att:hasStudent ?student .
+SELECT DISTINCT ?student ?type WHERE {
+    ?lesson att:hasStudent ?student . 
 
-    OPTIONAL {
-        ?turn att:hasPin ?pin . 
+    OPTIONAL { 
+        ?lesson att:hasPin ?pin .
         ?pin att:hasAttendance ?attendance .
-        ?attendance att:hasAttendant ?student .
-        { ?attendance rdf:type att:AttendanceValid . } 
-        UNION 
-        { ?attendance rdfs:subClassOf att:AttendanceValid . }
+        ?attendance att:hasAttendant ?student ;
+            rdf:type ?type .
+        {        
+            ?type rdfs:subClassOf att:AttendanceValid .
+        }
+        UNION
+        {        
+            ?type rdfs:subClassOf att:AttendanceNotValid .
+        }
     }
 
-
-FILTER (?exam = att:EX_WS_2023_06_26)
+    FILTER (?lesson = att:LES_WS_2023_05_22)
 }
 
 ORDER BY ?student
+```
+
+Eseguendo questa interrogazione viene prodotto il risultato:
+
+```sh
+--------------------------------------------------------------
+| student                     | type                         |
+==============================================================
+| att:STU_00001_MarioRossi    | att:AttendanceValidPresent   |
+| att:STU_00002_LuigiVerdi    | att:AttendanceValidWithDelay |
+| att:STU_00003_ChiaraBianchi |                              |
+--------------------------------------------------------------
 ```
 
 ## Workgroup poco partecipati
@@ -467,12 +553,27 @@ SELECT ?wrk ?rapporto WHERE {
 }
 ```
 
-> Questa query è contenuta nel file `sparql/016_getWorkgroupWithLeastPartecipation.rq`.
+Eseguendo questa interrogazione viene prodotto il risultato:
+
+```sh
+--------------------------------------------------------
+| wrk                                       | rapporto |
+========================================================
+| att:WRK_CL_002_DA_ProjectManagement_2023  | 0.0      |
+| att:WRK_CL_002_DA_WebSemantico_2023       | 0.0      |
+| att:WRK_CL_001_DA_ProjectManagement_2023  | 0.0      |
+| att:WRK_CL_001_DA_PervasiveComputing_2023 | 0.0      |
+--------------------------------------------------------
+```
 
 # Conclusioni
 
-Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere pronti al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo ciò avviene poco o proprio per niente. In questo caso particolare, potrebbe essere utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale. Basti pensare alla realtà dei test d'ingresso alle varie facoltà, che richiedono poi un grandissimo sforzo di comunicazione tra i vari atenei sia per chi riesce ad essere ammesso agli stessi e chi no. Nel nostro caso, le esigenze di registrazione delle presenze da parte dei vari istituti potrebbe essere molto differente e richiedere meno sforzi nel momento in cui vengano sfruttate queste facilitazioni.
+Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere pronti al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo ciò avviene poco o proprio per niente. In questo caso particolare, potrebbe essere utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale. 
+
+<!-- Basti pensare alla realtà dei test d'ingresso alle varie facoltà, che richiedono poi un grandissimo sforzo di comunicazione tra i vari atenei sia per chi riesce ad essere ammesso agli stessi e chi no. Nel nostro caso, le esigenze di registrazione delle presenze da parte dei vari istituti potrebbe essere molto differente e richiedere meno sforzi nel momento in cui vengano sfruttate queste facilitazioni.-->
 
 Inoltre, come già citato in questa relazione, abbiamo notato che non esistono degli strumenti efficaci per lavorare con queste tecnologie a parte Protégé che fossero gratuiti e open. Moltissimi software non sono più mantenuti da molto tempo oppure hanno una scarsa documentazione e supporto da una comunità di utilizzo, per questo anche soluzioni a problemi comuni che abbiamo riscontrato non avevano risposte sui forum online o su Stack Overflow.
 
 Per il problema sopracitato, nonostante i nostri sforzi, non siamo quindi riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto. Infatti, tramite le Github Actions riusciamo soltanto a controllare che le query eseguite sull'ontologia già inferita. Come *artefatto* risultato di una computazione, non è bene che sia tracciato sul sistema di versioning, dovrebbe essere generato all'occorrenza.
+
+<!-- Scrivere altre cose sull'ontologia -->
