@@ -23,6 +23,14 @@ while [ True ]; do
     fi
 done
 
+if [ "$INFERRED" = "1" ]; then
+    DATA=$INFERRED_DATA
+else
+    DATA=$SIMPLE_DATA
+fi
+
+[ "$VERBOSE" = "1" ] && echo "Running against $DATA"
+
 # Good resulting queries
 # GQ="001_getAllStudents,7 002_getAllLessonsOfWrk,3"
 #     TODO: Those queries should be gatether using an input stream.
@@ -31,12 +39,12 @@ GQ=$(cat <<-END
 002_getAllLessonsOfWrk,4
 003_getLessonsFrequencyOfStudents,4
 004_getStudentsWithAtLeastOneFrequency,4
-005_getStudentsWithAtLeast75PercFrequency,1
+005_getStudentsWithAtLeast75PercFrequency,2
 006_getNumberOfExamTriesOfWrk,4
 007_getPercentageOfLessonsInDelay,4
 008_getLessonsOfWrkWithTutor,2
 009_getStudentsOfALessonWithAttendance,4
-011_getStillValidPins,3
+011_getStillValidPins,2
 012_getRegisterOfAnExam,4
 013_getLastValidPin,2
 016_getWorkgroupWithLeastPartecipation,5
@@ -46,11 +54,11 @@ for query in $GQ
 do
     ARG="$(echo $query | cut -d',' -f1)" # Get first param
     EXP="$(echo $query | cut -d',' -f2)" # Get second param
-    RES=`${CMD} --data=${INFERRED_DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
+    RES=`${CMD} --data=${DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
     if [ $RES -ne $EXP ]; then
-        ERRORS="${ERRORS}\r\nNope! $ARG expected $EXP instead of $RES\r\n\r\n"
+        ERRORS="${ERRORS}\r\nNope! $ARG expected $EXP instead of $RES\r\n"
     else
-        [ "$VERBOSE" = "-v" ] && echo $ARG
+        [ "$VERBOSE" = "1" ] && echo $ARG
     fi
 done
 
@@ -60,16 +68,16 @@ for query in $BQ
 do
     ARG="$(echo $query | cut -d',' -f1)" # Get first param
     EXP="$(echo $query | cut -d',' -f2)" # Get second param
-    RES=`${CMD} --data=${INFERRED_DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
+    RES=`${CMD} --data=${DATA} --query=sparql/${ARG}${EXT} --results=csv | wc -l`
     if [ $RES -ne $EXP ]; then
-        ERRORS="${ERRORS}\r\nNope! $ARG expected $EXP instead of $RES\r\n\r\n"
+        ERRORS="${ERRORS}\r\nNope! $ARG expected $EXP instead of $RES\r\n"
     fi
 done
 
 # Data queries
 # [ "$1" = "-v" ] && echo "Leggo percentuali"
 # Leggo il risultato di una query
-# RES=`arq --data=${INFERRED_DATA} --query=sparql/003_getLessonsFrequencyOfStudents.rq --results=csv`
+# RES=`arq --data=${DATA} --query=sparql/003_getLessonsFrequencyOfStudents.rq --results=csv`
 # [ "$1" = "-v" ] && echo $RES
 # Estraggo il valore della percentuale
 # while read -r line; do

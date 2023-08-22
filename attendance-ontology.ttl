@@ -1431,6 +1431,15 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                               :isAttendanceOf :PIN_WS_1 .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI_1
+:AT_WS_2023_05_21_MARIO_ROSSI_1 rdf:type owl:NamedIndividual ,
+                                         :Attendance ,
+                                         :AttendanceNotValid ,
+                                         :AttendanceNotValidAlreadySubmitted ;
+                                :hasAttendant :STU_00001_MarioRossi ;
+                                :isAttendanceOf :PIN_WS_1 .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI
 :AT_WS_2023_05_22_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
@@ -1447,6 +1456,24 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                        :AttendanceValidPresent ;
                               :hasAttendant :STU_00001_MarioRossi ;
                               :isAttendanceOf :PIN_WS_2 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_07_24_DALIA_LABALIA
+:AT_WS_2023_07_24_DALIA_LABALIA rdf:type owl:NamedIndividual ,
+                                         :Attendance ,
+                                         :AttendanceNotValid ,
+                                         :AttendanceNotValidOutOfWorkgroup ;
+                                :hasAttendant :STU_00007_DALIA_LABALIA ;
+                                :isAttendanceOf :PIN_WS_8 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_07_24_MARIO_ROSSI
+:AT_WS_2023_07_24_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceNotValid ,
+                                       :AttendanceNotValidWithDelay ;
+                              :hasAttendant :STU_00001_MarioRossi ;
+                              :isAttendanceOf :PIN_WS_8 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001
@@ -1474,7 +1501,9 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#DA_PervasiveComputing
 :DA_PervasiveComputing rdf:type owl:NamedIndividual ,
-                                :DidacticActivity ;
+                                :DidacticActivity ,
+                                :Workgroup ;
+                       :hasLesson :LES_PC_2022_10_17 ;
                        :isDidacticActivityOf :WRK_CL_001_DA_PervasiveComputing_2023 .
 
 
@@ -1499,6 +1528,9 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                  :StudentGroup ;
                         :hasLocation :LOC_ROOM_AULA_2.10 ;
                         :hasPin :PIN_WS_7 ;
+                        :hasStudent :STU_00001_MarioRossi ,
+                                    :STU_00002_LuigiVerdi ,
+                                    :STU_00003_ChiaraBianchi ;
                         :isTurnOf :EX_PM_2023_05_25 .
 
 
@@ -1579,7 +1611,10 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 :LES_PC_2022_10_17 rdf:type owl:NamedIndividual ,
                             :Attendable ,
                             :Lesson ,
-                            :StudentGroup .
+                            :StudentGroup ;
+                   :isLessonOf :DA_PervasiveComputing ;
+                   :end-time "2023-04-02T13:00:00Z"^^xsd:dateTime ;
+                   :start-time "2023-04-02T11:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
@@ -1621,6 +1656,7 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                             :Lesson ,
                             :StudentGroup ;
                    :hasLocation :LOC_ROOM_AULA_2.10 ;
+                   :hasPin :PIN_WS_8 ;
                    :isLessonOf :WRK_CL_001_DA_WebSemantico_2023 ;
                    :end-time "2023-07-24T23:00:00"^^xsd:dateTime ;
                    :start-time "2023-07-24T08:00:00"^^xsd:dateTime .
@@ -1684,7 +1720,8 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 :PIN_WS_1 rdf:type owl:NamedIndividual ,
                    :Pin ;
           :hasAttendance :AT_WS_2023_05_21_CHIARA_BIANCHI ,
-                         :AT_WS_2023_05_21_MARIO_ROSSI ;
+                         :AT_WS_2023_05_21_MARIO_ROSSI ,
+                         :AT_WS_2023_05_21_MARIO_ROSSI_1 ;
           :isPinOf :LES_WS_2023_05_21 ;
           :creation-date "2023-05-21T10:00:00Z"^^xsd:dateTime ;
           :expiration-date "2023-05-21T10:15:00Z"^^xsd:dateTime ;
@@ -1752,8 +1789,10 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_8
 :PIN_WS_8 rdf:type owl:NamedIndividual ,
                    :Pin ;
+          :hasAttendance :AT_WS_2023_07_24_DALIA_LABALIA ,
+                         :AT_WS_2023_07_24_MARIO_ROSSI ;
+          :isPinOf :LES_WS_2023_07_24 ;
           :creation-date "2023-08-24T11:00:00Z"^^xsd:dateTime ;
-          :expiration-date "2023-08-24T11:15:00Z"^^xsd:dateTime ;
           :pin-code "061238"^^xsd:token .
 
 
@@ -1763,8 +1802,11 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                :Student ;
                       :isAttendantOf :AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI ,
                                      :AT_WS_2023_05_21_MARIO_ROSSI ,
-                                     :AT_WS_2023_05_22_MARIO_ROSSI ;
+                                     :AT_WS_2023_05_21_MARIO_ROSSI_1 ,
+                                     :AT_WS_2023_05_22_MARIO_ROSSI ,
+                                     :AT_WS_2023_07_24_MARIO_ROSSI ;
                       :isStudentOf :CL_001 ,
+                                   :ET_PM_2023_05_25_09_30 ,
                                    :ET_WS_2023_06_26_09_30 ,
                                    :LES_WS_2023_05_21 ,
                                    :LES_WS_2023_05_22 ;
@@ -1782,6 +1824,7 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                       :isAttendantOf :AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI ,
                                      :AT_WS_2023_05_22_LUIGI_VERDI ;
                       :isStudentOf :CL_001 ,
+                                   :ET_PM_2023_05_25_09_30 ,
                                    :ET_WS_2023_06_26_11_00 ,
                                    :LES_WS_2023_05_21 ,
                                    :LES_WS_2023_05_22 ;
@@ -1798,6 +1841,7 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                   :Student ;
                          :isAttendantOf :AT_WS_2023_05_21_CHIARA_BIANCHI ;
                          :isStudentOf :CL_001 ,
+                                      :ET_PM_2023_05_25_09_30 ,
                                       :ET_WS_2023_06_26_11_00 ,
                                       :LES_WS_2023_05_21 ,
                                       :LES_WS_2023_05_22 ;
@@ -1848,6 +1892,7 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 :STU_00007_DALIA_LABALIA rdf:type owl:NamedIndividual ,
                                   :Person ,
                                   :Student ;
+                         :isAttendantOf :AT_WS_2023_07_24_DALIA_LABALIA ;
                          <http://www.w3.org/2006/vcard/ns#hasGender> :GEN_Female ;
                          :student-id "00007" ;
                          <http://www.w3.org/2006/vcard/ns#bday> "1990-10-13T00:00:00"^^xsd:dateTime ;
@@ -2169,6 +2214,14 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 
 <urn:swrl:var#remot> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+<http://www.semanticweb.org/owl/owlapi/turtle#pin> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#creationDate> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#pinDuration> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#result> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 <urn:swrl:var#pin> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <urn:swrl:var#creationDate> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -2176,45 +2229,6 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 <urn:swrl:var#pinDuration> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <urn:swrl:var#result> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "RemoteAttendance" ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attendance ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance>
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :remote ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#remot>
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
-                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                          rdf:first <urn:swrl:var#remot> ;
-                                                                                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                     rdf:first "true"^^xsd:boolean ;
-                                                                                                                                     rdf:rest rdf:nil
-                                                                                                                                   ]
-                                                                                                                        ]
-                                                                           ] ;
-                                                                 rdf:rest rdf:nil
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RemoteAttendance ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance>
-                                                     ] ;
-                                           rdf:rest rdf:nil
-                                         ]
- ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "" ;
@@ -2269,6 +2283,105 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :expiration-date ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#pin> ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#result>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "RemoteAttendance" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attendance ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :remote ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#remot>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <urn:swrl:var#remot> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first "true"^^xsd:boolean ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RemoteAttendance ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Query realizzata per dimostrare che la regola PinExpirationDate sia formulata correttamente, ma che usandola come regola con il reasoner Pellet non sia in grado di inferire correttamente il risultato e inserirlo nell'ontologia." ;
+   rdfs:label "PinExpirationDateQueryRule" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Pin ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :creation-date ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#creationDate>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#dayTimeDuration> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/owl/owlapi/turtle#pinDuration> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 0 ;
+                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                rdf:first 0 ;
+                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                           rdf:first 15 ;
+                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first 0 ;
+                                                                                                                                                                      rdf:rest rdf:nil
+                                                                                                                                                                    ]
+                                                                                                                                                         ]
+                                                                                                                                              ]
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#addDayTimeDurationToDateTime> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#result>
+                                                                                                                                     <http://www.semanticweb.org/owl/owlapi/turtle#creationDate>
+                                                                                                                                     <http://www.semanticweb.org/owl/owlapi/turtle#pinDuration>
+                                                                                                                                   )
+                                                                                      ] ;
+                                                                            rdf:rest rdf:nil
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#creationDate>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#result>
+                                                                                                  )
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
