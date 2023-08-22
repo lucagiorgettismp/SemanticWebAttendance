@@ -47,7 +47,7 @@ GQ=$(cat <<-END
 011_getStillValidPins,2
 012_getRegisterOfAnExam,4
 013_getLastValidPin,2
-016_getWorkgroupWithLeastPartecipation,5
+016_getWorkgroupWithLeastPartecipation,4
 END
 )
 for query in $GQ

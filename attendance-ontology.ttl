@@ -1411,6 +1411,87 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                        :isAttendanceOf :PIN_WS_4 .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_CHIARA_BIANCHI
+:AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
+                                          :Attendance ,
+                                          :AttendanceNotValid ,
+                                          :AttendanceNotValidWithDelay ;
+                                 :hasAttendant :STU_00003_ChiaraBianchi ;
+                                 :isAttendanceOf :PIN_PM_1 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
+:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceValid ,
+                                       :AttendanceValidPresent ;
+                              :hasAttendant :STU_00002_LuigiVerdi ;
+                              :isAttendanceOf :PIN_PM_1 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI
+:AT_PM_2023_05_01_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceValid ,
+                                       :AttendanceValidPresent ;
+                              :hasAttendant :STU_00001_MarioRossi ;
+                              :isAttendanceOf :PIN_PM_1 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI
+:AT_PM_2023_05_03_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
+                                          :Attendance ,
+                                          :AttendanceValid ,
+                                          :AttendanceValidPresent ;
+                                 :hasAttendant :STU_00003_ChiaraBianchi ;
+                                 :isAttendanceOf :PIN_PM_2 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_LUIGI_VERDI
+:AT_PM_2023_05_03_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceValid ,
+                                       :AttendanceValidPresent ;
+                              :hasAttendant :STU_00002_LuigiVerdi ;
+                              :isAttendanceOf :PIN_PM_2 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI
+:AT_PM_2023_05_03_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceValid ,
+                                       :AttendanceValidWithDelay ;
+                              :hasAttendant :STU_00001_MarioRossi ;
+                              :isAttendanceOf :PIN_PM_2 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_CHIARA_BIANCHI
+:AT_PM_2023_05_08_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
+                                          :Attendance ,
+                                          :AttendanceValid ,
+                                          :AttendanceValidPresent ;
+                                 :hasAttendant :STU_00003_ChiaraBianchi ;
+                                 :isAttendanceOf :PIN_PM_3 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_LUIGI_VERDI
+:AT_PM_2023_05_08_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceValid ,
+                                       :AttendanceValidPresent ;
+                              :hasAttendant :STU_00002_LuigiVerdi ;
+                              :isAttendanceOf :PIN_PM_3 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI
+:AT_PM_2023_05_08_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                       :Attendance ,
+                                       :AttendanceValid ,
+                                       :AttendanceValidPresent ;
+                              :hasAttendant :STU_00001_MarioRossi ;
+                              :isAttendanceOf :PIN_PM_3 .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 :AT_WS_2023_05_21_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                           :Attendance ,
@@ -1617,6 +1698,33 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                    :start-time "2023-04-02T11:00:00Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01
+:LES_PM_2023_05_01 rdf:type owl:NamedIndividual ,
+                            :Attendable ,
+                            :Lesson ,
+                            :StudentGroup ;
+                   :hasPin :PIN_PM_1 ;
+                   :isLessonOf :WRK_CL_001_DA_ProjectManagement_2023 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03
+:LES_PM_2023_05_03 rdf:type owl:NamedIndividual ,
+                            :Attendable ,
+                            :Lesson ,
+                            :StudentGroup ;
+                   :hasPin :PIN_PM_2 ;
+                   :isLessonOf :WRK_CL_001_DA_ProjectManagement_2023 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08
+:LES_PM_2023_05_08 rdf:type owl:NamedIndividual ,
+                            :Attendable ,
+                            :Lesson ,
+                            :StudentGroup ;
+                   :hasPin :PIN_PM_3 ;
+                   :isLessonOf :WRK_CL_001_DA_ProjectManagement_2023 .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
 :LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
                             :Attendable ,
@@ -1716,6 +1824,42 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                    :location-code "2.6" .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_1
+:PIN_PM_1 rdf:type owl:NamedIndividual ,
+                   :Pin ;
+          :hasAttendance :AT_PM_2023_05_01_CHIARA_BIANCHI ,
+                         :AT_PM_2023_05_01_LUIGI_VERDI ,
+                         :AT_PM_2023_05_01_MARIO_ROSSI ;
+          :isPinOf :LES_PM_2023_05_01 ;
+          :creation-date "2023-05-01T10:00:00Z"^^xsd:dateTime ;
+          :expiration-date "2023-05-01T10:15:00Z"^^xsd:dateTime ;
+          :pin-code "123444" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_2
+:PIN_PM_2 rdf:type owl:NamedIndividual ,
+                   :Pin ;
+          :hasAttendance :AT_PM_2023_05_03_CHIARA_BIANCHI ,
+                         :AT_PM_2023_05_03_LUIGI_VERDI ,
+                         :AT_PM_2023_05_03_MARIO_ROSSI ;
+          :isPinOf :LES_PM_2023_05_03 ;
+          :creation-date "2023-05-03T10:00:00Z"^^xsd:dateTime ;
+          :expiration-date "2023-05-03T10:15:00Z"^^xsd:dateTime ;
+          :pin-code "124555" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_3
+:PIN_PM_3 rdf:type owl:NamedIndividual ,
+                   :Pin ;
+          :hasAttendance :AT_PM_2023_05_08_CHIARA_BIANCHI ,
+                         :AT_PM_2023_05_08_LUIGI_VERDI ,
+                         :AT_PM_2023_05_08_MARIO_ROSSI ;
+          :isPinOf :LES_PM_2023_05_08 ;
+          :creation-date "2023-05-08T10:00:00Z"^^xsd:dateTime ;
+          :expiration-date "2023-05-08T10:15:00Z"^^xsd:dateTime ;
+          :pin-code "126777" .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
 :PIN_WS_1 rdf:type owl:NamedIndividual ,
                    :Pin ;
@@ -1801,6 +1945,9 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                :Person ,
                                :Student ;
                       :isAttendantOf :AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI ,
+                                     :AT_PM_2023_05_01_MARIO_ROSSI ,
+                                     :AT_PM_2023_05_03_MARIO_ROSSI ,
+                                     :AT_PM_2023_05_08_MARIO_ROSSI ,
                                      :AT_WS_2023_05_21_MARIO_ROSSI ,
                                      :AT_WS_2023_05_21_MARIO_ROSSI_1 ,
                                      :AT_WS_2023_05_22_MARIO_ROSSI ,
@@ -1822,6 +1969,9 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                :Person ,
                                :Student ;
                       :isAttendantOf :AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI ,
+                                     :AT_PM_2023_05_01_LUIGI_VERDI ,
+                                     :AT_PM_2023_05_03_LUIGI_VERDI ,
+                                     :AT_PM_2023_05_08_LUIGI_VERDI ,
                                      :AT_WS_2023_05_22_LUIGI_VERDI ;
                       :isStudentOf :CL_001 ,
                                    :ET_PM_2023_05_25_09_30 ,
@@ -1839,7 +1989,10 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
 :STU_00003_ChiaraBianchi rdf:type owl:NamedIndividual ,
                                   :Person ,
                                   :Student ;
-                         :isAttendantOf :AT_WS_2023_05_21_CHIARA_BIANCHI ;
+                         :isAttendantOf :AT_PM_2023_05_01_CHIARA_BIANCHI ,
+                                        :AT_PM_2023_05_03_CHIARA_BIANCHI ,
+                                        :AT_PM_2023_05_08_CHIARA_BIANCHI ,
+                                        :AT_WS_2023_05_21_CHIARA_BIANCHI ;
                          :isStudentOf :CL_001 ,
                                       :ET_PM_2023_05_25_09_30 ,
                                       :ET_WS_2023_06_26_11_00 ,
@@ -1958,6 +2111,9 @@ owl:topObjectProperty rdf:type owl:SymmetricProperty ,
                                       :hasClass :CL_001 ;
                                       :hasDidacticActivity :DA_ProjectManagement ;
                                       :hasExam :EX_PM_2023_05_25 ;
+                                      :hasLesson :LES_PM_2023_05_01 ,
+                                                 :LES_PM_2023_05_03 ,
+                                                 :LES_PM_2023_05_08 ;
                                       :hasTeacher :TR_MarcoAntonioBoschetti ;
                                       :wrk-term "1"^^xsd:int ;
                                       :wrk-year "2023"^^xsd:gYear .

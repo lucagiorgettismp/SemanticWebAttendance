@@ -436,6 +436,60 @@ attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI rdf:type owl:NamedIndi
                                                           attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_CHIARA_BIANCHI
+attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
+                                                             attendance-ontology:AttendanceNotValidWithDelay ;
+                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
+attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceValidPresent ;
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI
+attendance-ontology:AT_PM_2023_05_01_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceValidPresent ;
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI
+attendance-ontology:AT_PM_2023_05_03_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
+                                                             attendance-ontology:AttendanceValidPresent ;
+                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_LUIGI_VERDI
+attendance-ontology:AT_PM_2023_05_03_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceValidPresent ;
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI
+attendance-ontology:AT_PM_2023_05_03_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceValidWithDelay ;
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_CHIARA_BIANCHI
+attendance-ontology:AT_PM_2023_05_08_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
+                                                             attendance-ontology:AttendanceValidPresent ;
+                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_LUIGI_VERDI
+attendance-ontology:AT_PM_2023_05_08_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceValidPresent ;
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI
+attendance-ontology:AT_PM_2023_05_08_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceValidPresent ;
+                                                 attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 attendance-ontology:AT_WS_2023_05_21_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                                              attendance-ontology:AttendanceValidWithDelay ;
@@ -588,6 +642,24 @@ attendance-ontology:LES_PC_2022_10_17 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:start-time "2023-04-02T11:00:00Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01
+attendance-ontology:LES_PM_2023_05_01 rdf:type owl:NamedIndividual ,
+                                               attendance-ontology:Lesson ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_1 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03
+attendance-ontology:LES_PM_2023_05_03 rdf:type owl:NamedIndividual ,
+                                               attendance-ontology:Lesson ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_2 .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08
+attendance-ontology:LES_PM_2023_05_08 rdf:type owl:NamedIndividual ,
+                                               attendance-ontology:Lesson ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_3 .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
 attendance-ontology:LES_WS_2023_05_21 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
@@ -663,6 +735,39 @@ attendance-ontology:LOC_ROOM_AULA_2.10 rdf:type owl:NamedIndividual ,
 attendance-ontology:LOC_ROOM_AULA_2.6 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Room ;
                                       attendance-ontology:location-code "2.6" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_1
+attendance-ontology:PIN_PM_1 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:hasAttendance attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI ,
+                                                               attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI ,
+                                                               attendance-ontology:AT_PM_2023_05_01_MARIO_ROSSI ;
+                             attendance-ontology:creation-date "2023-05-01T10:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-05-01T10:15:00Z"^^xsd:dateTime ;
+                             attendance-ontology:pin-code "123444" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_2
+attendance-ontology:PIN_PM_2 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:hasAttendance attendance-ontology:AT_PM_2023_05_03_CHIARA_BIANCHI ,
+                                                               attendance-ontology:AT_PM_2023_05_03_LUIGI_VERDI ,
+                                                               attendance-ontology:AT_PM_2023_05_03_MARIO_ROSSI ;
+                             attendance-ontology:creation-date "2023-05-03T10:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-05-03T10:15:00Z"^^xsd:dateTime ;
+                             attendance-ontology:pin-code "124555" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_3
+attendance-ontology:PIN_PM_3 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:hasAttendance attendance-ontology:AT_PM_2023_05_08_CHIARA_BIANCHI ,
+                                                               attendance-ontology:AT_PM_2023_05_08_LUIGI_VERDI ,
+                                                               attendance-ontology:AT_PM_2023_05_08_MARIO_ROSSI ;
+                             attendance-ontology:creation-date "2023-05-08T10:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-05-08T10:15:00Z"^^xsd:dateTime ;
+                             attendance-ontology:pin-code "126777" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
@@ -855,6 +960,9 @@ attendance-ontology:WRK_CL_001_DA_ProjectManagement_2023 rdf:type owl:NamedIndiv
                                                          attendance-ontology:hasClass attendance-ontology:CL_001 ;
                                                          attendance-ontology:hasDidacticActivity attendance-ontology:DA_ProjectManagement ;
                                                          attendance-ontology:hasExam attendance-ontology:EX_PM_2023_05_25 ;
+                                                         attendance-ontology:hasLesson attendance-ontology:LES_PM_2023_05_01 ,
+                                                                                       attendance-ontology:LES_PM_2023_05_03 ,
+                                                                                       attendance-ontology:LES_PM_2023_05_08 ;
                                                          attendance-ontology:hasTeacher attendance-ontology:TR_MarcoAntonioBoschetti ;
                                                          attendance-ontology:wrk-term "1"^^xsd:int ;
                                                          attendance-ontology:wrk-year "2023"^^xsd:gYear .
