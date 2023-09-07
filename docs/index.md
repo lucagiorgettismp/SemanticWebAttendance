@@ -48,6 +48,8 @@ Come ontologie esterne abbiamo pensato di includere:
 
         Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
 
+* [**Time**](https://www.w3.org/TR/owl-time/#): per descrivere le proprietà temporali di una qualsiasi risorsa. Noi l'abbiamo usata per esprimere le durate temporali dei Pin usati per registrare la presenza e per indicare gli orari di inizio degli appuntamenti.
+
 ## Presentazione del contesto
 
 L'ontologia in questione nasce dall'esigenza dei due componenti del gruppo di esprimere la conoscenza di un dominio applicativo reale visto durante gli anni di lavoro presso un'azienda di sviluppo software locale.
@@ -99,6 +101,7 @@ class Pin {
 }
 Person o-- Teacher : Aggregation
 Person o-- Tutor
+Person o-- External
 Person o-- Student
 link Person "/SemanticWebAttendance#person"
 class Person {
@@ -113,6 +116,18 @@ group --|> Class
 group --|> turn
 group --|> Lesson
 group "n" --> "m" Student : hasStudent
+class Attendance
+Attendance o-- AttendanceValid
+Attendance o-- AttendanceNotValid
+Attendance o-- RemoteAttendance
+AttendanceValid o-- AttendanceValidPresent
+AttendanceValid o-- AttendanceValidWithDelay
+AttendanceNotValid o-- AttendanceNotValidAlreadySubmitted
+link AttendanceNotValidAlreadySubmitted "/SemanticWebAttendance#AttendanceNotValidAlreadySubmitted"
+AttendanceNotValid o-- AttendanceNotValidOutOfWorkgroup
+AttendanceNotValid o-- AttendanceNotValidWithDelay
+Pin --|> Attendance : hasAttendance
+Attendance --|> Person : hasAttendant
 ```
 
 ![Schema di massima](img/schema_di_massima.jpg)
@@ -123,7 +138,7 @@ Vengono riportate le classi modellate in due classi più rilevanti e le altre (?
 
 ### Person
 
-Questo sostantivo rappresenta una qualunque persona interagisca con un sistema scolastico.
+Questa classe rappresenta una qualunque persona interagisca con un sistema scolastico.
 
 **Data Properties**
 
@@ -142,17 +157,25 @@ Questo sostantivo rappresenta una qualunque persona interagisca con un sistema s
 
 Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nello specifico:
 
-* <a id="teacher">Teacher</a>(Teacher): chi tiene le lezioni
+* <a id="teacher">Teacher</a> (Teacher): chi tiene le lezioni
 
-* <a id="tutor">Tutor</a>(Tutor): chi aiuta a gestire uno specifico workgroup
+* <a id="tutor">Tutor</a> (Tutor): chi aiuta a gestire uno specifico workgroup
 
-* <a id="student">Student</a>(Studente): chi principalmente partecipa alle lezioni.
+* <a id="student">Student</a> (Studente): chi principalmente partecipa alle lezioni
 
     **Data Properties**
 
     | Nome | Tipo |
     | --- | --- |
     | studentId | string |
+
+* <a id="external">External</a> (Esterno): chi non fa parte dell'organizzazione scolastica, utile per identificare le persone che vengono a tenere un seminario
+
+    **Data Properties**
+
+    | Nome | Tipo |
+    | --- | --- |
+    | organization | string |
 
 ### Workgroup
 
@@ -210,6 +233,7 @@ Rappresenta un quanto di tempo dove gli [studenti](#student) seguono un [profess
 | Nome | Dominio | Range |
 | --- | --- | --- |
 | hasTutor | Lesson | [Tutor](#tutor) |
+| hasGuest | Lesson | [Person](#person) |
 
 ### Exam
 
@@ -237,8 +261,6 @@ Rappresenta un codice a 6 cifre che le persone usano per registrare la loro pres
 
 Possiede una data di creazione (*creation_date*) da valorizzare quando viene generato il Pin che è usata per calcolare tramite la regola ... la data di scadenza dello stesso. Allo scoccare della scadenza non sarà più possibile registrare una presenza sul Pin.
 
-Elenco delle proprietà ???
-
 **Data Property**
 
 | Nome | Tipo |
@@ -252,12 +274,31 @@ Elenco delle proprietà ???
 | Nome | Dominio | Range |
 | --- | --- | --- |
 | hasAttendance | Pin | [Attendance](#attendance) |
+| pinHasDuration | Pin | time:Duration |
 
 ### Attendance
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
 Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di *"Sei Presente"* o *"Sei Assente"*. La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
+
+Le varie possibilità offerte attualmente dall'ontologia sono:
+
+* Registrazione non valida (AttendanceNotValid):
+
+    * <a id="AttendanceNotValidAlreadySubmitted">Registrazione già sottoposta (AttendanceNotValidAlreadySubmitted)</a>: uno studente si è sbagliato e ha registrato più di una volta la sua presenza sulla stessa lezione
+
+    * Registrazione di uno studente fuori workgroup (AttendanceNotValidOutOfWorkgroup): uno studente si è registrato alla lezione nonostante non sia interno al workgroup della lezione e non fosse segnato tra gli studenti al quale è consentito come studenti manuali
+
+    * Registrazione con ritardo (AttendanceNotValidWithDelay): questa classe differisce da [AttendanceValidWithDelay](#attendancevalidwithdelay) in quanto il ritardo il questione è così tanto da non poter più considerare valida la presenza allo studente
+
+* Registrazione valida (AttendanceValid):
+    
+    * Registrazione valida (AttendanceValidPresent): la presenza dello studente è stata registrata entro l'inizio della lezione
+
+    * Registrazione con ritardo (AttendanceValidWithDelay): questa classe differisce da [AttendanceNotValidWithDelay](#AttendanceNotValidWithDelay) in quanto il ritardo in questo caso non è così tanto da considerare invalida la presenza allo studente
+
+Se la registrazione della presenza fosse stata fatta da remoto, allora anche la proprità `remote` sarebbe valorizzata e la regola `RemoteAttendance` inferirebbe che la presenza appartenga anche alla classe `RemoteAttendance`.
 
 **Data Property**
 
