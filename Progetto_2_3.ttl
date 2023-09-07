@@ -7,6 +7,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix swrl: <http://www.w3.org/2003/11/swrl#> .
+@prefix time: <http://www.w3.org/2006/time#> .
 @prefix swrla: <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#> .
 @prefix swrlb: <http://www.w3.org/2003/11/swrlb#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
@@ -14,7 +15,8 @@
 @base <http://www.semanticweb.org/owl/owlapi/turtle#> .
 
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology> rdf:type owl:Ontology ;
-                                                                                   owl:imports <http://www.w3.org/2006/vcard/ns> .
+                                                                                   owl:imports <http://www.w3.org/2006/time#2016> ,
+                                                                                               <http://www.w3.org/2006/vcard/ns> .
 
 #################################################################
 #    Annotation properties
@@ -65,6 +67,12 @@ attendance-ontology:hasExam rdf:type owl:ObjectProperty ;
                             owl:inverseOf attendance-ontology:isExamOf ;
                             rdfs:domain attendance-ontology:Workgroup ;
                             rdfs:range attendance-ontology:Exam .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasGuest
+attendance-ontology:hasGuest rdf:type owl:ObjectProperty ;
+                             rdfs:domain attendance-ontology:Lesson ;
+                             rdfs:range attendance-ontology:Person .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson
@@ -178,6 +186,13 @@ attendance-ontology:isTurnOf rdf:type owl:ObjectProperty .
 attendance-ontology:isTutorOf rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#pinHasDuration
+attendance-ontology:pinHasDuration rdf:type owl:ObjectProperty ;
+                                   rdfs:subPropertyOf time:hasDuration ;
+                                   rdfs:domain attendance-ontology:Pin ;
+                                   rdfs:range time:Duration .
+
+
 ###  http://www.w3.org/2006/vcard/ns#hasGender
 vcard:hasGender rdfs:domain attendance-ontology:Person ;
                 rdfs:range vcard:Gender .
@@ -235,10 +250,6 @@ attendance-ontology:pin-code rdf:type owl:DatatypeProperty ;
                              rdfs:label "pin code" .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#pin-duration
-attendance-ontology:pin-duration rdf:type owl:DatatypeProperty .
-
-
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote
 attendance-ontology:remote rdf:type owl:DatatypeProperty ;
                            rdfs:domain attendance-ontology:Attendance ;
@@ -287,6 +298,10 @@ vcard:family-name rdfs:domain attendance-ontology:Person .
 
 ###  http://www.w3.org/2006/vcard/ns#given-name
 vcard:given-name rdfs:domain attendance-ontology:Person .
+
+
+###  http://www.w3.org/2006/vcard/ns#organization-name
+vcard:organization-name rdfs:domain attendance-ontology:Person .
 
 
 #################################################################
@@ -353,6 +368,11 @@ attendance-ontology:Exam rdf:type owl:Class .
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn
 attendance-ontology:ExamTurn rdf:type owl:Class ;
                              rdfs:subClassOf attendance-ontology:Attendable .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#External
+attendance-ontology:External rdf:type owl:Class ;
+                             rdfs:subClassOf attendance-ontology:Person .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lab
@@ -572,7 +592,9 @@ attendance-ontology:ET_PM_2023_05_25_09_30 rdf:type owl:NamedIndividual ,
                                            attendance-ontology:hasPin attendance-ontology:PIN_WS_7 ;
                                            attendance-ontology:hasStudent attendance-ontology:STU_00001_MarioRossi ,
                                                                           attendance-ontology:STU_00002_LuigiVerdi ,
-                                                                          attendance-ontology:STU_00003_ChiaraBianchi .
+                                                                          attendance-ontology:STU_00003_ChiaraBianchi ;
+                                           attendance-ontology:end-time "2023-05-25T11:00:00"^^xsd:dateTime ;
+                                           attendance-ontology:start-time "2023-05-25T09:30:00"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30
@@ -594,6 +616,14 @@ attendance-ontology:ET_WS_2023_06_26_11_00 rdf:type owl:NamedIndividual ,
                                                                           attendance-ontology:STU_00003_ChiaraBianchi ;
                                            attendance-ontology:end-time "2023-06-26T12:30:00"^^xsd:dateTime ;
                                            attendance-ontology:start-time "2023-06-26T11:00:00"^^xsd:dateTime .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EXT_ELON_MUSK
+attendance-ontology:EXT_ELON_MUSK rdf:type owl:NamedIndividual ,
+                                           attendance-ontology:External ;
+                                  vcard:family-name "Musk" ;
+                                  vcard:given-name "Elon" ;
+                                  vcard:organization-name "Tesla" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EX_PM_2023_05_25
@@ -638,26 +668,34 @@ attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17
 attendance-ontology:LES_PC_2022_10_17 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
-                                      attendance-ontology:end-time "2023-04-02T13:00:00Z"^^xsd:dateTime ;
-                                      attendance-ontology:start-time "2023-04-02T11:00:00Z"^^xsd:dateTime .
+                                      attendance-ontology:hasGuest attendance-ontology:TR_AntonellaCarbonaro ;
+                                      attendance-ontology:end-time "2022-10-17T13:00:00Z"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2022-10-17T11:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01
 attendance-ontology:LES_PM_2023_05_01 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
-                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_1 .
+                                      attendance-ontology:hasGuest attendance-ontology:EXT_ELON_MUSK ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_1 ;
+                                      attendance-ontology:end-time "2023-05-01T13:00:00Z"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2023-05-01T11:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03
 attendance-ontology:LES_PM_2023_05_03 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
-                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_2 .
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_2 ;
+                                      attendance-ontology:end-time "2023-05-03T11:00:00Z"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2023-05-03T09:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08
 attendance-ontology:LES_PM_2023_05_08 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
-                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_3 .
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PM_3 ;
+                                      attendance-ontology:end-time "2023-05-08T13:00:00Z"^^xsd:dateTime ;
+                                      attendance-ontology:start-time "2023-05-08T11:00:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
@@ -737,6 +775,7 @@ attendance-ontology:PIN_PM_1 rdf:type owl:NamedIndividual ,
                              attendance-ontology:hasAttendance attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI ,
                                                                attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI ,
                                                                attendance-ontology:AT_PM_2023_05_01_MARIO_ROSSI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-01T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-01T10:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "123444" .
@@ -748,6 +787,7 @@ attendance-ontology:PIN_PM_2 rdf:type owl:NamedIndividual ,
                              attendance-ontology:hasAttendance attendance-ontology:AT_PM_2023_05_03_CHIARA_BIANCHI ,
                                                                attendance-ontology:AT_PM_2023_05_03_LUIGI_VERDI ,
                                                                attendance-ontology:AT_PM_2023_05_03_MARIO_ROSSI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-03T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-03T10:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "124555" .
@@ -759,6 +799,7 @@ attendance-ontology:PIN_PM_3 rdf:type owl:NamedIndividual ,
                              attendance-ontology:hasAttendance attendance-ontology:AT_PM_2023_05_08_CHIARA_BIANCHI ,
                                                                attendance-ontology:AT_PM_2023_05_08_LUIGI_VERDI ,
                                                                attendance-ontology:AT_PM_2023_05_08_MARIO_ROSSI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-08T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-08T10:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "126777" .
@@ -770,6 +811,7 @@ attendance-ontology:PIN_WS_1 rdf:type owl:NamedIndividual ,
                              attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_21_CHIARA_BIANCHI ,
                                                                attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI ,
                                                                attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI_1 ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-21T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-21T10:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "810724"^^xsd:token .
@@ -780,6 +822,7 @@ attendance-ontology:PIN_WS_2 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
                              attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_05_22_LUIGI_VERDI ,
                                                                attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-06-26T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-06-26T10:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "652060"^^xsd:token .
@@ -789,6 +832,7 @@ attendance-ontology:PIN_WS_2 rdf:type owl:NamedIndividual ,
 attendance-ontology:PIN_WS_3 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
                              attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-06-26T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-06-26T10:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "164127"^^xsd:token .
@@ -798,6 +842,7 @@ attendance-ontology:PIN_WS_3 rdf:type owl:NamedIndividual ,
 attendance-ontology:PIN_WS_4 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
                              attendance-ontology:hasAttendance attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-06-26T11:30:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-06-26T11:45:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "883065"^^xsd:token .
@@ -806,6 +851,7 @@ attendance-ontology:PIN_WS_4 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_5
 attendance-ontology:PIN_WS_5 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-09-21T11:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-09-21T11:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "666799"^^xsd:token .
@@ -814,6 +860,7 @@ attendance-ontology:PIN_WS_5 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_6
 attendance-ontology:PIN_WS_6 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-08-22T11:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-08-22T11:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "001238"^^xsd:token .
@@ -822,6 +869,7 @@ attendance-ontology:PIN_WS_6 rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_7
 attendance-ontology:PIN_WS_7 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-25T09:25:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-25T09:40:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "101238"^^xsd:token .
@@ -832,7 +880,9 @@ attendance-ontology:PIN_WS_8 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
                              attendance-ontology:hasAttendance attendance-ontology:AT_WS_2023_07_24_DALIA_LABALIA ,
                                                                attendance-ontology:AT_WS_2023_07_24_MARIO_ROSSI ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-08-24T11:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-08-24T11:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "061238"^^xsd:token .
 
 
@@ -904,6 +954,13 @@ attendance-ontology:STU_00007_DALIA_LABALIA rdf:type owl:NamedIndividual ,
                                             vcard:bday "1990-10-13T00:00:00"^^xsd:dateTime ;
                                             vcard:family-name "La Balia" ;
                                             vcard:given-name "Dalia" .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TD_15_MINUTES
+attendance-ontology:TD_15_MINUTES rdf:type owl:NamedIndividual ,
+                                           time:Duration ;
+                                  time:unitType time:unitMinute ;
+                                  time:numericDuration 15.00 .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AlessandroRicci
