@@ -1,0 +1,23 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
+# Description of this awesome query
+SELECT ?lesson ?type ?name ?surname ?organization WHERE {
+	?lesson att:hasGuest ?guest .
+	?guest vcard:given-name ?name ;
+		vcard:family-name ?surname ;
+		rdf:type ?type .
+	?type rdfs:subClassOf att:Person .
+	?lesson att:start-time ?time .
+	
+	BIND( year(?time) AS ?year ) # Get current date time
+
+	OPTIONAL {
+		?guest vcard:organization-name ?organization .
+	}
+
+	FILTER (?year = 2023)
+}
