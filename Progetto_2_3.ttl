@@ -314,12 +314,16 @@ attendance-ontology:Attendable rdf:type owl:Class ;
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance
-attendance-ontology:Attendance rdf:type owl:Class .
+attendance-ontology:Attendance rdf:type owl:Class ;
+                               owl:disjointUnionOf ( attendance-ontology:AttendanceNotValid
+                                                     attendance-ontology:AttendanceValid
+                                                   ) .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid
 attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
-                                       rdfs:subClassOf attendance-ontology:Attendance .
+                                       rdfs:subClassOf attendance-ontology:Attendance ;
+                                       owl:disjointWith attendance-ontology:AttendanceValid .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidAlreadySubmitted
@@ -1078,45 +1082,6 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
 <urn:swrl:var#result> rdf:type swrl:Variable .
 
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "RemoteAttendance" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Attendance ;
-                           swrl:argument1 <urn:swrl:var#attendance>
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:remote ;
-                                      swrl:argument1 <urn:swrl:var#attendance> ;
-                                      swrl:argument2 <urn:swrl:var#remot>
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                 swrl:builtin swrlb:equal ;
-                                                 swrl:arguments [ rdf:type rdf:List ;
-                                                                  rdf:first <urn:swrl:var#remot> ;
-                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                             rdf:first "true"^^xsd:boolean ;
-                                                                             rdf:rest rdf:nil
-                                                                           ]
-                                                                ]
-                                               ] ;
-                                     rdf:rest rdf:nil
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:RemoteAttendance ;
-                           swrl:argument1 <urn:swrl:var#attendance>
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "Query realizzata per dimostrare che la regola PinExpirationDate sia formulata correttamente, ma che usandola come regola con il reasoner Pellet non sia in grado di inferire correttamente il risultato e inserirlo nell'ontologia." ;
    rdfs:label "PinExpirationDateQueryRule" ;
    rdf:type swrl:Imp ;
@@ -1171,6 +1136,45 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
                                             :creationDate
                                             :result
                                           )
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "RemoteAttendance" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:Attendance ;
+                           swrl:argument1 <urn:swrl:var#attendance>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate attendance-ontology:remote ;
+                                      swrl:argument1 <urn:swrl:var#attendance> ;
+                                      swrl:argument2 <urn:swrl:var#remot>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                 swrl:builtin swrlb:equal ;
+                                                 swrl:arguments [ rdf:type rdf:List ;
+                                                                  rdf:first <urn:swrl:var#remot> ;
+                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                             rdf:first "true"^^xsd:boolean ;
+                                                                             rdf:rest rdf:nil
+                                                                           ]
+                                                                ]
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:RemoteAttendance ;
+                           swrl:argument1 <urn:swrl:var#attendance>
                          ] ;
                rdf:rest rdf:nil
              ]

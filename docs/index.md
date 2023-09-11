@@ -282,6 +282,14 @@ Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pi
 
 Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di *"Sei Presente"* o *"Sei Assente"*. La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
 
+Tuttavia una presenza può essere o *Valida* o *Invalida*, presentando due insiemi disgiunti di classi. In questo è venuta in aiuto l'espressività concessa da OWL. Abbiamo potuto esprimere questo fatto con le seguenti regole:
+
+```
+attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
+    rdfs:subClassOf attendance-ontology:Attendance ;
+    owl:disjointWith attendance-ontology:AttendanceValid .
+```
+
 Le varie possibilità offerte attualmente dall'ontologia sono:
 
 * Registrazione non valida (AttendanceNotValid):
