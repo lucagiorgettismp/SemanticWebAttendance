@@ -327,6 +327,11 @@ vcard:organization-name rdfs:domain attendance-ontology:Person .
 #    Classes
 #################################################################
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AdmittableStudent
+attendance-ontology:AdmittableStudent rdf:type owl:Class ;
+                                      rdfs:subClassOf attendance-ontology:Student .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable
 attendance-ontology:Attendable rdf:type owl:Class ;
                                rdfs:subClassOf attendance-ontology:StudentGroup .
@@ -1295,10 +1300,9 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
                         ]
              ] ;
    swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                           swrl:propertyPredicate attendance-ontology:hasAdmittableStudent ;
-                           swrl:argument1 :exam ;
-                           swrl:argument2 :student
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:AdmittableStudent ;
+                           swrl:argument1 :student
                          ] ;
                rdf:rest rdf:nil
              ]
