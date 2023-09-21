@@ -327,11 +327,6 @@ vcard:organization-name rdfs:domain attendance-ontology:Person .
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AdmittableStudent
-attendance-ontology:AdmittableStudent rdf:type owl:Class ;
-                                      rdfs:subClassOf attendance-ontology:Student .
-
-
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable
 attendance-ontology:Attendable rdf:type owl:Class ;
                                rdfs:subClassOf attendance-ontology:StudentGroup .
@@ -408,7 +403,7 @@ attendance-ontology:External rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExternalGuestSeminar
 attendance-ontology:ExternalGuestSeminar rdf:type owl:Class ;
-                                         rdfs:subClassOf attendance-ontology:Lesson .
+                                         rdfs:subClassOf attendance-ontology:Seminar .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lab
@@ -426,11 +421,6 @@ attendance-ontology:Location rdf:type owl:Class ;
                              owl:disjointUnionOf ( attendance-ontology:ExamTurn
                                                    attendance-ontology:Lesson
                                                  ) .
-
-
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#NotAttendedLesson
-attendance-ontology:NotAttendedLesson rdf:type owl:Class ;
-                                      rdfs:subClassOf attendance-ontology:Lesson .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Office
@@ -459,6 +449,11 @@ attendance-ontology:RemoteAttendance rdf:type owl:Class ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Room
 attendance-ontology:Room rdf:type owl:Class ;
                          rdfs:subClassOf attendance-ontology:Location .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Seminar
+attendance-ontology:Seminar rdf:type owl:Class ;
+                            rdfs:subClassOf attendance-ontology:Lesson .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student
@@ -1110,29 +1105,11 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
 #    Rules
 #################################################################
 
-:wrk rdf:type swrl:Variable .
-
-:les rdf:type swrl:Variable .
-
-:exam rdf:type swrl:Variable .
-
-:lesSet rdf:type swrl:Variable .
-
-:lesCount rdf:type swrl:Variable .
-
-:pin rdf:type swrl:Variable .
-
-:att rdf:type swrl:Variable .
-
-:student rdf:type swrl:Variable .
-
-:attSet rdf:type swrl:Variable .
-
-:attCount rdf:type swrl:Variable .
-
 :lesson rdf:type swrl:Variable .
 
 :attendance rdf:type swrl:Variable .
+
+:pin rdf:type swrl:Variable .
 
 :set rdf:type swrl:Variable .
 
@@ -1162,134 +1139,68 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
 
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "" ;
-   rdfs:label "AdmittableStudent" ;
+   rdfs:label "NotAttendedLesson" ;
    rdf:type swrl:Imp ;
    swrl:body [ rdf:type swrl:AtomList ;
                rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Workgroup ;
-                           swrl:argument1 :wrk
+                           swrl:classPredicate attendance-ontology:Lesson ;
+                           swrl:argument1 :lesson
                          ] ;
                rdf:rest [ rdf:type swrl:AtomList ;
                           rdf:first [ rdf:type swrl:ClassAtom ;
-                                      swrl:classPredicate attendance-ontology:Lesson ;
-                                      swrl:argument1 :les
+                                      swrl:classPredicate attendance-ontology:Attendance ;
+                                      swrl:argument1 :attendance
                                     ] ;
                           rdf:rest [ rdf:type swrl:AtomList ;
                                      rdf:first [ rdf:type swrl:ClassAtom ;
-                                                 swrl:classPredicate attendance-ontology:Exam ;
-                                                 swrl:argument1 :exam
+                                                 swrl:classPredicate attendance-ontology:Pin ;
+                                                 swrl:argument1 :pin
                                                ] ;
                                      rdf:rest [ rdf:type swrl:AtomList ;
                                                 rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                            swrl:propertyPredicate attendance-ontology:hasExam ;
-                                                            swrl:argument1 :wrk ;
-                                                            swrl:argument2 :exam
+                                                            swrl:propertyPredicate attendance-ontology:hasPin ;
+                                                            swrl:argument1 :lesson ;
+                                                            swrl:argument2 :pin
                                                           ] ;
                                                 rdf:rest [ rdf:type swrl:AtomList ;
                                                            rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                       swrl:propertyPredicate attendance-ontology:hasLesson ;
-                                                                       swrl:argument1 :wrk ;
-                                                                       swrl:argument2 :les
+                                                                       swrl:propertyPredicate attendance-ontology:hasAttendance ;
+                                                                       swrl:argument1 :pin ;
+                                                                       swrl:argument2 :attendance
                                                                      ] ;
                                                            rdf:rest [ rdf:type swrl:AtomList ;
                                                                       rdf:first [ rdf:type swrl:BuiltinAtom ;
                                                                                   swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#makeSet> ;
-                                                                                  swrl:arguments ( :lesSet
-                                                                                                   :les
+                                                                                  swrl:arguments ( :set
+                                                                                                   :attendance
                                                                                                  )
                                                                                 ] ;
                                                                       rdf:rest [ rdf:type swrl:AtomList ;
                                                                                  rdf:first [ rdf:type swrl:BuiltinAtom ;
                                                                                              swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#groupBy> ;
-                                                                                             swrl:arguments ( :lesSet
-                                                                                                              :wrk
+                                                                                             swrl:arguments ( :set
+                                                                                                              :lesson
                                                                                                             )
                                                                                            ] ;
                                                                                  rdf:rest [ rdf:type swrl:AtomList ;
                                                                                             rdf:first [ rdf:type swrl:BuiltinAtom ;
                                                                                                         swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#size> ;
-                                                                                                        swrl:arguments ( :lesCount
-                                                                                                                         :lesSet
+                                                                                                        swrl:arguments ( :size
+                                                                                                                         :res
                                                                                                                        )
                                                                                                       ] ;
                                                                                             rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                       rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                   swrl:classPredicate attendance-ontology:Pin ;
-                                                                                                                   swrl:argument1 :pin
+                                                                                                       rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                                                                                   swrl:builtin swrlb:greaterThan ;
+                                                                                                                   swrl:arguments [ rdf:type rdf:List ;
+                                                                                                                                    rdf:first :size ;
+                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                               rdf:first 0 ;
+                                                                                                                                               rdf:rest rdf:nil
+                                                                                                                                             ]
+                                                                                                                                  ]
                                                                                                                  ] ;
-                                                                                                       rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                  rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                                              swrl:propertyPredicate attendance-ontology:hasPin ;
-                                                                                                                              swrl:argument1 :les ;
-                                                                                                                              swrl:argument2 :pin
-                                                                                                                            ] ;
-                                                                                                                  rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                             rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                                         swrl:classPredicate attendance-ontology:Attendance ;
-                                                                                                                                         swrl:argument1 :att
-                                                                                                                                       ] ;
-                                                                                                                             rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                        rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                                                                    swrl:propertyPredicate attendance-ontology:hasAttendance ;
-                                                                                                                                                    swrl:argument1 :pin ;
-                                                                                                                                                    swrl:argument2 :att
-                                                                                                                                                  ] ;
-                                                                                                                                        rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                   rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                                                               swrl:classPredicate attendance-ontology:Student ;
-                                                                                                                                                               swrl:argument1 :student
-                                                                                                                                                             ] ;
-                                                                                                                                                   rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                              rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                                                                                          swrl:propertyPredicate attendance-ontology:hasAttendant ;
-                                                                                                                                                                          swrl:argument1 :att ;
-                                                                                                                                                                          swrl:argument2 :student
-                                                                                                                                                                        ] ;
-                                                                                                                                                              rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                         rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                                                                                                                                     swrl:classPredicate attendance-ontology:AttendanceValid ;
-                                                                                                                                                                                     swrl:argument1 :att
-                                                                                                                                                                                   ] ;
-                                                                                                                                                                         rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                                    rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                                                                                                                swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#makeSet> ;
-                                                                                                                                                                                                swrl:arguments ( :attSet
-                                                                                                                                                                                                                 :att
-                                                                                                                                                                                                               )
-                                                                                                                                                                                              ] ;
-                                                                                                                                                                                    rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                                               rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                                                                                                                           swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#groupBy> ;
-                                                                                                                                                                                                           swrl:arguments ( :attSet
-                                                                                                                                                                                                                            :student
-                                                                                                                                                                                                                            :wrk
-                                                                                                                                                                                                                          )
-                                                                                                                                                                                                         ] ;
-                                                                                                                                                                                               rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                                                          rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                                                                                                                                      swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#size> ;
-                                                                                                                                                                                                                      swrl:arguments ( :attCount
-                                                                                                                                                                                                                                       :attSet
-                                                                                                                                                                                                                                     )
-                                                                                                                                                                                                                    ] ;
-                                                                                                                                                                                                          rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                                                                                                                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                                                                                                                                                 swrl:builtin swrlb:equal ;
-                                                                                                                                                                                                                                 swrl:arguments ( :lesCount
-                                                                                                                                                                                                                                                  :attCount
-                                                                                                                                                                                                                                                )
-                                                                                                                                                                                                                               ] ;
-                                                                                                                                                                                                                     rdf:rest rdf:nil
-                                                                                                                                                                                                                   ]
-                                                                                                                                                                                                        ]
-                                                                                                                                                                                             ]
-                                                                                                                                                                                  ]
-                                                                                                                                                                       ]
-                                                                                                                                                            ]
-                                                                                                                                                 ]
-                                                                                                                                      ]
-                                                                                                                           ]
-                                                                                                                ]
+                                                                                                       rdf:rest rdf:nil
                                                                                                      ]
                                                                                           ]
                                                                                ]
@@ -1300,9 +1211,10 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
                         ]
              ] ;
    swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:AdmittableStudent ;
-                           swrl:argument1 :student
+               rdf:first [ rdf:type swrl:BuiltinAtom ;
+                           swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                           swrl:arguments ( :lesson
+                                          )
                          ] ;
                rdf:rest rdf:nil
              ]
@@ -1310,7 +1222,46 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
 
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "" ;
-   rdfs:label "ExternalGuestLesson" ;
+   rdfs:label "RemoteAttendance" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:Attendance ;
+                           swrl:argument1 <urn:swrl:var#attendance>
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                      swrl:propertyPredicate attendance-ontology:remote ;
+                                      swrl:argument1 <urn:swrl:var#attendance> ;
+                                      swrl:argument2 <urn:swrl:var#remot>
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                 swrl:builtin swrlb:equal ;
+                                                 swrl:arguments [ rdf:type rdf:List ;
+                                                                  rdf:first <urn:swrl:var#remot> ;
+                                                                  rdf:rest [ rdf:type rdf:List ;
+                                                                             rdf:first "true"^^xsd:boolean ;
+                                                                             rdf:rest rdf:nil
+                                                                           ]
+                                                                ]
+                                               ] ;
+                                     rdf:rest rdf:nil
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:RemoteAttendance ;
+                           swrl:argument1 <urn:swrl:var#attendance>
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "ExternalGuestSeminar" ;
    rdf:type swrl:Imp ;
    swrl:body [ rdf:type swrl:AtomList ;
                rdf:first [ rdf:type swrl:ClassAtom ;
@@ -1335,6 +1286,33 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
    swrl:head [ rdf:type swrl:AtomList ;
                rdf:first [ rdf:type swrl:ClassAtom ;
                            swrl:classPredicate attendance-ontology:ExternalGuestSeminar ;
+                           swrl:argument1 :lesson
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "Seminar" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:Lesson ;
+                           swrl:argument1 :lesson
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate attendance-ontology:hasGuest ;
+                                      swrl:argument1 :lesson ;
+                                      swrl:argument2 :guest
+                                    ] ;
+                          rdf:rest rdf:nil
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:Seminar ;
                            swrl:argument1 :lesson
                          ] ;
                rdf:rest rdf:nil
@@ -1454,128 +1432,6 @@ attendance-ontology:WRK_CL_002_DA_WebSemantico_2023 rdf:type owl:NamedIndividual
                            swrl:propertyPredicate attendance-ontology:expiration-date ;
                            swrl:argument1 <urn:swrl:var#pin> ;
                            swrl:argument2 <urn:swrl:var#result>
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "NotAttendedLesson" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Lesson ;
-                           swrl:argument1 :lesson
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:ClassAtom ;
-                                      swrl:classPredicate attendance-ontology:Attendance ;
-                                      swrl:argument1 :attendance
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:ClassAtom ;
-                                                 swrl:classPredicate attendance-ontology:Pin ;
-                                                 swrl:argument1 :pin
-                                               ] ;
-                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                            swrl:propertyPredicate attendance-ontology:hasPin ;
-                                                            swrl:argument1 :lesson ;
-                                                            swrl:argument2 :pin
-                                                          ] ;
-                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                       swrl:propertyPredicate attendance-ontology:hasAttendance ;
-                                                                       swrl:argument1 :pin ;
-                                                                       swrl:argument2 :attendance
-                                                                     ] ;
-                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                      rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                  swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#makeSet> ;
-                                                                                  swrl:arguments ( :set
-                                                                                                   :attendance
-                                                                                                 )
-                                                                                ] ;
-                                                                      rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                 rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                             swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#groupBy> ;
-                                                                                             swrl:arguments ( :set
-                                                                                                              :lesson
-                                                                                                            )
-                                                                                           ] ;
-                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                            rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                        swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#size> ;
-                                                                                                        swrl:arguments ( :size
-                                                                                                                         :res
-                                                                                                                       )
-                                                                                                      ] ;
-                                                                                            rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                                       rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                                                   swrl:builtin swrlb:greaterThan ;
-                                                                                                                   swrl:arguments [ rdf:type rdf:List ;
-                                                                                                                                    rdf:first :size ;
-                                                                                                                                    rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                               rdf:first 0 ;
-                                                                                                                                               rdf:rest rdf:nil
-                                                                                                                                             ]
-                                                                                                                                  ]
-                                                                                                                 ] ;
-                                                                                                       rdf:rest rdf:nil
-                                                                                                     ]
-                                                                                          ]
-                                                                               ]
-                                                                    ]
-                                                         ]
-                                              ]
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:BuiltinAtom ;
-                           swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
-                           swrl:arguments ( :lesson
-                                          )
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "RemoteAttendance" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Attendance ;
-                           swrl:argument1 <urn:swrl:var#attendance>
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:remote ;
-                                      swrl:argument1 <urn:swrl:var#attendance> ;
-                                      swrl:argument2 <urn:swrl:var#remot>
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                 swrl:builtin swrlb:equal ;
-                                                 swrl:arguments [ rdf:type rdf:List ;
-                                                                  rdf:first <urn:swrl:var#remot> ;
-                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                             rdf:first "true"^^xsd:boolean ;
-                                                                             rdf:rest rdf:nil
-                                                                           ]
-                                                                ]
-                                               ] ;
-                                     rdf:rest rdf:nil
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:RemoteAttendance ;
-                           swrl:argument1 <urn:swrl:var#attendance>
                          ] ;
                rdf:rest rdf:nil
              ]
