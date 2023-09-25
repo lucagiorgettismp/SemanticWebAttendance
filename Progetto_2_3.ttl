@@ -16,12 +16,25 @@
 @base <http://www.semanticweb.org/owl/owlapi/turtle#> .
 
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology> rdf:type owl:Ontology ;
-                                                                                   owl:imports <http://www.w3.org/2006/time#2016> ,
+                                                                                   owl:imports geo: ,
+                                                                                               <http://www.w3.org/2006/time#2016> ,
                                                                                                <http://www.w3.org/2006/vcard/ns> .
 
 #################################################################
 #    Annotation properties
 #################################################################
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
 
 ###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
 swrla:isRuleEnabled rdf:type owl:AnnotationProperty .
@@ -215,12 +228,26 @@ attendance-ontology:pinHasDuration rdf:type owl:ObjectProperty ;
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#location
 geo:location rdf:type owl:ObjectProperty ;
-             rdfs:range geo:SpatialThing .
+             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
+             rdfs:range geo:SpatialThing ;
+             rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """ ;
+             rdfs:label "location" .
 
 
 ###  http://www.w3.org/2006/vcard/ns#hasGender
 vcard:hasGender rdfs:domain attendance-ontology:Person ;
                 rdfs:range vcard:Gender .
+
+
+###  http://xmlns.com/foaf/0.1/based_near
+<http://xmlns.com/foaf/0.1/based_near> rdf:type owl:ObjectProperty .
 
 
 #################################################################
@@ -277,7 +304,7 @@ attendance-ontology:pin-code rdf:type owl:DatatypeProperty ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote
 attendance-ontology:remote rdf:type owl:DatatypeProperty ;
-                           rdfs:domain attendance-ontology:Attendance ;
+                           rdfs:domain attendance-ontology:Attendable ;
                            rdfs:range xsd:boolean .
 
 
@@ -328,11 +355,6 @@ geo:lat rdf:type owl:DatatypeProperty ;
         rdfs:label "latitude" .
 
 
-###  http://www.w3.org/2003/01/geo/wgs84_pos#location
-geo:location rdf:type owl:DatatypeProperty ;
-             rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> .
-
-
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#long
 geo:long rdf:type owl:DatatypeProperty ;
          rdfs:domain geo:SpatialThing ;
@@ -381,6 +403,11 @@ attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidAlreadySubmitted
 attendance-ontology:AttendanceNotValidAlreadySubmitted rdf:type owl:Class ;
                                                        rdfs:subClassOf attendance-ontology:AttendanceNotValid .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidNoRemoteAvailable
+attendance-ontology:AttendanceNotValidNoRemoteAvailable rdf:type owl:Class ;
+                                                        rdfs:subClassOf attendance-ontology:AttendanceNotValid .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidOutOfWorkgroup
@@ -476,7 +503,8 @@ attendance-ontology:Pin rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#RemoteAttendance
 attendance-ontology:RemoteAttendance rdf:type owl:Class ;
-                                     rdfs:subClassOf attendance-ontology:Attendance .
+                                     rdfs:subClassOf attendance-ontology:Attendance ,
+                                                     geo:SpatialThing .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Room
@@ -510,22 +538,6 @@ attendance-ontology:Tutor rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Workgroup
 attendance-ontology:Workgroup rdf:type owl:Class .
-
-
-###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
-geo:Point rdf:type owl:Class ;
-          rdfs:subClassOf geo:SpatialThing ;
-          rdfs:comment """ 
-Uniquely identified by lat/long/alt. i.e.
-
-spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
-  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
-
-sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
-  """ ,
-                       """A point, typically described using a coordinate system relative to Earth, such as WGS84.
-  """ ;
-          rdfs:label "point" .
 
 
 ###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
@@ -569,7 +581,8 @@ attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:AttendanceValidPresent ;
+                                                          attendance-ontology:AttendanceValidPresent ,
+                                                          attendance-ontology:RemoteAttendance ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi .
 
 
@@ -618,8 +631,7 @@ attendance-ontology:AT_PM_2023_05_08_MARIO_ROSSI rdf:type owl:NamedIndividual ,
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 attendance-ontology:AT_WS_2023_05_21_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                                              attendance-ontology:AttendanceValidWithDelay ;
-                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
-                                                    attendance-ontology:remote "true"^^xsd:boolean .
+                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
@@ -648,7 +660,8 @@ attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_07_24_DALIA_LABALIA
 attendance-ontology:AT_WS_2023_07_24_DALIA_LABALIA rdf:type owl:NamedIndividual ,
-                                                            attendance-ontology:AttendanceNotValidOutOfWorkgroup ;
+                                                            attendance-ontology:AttendanceNotValidOutOfWorkgroup ,
+                                                            attendance-ontology:RemoteAttendance ;
                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00007_DALIA_LABALIA .
 
 
@@ -830,6 +843,7 @@ attendance-ontology:LES_WS_2023_07_24 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:hasLocation attendance-ontology:LOC_ROOM_AULA_2.10 ;
                                       attendance-ontology:hasPin attendance-ontology:PIN_WS_8 ;
                                       attendance-ontology:end-time "2023-07-24T23:00:00"^^xsd:dateTime ;
+                                      attendance-ontology:remote "true"^^xsd:boolean ;
                                       attendance-ontology:start-time "2023-07-24T08:00:00"^^xsd:dateTime .
 
 
@@ -1268,36 +1282,23 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
              rdfs:label "lat/long" .
 
 
-geo:location rdfs:comment """The relation between something and the point, 
- or other geometrical thing in space, where it is.  For example, the realtionship between
- a radio tower and a Point with a given lat and long.
- Or a relationship between a park and its outline as a closed arc of points, or a road and
- its location as a arc (a sequence of points).
- Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
- an accuracy appropriate for the size of the object and uses such as mapping .
- """ ;
-             rdfs:label "location" .
-
-
 #################################################################
 #    Rules
 #################################################################
 
 :lesson rdf:type swrl:Variable .
 
+:pin rdf:type swrl:Variable .
+
 :attendance rdf:type swrl:Variable .
 
-:pin rdf:type swrl:Variable .
+:remote_val rdf:type swrl:Variable .
 
 :set rdf:type swrl:Variable .
 
 :size rdf:type swrl:Variable .
 
 :res rdf:type swrl:Variable .
-
-<urn:swrl:var#attendance> rdf:type swrl:Variable .
-
-<urn:swrl:var#remot> rdf:type swrl:Variable .
 
 :guest rdf:type swrl:Variable .
 
@@ -1314,6 +1315,77 @@ geo:location rdfs:comment """The relation between something and the point,
 <urn:swrl:var#pinDuration> rdf:type swrl:Variable .
 
 <urn:swrl:var#result> rdf:type swrl:Variable .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "RemoteAttendance" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:Lesson ;
+                           swrl:argument1 :lesson
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate attendance-ontology:Pin ;
+                                      swrl:argument1 :pin
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                 swrl:propertyPredicate attendance-ontology:hasPin ;
+                                                 swrl:argument1 :lesson ;
+                                                 swrl:argument2 :pin
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate attendance-ontology:Attendance ;
+                                                            swrl:argument1 :attendance
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                       swrl:propertyPredicate attendance-ontology:hasAttendance ;
+                                                                       swrl:argument1 :pin ;
+                                                                       swrl:argument2 :attendance
+                                                                     ] ;
+                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                      rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                                  swrl:classPredicate attendance-ontology:RemoteAttendance ;
+                                                                                  swrl:argument1 :attendance
+                                                                                ] ;
+                                                                      rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                 rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                             swrl:propertyPredicate attendance-ontology:remote ;
+                                                                                             swrl:argument1 :lesson ;
+                                                                                             swrl:argument2 :remote_val
+                                                                                           ] ;
+                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                            rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                                                                        swrl:builtin swrlb:notEqual ;
+                                                                                                        swrl:arguments [ rdf:type rdf:List ;
+                                                                                                                         rdf:first :remote_val ;
+                                                                                                                         rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                    rdf:first "true"^^xsd:boolean ;
+                                                                                                                                    rdf:rest rdf:nil
+                                                                                                                                  ]
+                                                                                                                       ]
+                                                                                                      ] ;
+                                                                                            rdf:rest rdf:nil
+                                                                                          ]
+                                                                               ]
+                                                                    ]
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:AttendanceNotValidNoRemoteAvailable ;
+                           swrl:argument1 :attendance
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
 
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "" ;
@@ -1393,45 +1465,6 @@ geo:location rdfs:comment """The relation between something and the point,
                            swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
                            swrl:arguments ( :lesson
                                           )
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "RemoteAttendance" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Attendance ;
-                           swrl:argument1 <urn:swrl:var#attendance>
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:remote ;
-                                      swrl:argument1 <urn:swrl:var#attendance> ;
-                                      swrl:argument2 <urn:swrl:var#remot>
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                 swrl:builtin swrlb:equal ;
-                                                 swrl:arguments [ rdf:type rdf:List ;
-                                                                  rdf:first <urn:swrl:var#remot> ;
-                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                             rdf:first "true"^^xsd:boolean ;
-                                                                             rdf:rest rdf:nil
-                                                                           ]
-                                                                ]
-                                               ] ;
-                                     rdf:rest rdf:nil
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:RemoteAttendance ;
-                           swrl:argument1 <urn:swrl:var#attendance>
                          ] ;
                rdf:rest rdf:nil
              ]
