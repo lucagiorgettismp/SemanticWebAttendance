@@ -716,6 +716,7 @@ attendance-ontology:GEN_Unknown rdf:type owl:NamedIndividual ,
 attendance-ontology:LES_PC_2022_10_17 rdf:type owl:NamedIndividual ,
                                                attendance-ontology:Lesson ;
                                       attendance-ontology:hasGuest attendance-ontology:TR_AntonellaCarbonaro ;
+                                      attendance-ontology:hasPin attendance-ontology:PIN_PC_1 ;
                                       attendance-ontology:end-time "2022-10-17T13:00:00Z"^^xsd:dateTime ;
                                       attendance-ontology:start-time "2022-10-17T11:00:00Z"^^xsd:dateTime .
 
@@ -816,6 +817,15 @@ attendance-ontology:LOC_ROOM_AULA_2.6 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:location-code "2.6" .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PC_1
+attendance-ontology:PIN_PC_1 rdf:type owl:NamedIndividual ,
+                                      attendance-ontology:Pin ;
+                             attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
+                             attendance-ontology:creation-date "2023-10-25T10:15:00Z"^^xsd:dateTime ;
+                             attendance-ontology:expiration-date "2023-10-25T10:00:00Z"^^xsd:dateTime ;
+                             attendance-ontology:pin-code "483612"^^xsd:token .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_1
 attendance-ontology:PIN_PM_1 rdf:type owl:NamedIndividual ,
                                       attendance-ontology:Pin ;
@@ -825,7 +835,7 @@ attendance-ontology:PIN_PM_1 rdf:type owl:NamedIndividual ,
                              attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-01T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-01T10:15:00Z"^^xsd:dateTime ;
-                             attendance-ontology:pin-code "123444" .
+                             attendance-ontology:pin-code "123444"^^xsd:token .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_2
@@ -837,7 +847,7 @@ attendance-ontology:PIN_PM_2 rdf:type owl:NamedIndividual ,
                              attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-03T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-03T10:15:00Z"^^xsd:dateTime ;
-                             attendance-ontology:pin-code "124555" .
+                             attendance-ontology:pin-code "124555"^^xsd:token .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_3
@@ -849,7 +859,7 @@ attendance-ontology:PIN_PM_3 rdf:type owl:NamedIndividual ,
                              attendance-ontology:pinHasDuration attendance-ontology:TD_15_MINUTES ;
                              attendance-ontology:creation-date "2023-05-08T10:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-05-08T10:15:00Z"^^xsd:dateTime ;
-                             attendance-ontology:pin-code "126777" .
+                             attendance-ontology:pin-code "126777"^^xsd:token .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1
