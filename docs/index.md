@@ -23,42 +23,31 @@ In questa ontologia ci siamo prefissati di usare le seguenti tecnologie:
 
 * **RDF**: linguaggio usato per la definizione di triple di dati che permettono di creare delle informazioni utili a chi dovrà usare quegli stessi dati;
 
-* **RDFS**: linguaggio per fornire informazioni aggiuntive dai dati rappresentati usando RDF e che con il supporto di tool specifici chiamati *reasoners*, permette anche di comprendere maggiore conoscenza tramite l'uso di regole semantiche;
+* **RDFS**: linguaggio per fornire informazioni aggiuntive dai dati rappresentati usando RDF e che con il supporto di tool specifici chiamati *reasoner*, permette anche di comprendere maggiore conoscenza tramite l'uso di regole semantiche;
 
 * **OWL**: estensione di RDFS, permette di generare ancora più informazione;
 
 * **SPARQL**: linguaggio usato per interrogare ontologie e basi di dati semantiche come quelle in questione;
 
-* **Turtle**: sintassi usata in questi ambiti che risulta di facile lettura anche da utenti umani;
+* **Turtle**: sintassi usata in questi ambiti che risulta di facile lettura anche da utenti umani.
 
-Come piattaforma per l'esecuzione delle query e la preparazione dell'ontologia, abbiamo usato principalmente Protégé, affiancato dall'uso di reasoner e query enginer a riga di comando. Purtroppo essi non supportano le stesse funzionalità di Protégé e il risultato ottenuto non era lo stesso ottenuto dalla piattaforma, per questo li abbiamo usati solo per contesti molto limitati.
+Come piattaforma per l'esecuzione delle query e la preparazione dell'ontologia, abbiamo usato principalmente Protégé, affiancato dall'uso di *reasoner* e *query engine* a riga di comando, usati solo per contesti molto limitati a causa delle differenze con quelli supportati da Protègè.
 
-Come ontologie esterne abbiamo pensato di includere:
+Come ontologie esterne abbiamo incluso:
 
-* [**VCard**](https://www.w3.org/TR/vcard-rdf/): per descrivere le persone e le organizzazioni. Tramite questa ontologia si potrebbero meglio rappresentare anche le istituzioni di cui fanno parte le persone descritte, permettendo a questa ontologia di modellare una realtà più grande di un solo istituto accademico, ma di un intero sistema, campus condiviso da più atenei ecc...
+* [**vCard**](https://www.w3.org/TR/vcard-rdf/): per descrivere le persone e le organizzazioni. Tramite questa ontologia si potrebbero modellare meglio anche le istituzioni di cui fanno parte le persone descritte: una realtà più grande di un solo istituto accademico, un intero sistema, un campus condiviso da più atenei ecc...
 
-* [**Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone. Di questa conoscenza ne viene usata tuttavia solamente una piccola parte, dato che a noi interessa esclusivamente, a questo livello, descrivere le relative lavorative tra esse. Di questa ontologia potrebbero essere utilizzati anche:
+* [**Time**](https://www.w3.org/TR/owl-time/#): per descrivere le proprietà temporali di una qualsiasi risorsa. Nel nostro caso è utilzzata per esprimere le durate temporali dei Pin usati per registrare la presenza;
 
-    * [foaf:knows](http://xmlns.com/foaf/0.1/#term_knows)
-
-        Potrebbero essere create proprietà da inferire come: compagni di classe (tra studenti), colleghi di lavoro (tra docenti), ecc...
-
-    * [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
-    * [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
-
-        Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
-
-* [**Time**](https://www.w3.org/TR/owl-time/#): per descrivere le proprietà temporali di una qualsiasi risorsa. Nel nostro caso è utilzzata per esprimere le durate temporali dei Pin usati per registrare la presenza e per indicare gli orari di inizio degli appuntamenti.
-
-* [**Geo**](https://www.w3.org/2003/01/geo/): per esprimere la posizione dalla quale viene eseguita una rilevazione a distanza, solitamente contraddistinta dalle coordinate latitudine, longitudine e dalla *accuracy* della rilevazione.
+* [**Geo**](https://www.w3.org/2003/01/geo/): per esprimere la posizione dalla quale viene eseguita una rilevazione a distanza, solitamente contraddistinta dalle coordinate latitudine, longitudine della rilevazione.
 
 ## Presentazione del contesto
 
-L'ontologia in questione nasce dall'interesse dei componenti del gruppo di progetti di esprimere la conoscenza accumulara da un dominio applicativo reale visto durante gli anni di lavoro presso un'azienda di sviluppo software locale.
+L'ontologia in questione nasce dall'interesse dei componenti del gruppo del progetto di esprimere la conoscenza accumulata da un dominio applicativo reale maturata durante gli anni di lavoro presso un'azienda di sviluppo software locale.
 
-Il requisito principale è quello di avere un sistema informatico per registrare la [presenza](#attendance) degli studenti alle varie attività didattiche quali [Lezioni](#lesson), [Esami](#exam) o altri momenti della vita accademica. Il docente a inizio attività condivide un pin alfanumerico che i partecipanti sono tenuti ad inserire in un apposito portale.
+Il requisito principale è quello di avere un sistema informatico per registrare la [presenza](#attendance) degli studenti alle varie attività didattiche quali [lezioni](#lesson), [esami](#exam) o altri momenti della vita accademica. Il docente a inizio attività condivide un pin alfanumerico che i partecipanti sono tenuti ad inserire in un apposito portale.
 
-> L'adozione delle tecnologie sopracitate e l'integrazione di ontologie diffuse consentirà a chi usufruisce di questa ontologia di espanderla, includendo anche altre tipologie di impegni che richiedono la registrazione della presenza che gli servono.
+> L'adozione delle tecnologie sopracitate e l'integrazione di ontologie diffuse consentirà a chi usufruisce di questa ontologia di espanderla, includendo anche altre tipologie di impegni che richiedono la registrazione della presenza.
 
 ## Classi
 
@@ -136,48 +125,48 @@ Attendance --|> Person : hasAttendant
 
 *Sopra: uno schema di massima della nostra ontologia*
 
-Vengono riportate le classi modellate in due classi più rilevanti e le altre (???).
+## Principali classi
 
 ### Person
 
-Questa classe rappresenta una qualunque persona interagisca con un sistema scolastico.
+Questa classe rappresenta una qualunque persona interagisca con il sistema.
 
 **Data Properties**
 
 | Nome | Tipo |
 | --- | --- |
-| Given Name | string |
-| Family Name | string |
-| Birth Date | date |
-| Organization Name | string |
+| given name | string |
+| family name | string |
+| birth date | date |
+| organization name | string |
 
 **Object Properties**
 
 | Nome | Dominio | Range |
 | --- | --- | --- |
-| has Gender | Person | Gender |
-| has Attendant | Gender | Person |
-| has Guest | Lesson | Person |
+| hasGender | Person | Gender |
+| hasAttendant | Gender | Person |
+| hasGuest | Lesson | Person |
 
-Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nello specifico:
+Nel nostro elaborato essa modella:
 
-* <a id="teacher">Teacher</a> (Docente): chi tiene le lezioni
-
-    **Object Properties**
-
-    | Nome | Dominio | Range |
-    | --- | --- | --- |
-    | has Teacher | Workgroup | Teacher |
-
-* <a id="tutor">Tutor</a> (Tutore): chi aiuta a gestire uno specifico workgroup
+* <a id="teacher">Teacher</a> (Docente): chi tiene le lezioni di un determinato workgroup.
 
     **Object Properties**
 
     | Nome | Dominio | Range |
     | --- | --- | --- |
-    | has Tutor | Lesson | Tutor |
+    | hasTeacher | Workgroup | Teacher |
 
-* <a id="student">Student</a> (Studente): chi principalmente partecipa alle lezioni
+* <a id="tutor">Tutor</a> (Tutore): chi aiuta a gestire uno specifico workgroup.
+
+    **Object Properties**
+
+    | Nome | Dominio | Range |
+    | --- | --- | --- |
+    | hasTutor | Lesson | Tutor |
+
+* <a id="student">Student</a> (Studente): chi partecipa alle lezioni.
 
     **Data Properties**
 
@@ -190,9 +179,9 @@ Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nell
     | Nome | Dominio | Range |
     | --- | --- | --- |
     | [has Manual Student](#hasstudent-vs-hasmanualstudent) | Student Group | Student |
-    | has Student | Student Group | Student |
+    | hasStudent | StudentGroup | Student |
 
-* <a id="external">External</a> (Esterno): chi non fa parte dell'organizzazione scolastica, utile per identificare le persone che vengono a tenere un seminario
+* <a id="external">External</a> (Esterno): chi non fa parte dell'organizzazione scolastica, ma viene invitato per tenere seminari.
 
     **Data Properties**
 
@@ -204,7 +193,10 @@ Nel nostro elaborato esso modella solamente poche di tutte le possibilità, nell
 
 ### Workgroup
 
-Rappresenta una [Classe](#classe) che partecipa in un determinato anno didattico e semestre ad una [Attività Didattica](#attivita-didattica).
+Rappresenta la relazione tra: 
+* una [Classe](#classe)
+* un determinato anno didattico e semestre 
+* una [Attività Didattica](#attivita-didattica).
 
 **Data Property**
 
@@ -225,9 +217,9 @@ Rappresenta una [Classe](#classe) che partecipa in un determinato anno didattico
 
 #### Class
 
-Rappresenta un gruppo di studenti iscritti in un certo anno accademico.
+Rappresenta un gruppo di studenti iscritti ad un certo anno accademico.
 
-Inoltre è anche sottoclasse di [Student Group](#student-group).
+È sottoclasse di [StudentGroup](#student-group).
 
 **Object Properties**
 
@@ -237,7 +229,7 @@ Inoltre è anche sottoclasse di [Student Group](#student-group).
 
 #### Didactic Activity
 
-Rappresenta un corso di studio insegnato nella scuola. Un esempio può essere *Matematica* o *Economia*.
+Rappresenta un corso di studio insegnato nella scuola.
 
 **Object Property**
 
@@ -247,7 +239,7 @@ Rappresenta un corso di studio insegnato nella scuola. Un esempio può essere *M
 
 ### Attendable
 
-Rappresenta una attivitù sulla quale può essere registrata una presenza. Da notare che questo concetto non viene completamente esaurito in questa ontologia. Infatti possiamo immaginare che nel solo ambito accademico possono essere ancora rappresentati altri tipi di eventi che possono avere interesse del registrare la presenza degli utenti, come a riunioni di docenti e di altro personale o ricevimenti privati.
+Rappresenta una attività sulla quale può essere registrata una presenza. Da notare che questo concetto non viene completamente esaurito in questa ontologia. Infatti possono essere rappresentati anche altri tipi di eventi che richiedono di registrare la presenza degli utenti, come ad esempio riunioni di docenti (e di altro personale) o ricevimenti privati.
 
 **Data Property**
 
@@ -264,12 +256,11 @@ Rappresenta una attivitù sulla quale può essere registrata una presenza. Da no
 | hasLocation | Attendable | [Location](#location) |
 | hasPin | Attendable | [Pin](#pin) |
 
-Possiamo affermare che la proprietà *hasPin* è **inversamente funzionale**: infatti una lezione può avere molti pin, mentre ogni pin oggetto di questa relazione può avere una sola relazione di questo tipo verso una lezione. Possiamo quindi dire che la relazione inversa di hasPin, isPinOf, è funzionale.
-
+Possiamo affermare che la proprietà *hasPin* è **inversamente funzionale**: infatti una lezione può avere molti pin, mentre ogni pin oggetto di questa relazione può averne una sola di questo tipo verso una lezione. Possiamo quindi dire che la relazione inversa di hasPin, ovvero isPinOf, è funzionale.
 
 ### Lesson
 
-Rappresenta un lasso di tempo dove gli [studenti](#student) seguono un [professore](#teacher). Eventualmente, il professore può essere aiutato o sostituito da un [tutor](#tutor).
+Rappresenta un lasso di tempo dove gli [studenti](#student) seguono un [docente](#teacher). Eventualmente, il docente può essere aiutato o sostituito da un [tutor](#tutor).
 
 **Object Property**
 
@@ -283,11 +274,11 @@ Nella nostra ontologia sono presenti anche altre due risorse sottoclassi di ques
 
 * **Seminar**: Seminario tenuto da una persona (#person) diversa dal titolare dell'insegnamento.
 
-* **External Guest Seminar**: Sottoclasse di Seminario, contraddistingue i seminari da un ospire esterno all'università, invitato dal docente. Nella nostra ontologia questo è rappresentato dalla classe [External](#external).
+* **External Guest Seminar**: Sottoclasse di Seminar, contraddistingue i seminari da un ospire esterno all'università, invitato dal docente. Nella nostra ontologia questo è rappresentato dalla classe [External](#external).
 
 ### Exam
 
-Rappresenta un lasso di tempo dove gli [studenti](#student), divisi in [turni](#exam-turn) svolgono la propria prova.
+Rappresenta un lasso di tempo dove gli [studenti](#student), eventualmente divisi su più [turni](#exam-turn) svolgono la propria prova.
 
 **Data Property**
 
@@ -304,7 +295,7 @@ Rappresenta un lasso di tempo dove gli [studenti](#student), divisi in [turni](#
 
 #### Exam Turn
 
-Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova. Questa divisione è necessaria in quanto non sempre negli atenei sono presenti aule abbastanza capienti per contenere tutti gli studenti che svolgono una prova un determinato giorno. Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra gli attendenti (in un'aula da 200 persone, potrebbero riuscirci a stare soltato 50 persone durante un'esame).
+Rappresenta un lasso di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova. Questa divisione è necessaria in quanto non sempre negli atenei sono presenti aule abbastanza capienti per contenere tutti gli studenti contemporaneamente. Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra gli attendenti (in un'aula da 200 persone, potrebbero riuscirci a stare soltato 50 persone durante un'esame).
 
 **Object Property**
 
@@ -314,11 +305,12 @@ Rappresenta un quanto di tempo dove una parte di studenti iscritti ad un esame s
 
 ### Pin
 
-Rappresenta un codice alfanumerico che le persone inseriscono per registrare la loro presenza ad un [Attendable](#attendable). Questo viene generato dal sistema e fornito da chi gestisce l'attività.
+Rappresenta un codice alfanumerico che le persone inseriscono per registrare la loro presenza ad un [Attendable](#attendable). Questo viene generato duna presenza sul Pin.
 
-Possiede una data di creazione (*creation_date*) da valorizzare quando viene generato il Pin che è usata per calcolare tramite la regola ... la data di scadenza dello stesso. Allo scoccare della scadenza non sarà più possibile registrare una presenza sul Pin.
+**Data Property**al sistema e fornito da chi gestisce l'attività.
 
-**Data Property**
+Possiede una data di creazione (creation date) da valorizzare quando viene generato il Pin,
+È usata anche per calcolare la data di scadenza  di quel Pin tramite la regola PinExpirationDate^[La regola è valida, ma attualmente alla versione 5.6.2 non è supportata da Protègè]. Allo scoccare della scadenza la registrazione verrà considerata come ritardo o assenza.
 
 | Nome | Tipo |
 | --- | --- |
@@ -340,7 +332,7 @@ Possiamo affermare che la proprietà *hasAttendance* è una proprietà **funzion
 
 Rappresenta una registrazione di una presenza. Essa quindi richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
-Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di tenere traccia solamente della presenza/assenza di un partecipante. La nostra ontologia deve tenere conto che uno studente sia presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
+Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di tenere traccia solamente della presenza/assenza di un partecipante. La nostra ontologia deve tenere conto che uno studente presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
 
 Tuttavia una presenza può essere o *Valida* o *Invalida*, presentando due insiemi disgiunti di classi. In questo è venuta in aiuto l'espressività concessa da OWL. Abbiamo potuto esprimere questo fatto con le seguenti regole:
 
@@ -366,7 +358,7 @@ Le varie possibilità offerte attualmente dall'ontologia sono:
 
     * <a id="AttendanceValidWithDelay">Registrazione con ritardo (AttendanceValidWithDelay)</a>: questa classe differisce da [AttendanceNotValidWithDelay](#AttendanceNotValidWithDelay) in quanto il ritardo in questo caso non è così tanto da considerare invalida la presenza allo studente
 
-Le registrazioni fatte da remoto sono contraddistinte dalla proprità `remote` settata a *true*. In questo caso subentra il controllo da parte della regola [RemoteAttendance](#remoteattendance) che  verifica se un attendance eseguito da remoto è consentito dall'attendable stesso, tramite la proprietà 'allow-remote'.
+Le registrazioni fatte da remoto sono contraddistinte dalla proprità remote settata a `true`. In questo caso subentra il controllo da parte della regola [RemoteAttendance](#remoteattendance) che  verifica se un attendance eseguito da remoto è consentito dall'attendable stesso, tramite la proprietà remote allowed.
 
 **Data Property**
 
@@ -383,11 +375,11 @@ Le registrazioni fatte da remoto sono contraddistinte dalla proprità `remote` s
 
 ### StudentGroup
 
-Rappresenta un gruppo di studenti. Questa classe è usata esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi.
+Rappresenta un gruppo di studenti. Questa classe è presente esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi.
 
 **Object Property**
 
-| Nome | Dominio | Range |
+| Nome | Dominioui| Range |
 | --- | --- | --- |
 | [has Manual Student](#hasstudent-vs-hasmanualstudent) | StudentGroup | Student |
 | hasStudent | StudentGroup | Student |
@@ -713,6 +705,18 @@ Eseguendo questa interrogazione viene prodotto il risultato:
 | att:WRK_CL_001_DA_PervasiveComputing_2023 | 0.0      |
 --------------------------------------------------------
 ```
+# Futuri sviluppi
+
+* [**!!!! BUGIA !!!! Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone. Di questa conoscenza ne viene usata tuttavia solamente una piccola parte, dato che a noi interessa esclusivamente, a questo livello, descrivere le relative lavorative tra esse. Di questa ontologia potrebbero essere utilizzati anche:
+
+    * [foaf:knows](http://xmlns.com/foaf/0.1/#term_knows)
+
+        Potrebbero essere create proprietà da inferire come: compagni di classe (tra studenti), colleghi di lavoro (tra docenti), ecc...
+
+    * [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
+    * [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
+
+        Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
 
 # Conclusioni
 
@@ -725,3 +729,4 @@ Allo stesso tempo, avere una ontologia che descrive in maniera sempre più compl
 Durante lo sviluppo dell'ontologia, come già descritto precedentemente, abbiamo notato la carenza di piattaforme gratuiti e open efficaci per lavorare con queste tecnologie a parte Protégé. Moltissimi software per validare, eseguire query, rappresentare grafici delle ontologie non sono più mantenuti oppure hanno una scarsa documentazione. Anche il supporto da parte della comunità non è stato sempre dei migliori, essendoci trovati ad affrontare problemi piuttosto comuni che non avevano risposte sui forum online o su Stack Overflow.
 
 Nonostante i nostri sforzi, non siamo riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto. Infatti, tramite le Github Actions riusciamo soltanto a controllare le query eseguite sull'ontologia già arricchità della conoscienza inferita dal reasoner. Questa ontologia arricchita, come *artefatto* risultato di una computazione, non è bene che sia tracciato sul sistema di versioning, dovrebbe essere generato all'occorrenza. Lanciando Pellet e altri reasoner da linea di comando, il risultato ottenuto era differente da quello prodotto da Pellet all'interno di Protégé.
+
