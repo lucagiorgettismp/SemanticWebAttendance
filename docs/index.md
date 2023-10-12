@@ -37,15 +37,9 @@ Come ontologie esterne abbiamo incluso:
 
 * [**vCard**](https://www.w3.org/TR/vcard-rdf/): per descrivere le persone e le organizzazioni. Tramite questa ontologia si potrebbero modellare meglio anche le istituzioni di cui fanno parte le persone descritte: una realtà più grande di un solo istituto accademico, un intero sistema, un campus condiviso da più atenei ecc...
 
-<<<<<<< HEAD
-* [**Time**](https://www.w3.org/TR/owl-time/#): per descrivere le proprietà temporali di una qualsiasi risorsa. Nel nostro caso è utilzzata per esprimere le durate temporali dei Pin usati per registrare la presenza;
-
-* [**Geo**](https://www.w3.org/2003/01/geo/): per esprimere la posizione dalla quale viene eseguita una rilevazione a distanza, solitamente contraddistinta dalle coordinate latitudine, longitudine della rilevazione.
-=======
 * [**Time**](https://www.w3.org/TR/owl-time/#): per descrivere le proprietà temporali di una qualsiasi risorsa. Nel nostro caso è utilzzata per esprimere le durate temporali dei Pin usati per registrare la presenza e per indicare gli orari di inizio degli appuntamenti.
 
 * [**Geo**](https://www.w3.org/2003/01/geo/): per esprimere la posizione dalla quale viene eseguita una rilevazione a distanza, solitamente contraddistinta dalle coordinate latitudine, longitudine e dalla *accuracy* della rilevazione.
->>>>>>> bc5407e (fix: move foaf import to future developments)
 
 ## Presentazione del contesto
 
@@ -736,8 +730,6 @@ Durante lo sviluppo dell'ontologia, come già descritto precedentemente, abbiamo
 
 Nonostante i nostri sforzi, non siamo riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto. Infatti, tramite le Github Actions riusciamo soltanto a controllare le query eseguite sull'ontologia già arricchità della conoscienza inferita dal reasoner. Questa ontologia arricchita, come *artefatto* risultato di una computazione, non è bene che sia tracciato sul sistema di versioning, dovrebbe essere generato all'occorrenza. Lanciando Pellet e altri reasoner da linea di comando, il risultato ottenuto era differente da quello prodotto da Pellet all'interno di Protégé.
 
-<<<<<<< HEAD
-=======
 Ulteriori sviluppi dell'ontologia potrebbero essere:
 
 * uso di [**Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone, lavorative tra i docenti, tra i docenti e gli esterni, tra i docenti e gli studenti e così via... Di questa ontologia potrebbero essere utilizzati anche:
@@ -750,4 +742,3 @@ Ulteriori sviluppi dell'ontologia potrebbero essere:
     * [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
 
         Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
->>>>>>> bc5407e (fix: move foaf import to future developments)
