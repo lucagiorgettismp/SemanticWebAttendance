@@ -1407,6 +1407,19 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 
 
 #################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( attendance-ontology:Lab
+                attendance-ontology:Office
+                attendance-ontology:Other
+                attendance-ontology:Room
+              )
+] .
+
+
+#################################################################
 #    Rules
 #################################################################
 
