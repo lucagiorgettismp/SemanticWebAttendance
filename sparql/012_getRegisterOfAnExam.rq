@@ -15,8 +15,11 @@ SELECT ?student ?turn ?type WHERE {
 
         ?attendance att:hasAttendant ?student;
             rdf:type ?type.
-        
-        ?type rdfs:subClassOf att:AttendanceValid .
+        {
+            ?attendance rdf:type att:AttendanceValid .
+        } UNION {
+            ?attendance rdf:type att:AttendanceNotValid .
+        }
     }
 
 

@@ -5,10 +5,11 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Description of this awesome query
-SELECT ?student ?percentage ?ttype WHERE {
+# TODO: to be fixed
+SELECT ?student ?percentage WHERE {
     # Get all students attending the exam.
     {
-        SELECT ?wrk ?student ?ttype WHERE {
+        SELECT ?wrk ?student WHERE {
             ?wrk att:hasExam ?exam .
             ?exam att:hasTurn ?turn .
             ?turn att:hasStudent ?student .
@@ -16,8 +17,7 @@ SELECT ?student ?percentage ?ttype WHERE {
             OPTIONAL {
                 ?turn att:hasPin ?pin .
                 ?pin att:hasAttendant ?student ;
-                    rdf:type ?ttype .
-                ?ttype rdfs:SubClassOf att:AttendanceValid .
+                    rdf:type att:AttendanceValid .
             }
         }
     }

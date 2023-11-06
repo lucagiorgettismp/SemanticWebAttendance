@@ -17,8 +17,7 @@ SELECT ?wrk ?rapporto WHERE {
                 ?lesson att:hasPin ?pin .
                 ?pin att:hasAttendance ?attendance .
                 ?attendance att:hasAttendant ?student ;
-                    rdf:type ?type .
-                ?type rdfs:subClassOf att:AttendanceValid .
+                    rdf:type att:AttendanceValid .
             }
         }
 

@@ -661,27 +661,28 @@ vcard:Gender owl:disjointUnionOf ( vcard:Female
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI
 attendance-ontology:AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                                   attendance-ontology:Attendance ;
+                                                                   attendance-ontology:AttendanceValid ;
                                                           attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                           attendance-ontology:attendance-time "2023-06-26T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI
 attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                                   attendance-ontology:Attendance ;
+                                                                   attendance-ontology:AttendanceValid ;
                                                           attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                           attendance-ontology:attendance-time "2023-06-26T11:35:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_CHIARA_BIANCHI
 attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-01T10:17:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceNotValid ,
                                                           attendance-ontology:RemoteAttendance ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-01T10:20:00Z"^^xsd:dateTime ;
@@ -691,90 +692,91 @@ attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI
 attendance-ontology:AT_PM_2023_05_01_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-01T10:35:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI
 attendance-ontology:AT_PM_2023_05_03_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceNotValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-03T10:12:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_03_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-03T10:17:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI
 attendance-ontology:AT_PM_2023_05_03_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-03T10:11:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_CHIARA_BIANCHI
 attendance-ontology:AT_PM_2023_05_08_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-08T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_08_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-08T10:40:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI
 attendance-ontology:AT_PM_2023_05_08_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-08T10:02:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 attendance-ontology:AT_WS_2023_05_21_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-21T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-21T10:07:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI_1
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI_1 rdf:type owl:NamedIndividual ,
-                                                            attendance-ontology:Attendance ;
+                                                            attendance-ontology:AttendanceNotValid ;
                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                    attendance-ontology:attendance-time "2023-05-21T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI
 attendance-ontology:AT_WS_2023_05_22_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceNotValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-22T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-22T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_DALIA_LABALIA
 attendance-ontology:AT_WS_2023_08_24_DALIA_LABALIA rdf:type owl:NamedIndividual ,
+                                                            attendance-ontology:AttendanceValid ,
                                                             attendance-ontology:RemoteAttendance ;
                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00007_DALIA_LABALIA ;
                                                    attendance-ontology:attendance-time "2023-08-24T11:12:00Z"^^xsd:dateTime ;
@@ -784,7 +786,7 @@ attendance-ontology:AT_WS_2023_08_24_DALIA_LABALIA rdf:type owl:NamedIndividual 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_08_24_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-08-24T10:18:00Z"^^xsd:dateTime .
 
@@ -1411,6 +1413,15 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( attendance-ontology:Lab
+                attendance-ontology:Office
+                attendance-ontology:Other
+                attendance-ontology:Room
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( vcard:Female
                 vcard:Male
                 vcard:None
@@ -1420,16 +1431,7 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 ] .
 
 
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( attendance-ontology:Lab
-                attendance-ontology:Office
-                attendance-ontology:Other
-                attendance-ontology:Room
-              )
-] .
-
 #################################################################
-
 #    Rules
 #################################################################
 
@@ -1471,70 +1473,32 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "" ;
-   rdfs:label "ValidateAttendanceRemoteUnavailable" ;
+   rdfs:label "ExternalGuestSeminar" ;
    rdf:type swrl:Imp ;
    swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                           swrl:propertyPredicate attendance-ontology:hasPin ;
-                           swrl:argument1 :lesson ;
-                           swrl:argument2 :pin
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:Seminar ;
+                           swrl:argument1 :lesson
                          ] ;
                rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:ClassAtom ;
-                                      swrl:classPredicate attendance-ontology:Pin ;
-                                      swrl:argument1 :pin
+                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                      swrl:propertyPredicate attendance-ontology:hasGuest ;
+                                      swrl:argument1 :lesson ;
+                                      swrl:argument2 :guest
                                     ] ;
                           rdf:rest [ rdf:type swrl:AtomList ;
                                      rdf:first [ rdf:type swrl:ClassAtom ;
-                                                 swrl:classPredicate attendance-ontology:RemoteAttendance ;
-                                                 swrl:argument1 :attendance
+                                                 swrl:classPredicate attendance-ontology:External ;
+                                                 swrl:argument1 :guest
                                                ] ;
-                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                rdf:first [ rdf:type swrl:ClassAtom ;
-                                                            swrl:classPredicate attendance-ontology:Lesson ;
-                                                            swrl:argument1 :lesson
-                                                          ] ;
-                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                           rdf:first [ rdf:type swrl:ClassAtom ;
-                                                                       swrl:classPredicate attendance-ontology:Attendance ;
-                                                                       swrl:argument1 :attendance
-                                                                     ] ;
-                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                      rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                                                  swrl:builtin swrlb:notEqual ;
-                                                                                  swrl:arguments [ rdf:type rdf:List ;
-                                                                                                   rdf:first :remote_val ;
-                                                                                                   rdf:rest [ rdf:type rdf:List ;
-                                                                                                              rdf:first "true"^^xsd:boolean ;
-                                                                                                              rdf:rest rdf:nil
-                                                                                                            ]
-                                                                                                 ]
-                                                                                ] ;
-                                                                      rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                 rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                                                                             swrl:propertyPredicate attendance-ontology:remote-allowed ;
-                                                                                             swrl:argument1 :lesson ;
-                                                                                             swrl:argument2 :remote_val
-                                                                                           ] ;
-                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
-                                                                                            rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                                        swrl:propertyPredicate attendance-ontology:hasAttendance ;
-                                                                                                        swrl:argument1 :pin ;
-                                                                                                        swrl:argument2 :attendance
-                                                                                                      ] ;
-                                                                                            rdf:rest rdf:nil
-                                                                                          ]
-                                                                               ]
-                                                                    ]
-                                                         ]
-                                              ]
+                                     rdf:rest rdf:nil
                                    ]
                         ]
              ] ;
    swrl:head [ rdf:type swrl:AtomList ;
                rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:AttendanceRemoteUnavailable ;
-                           swrl:argument1 :attendance
+                           swrl:classPredicate attendance-ontology:ExternalGuestSeminar ;
+                           swrl:argument1 :lesson
                          ] ;
                rdf:rest rdf:nil
              ]
@@ -1680,6 +1644,77 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
                            swrl:propertyPredicate attendance-ontology:expiration-date ;
                            swrl:argument1 :pin ;
                            swrl:argument2 :result
+                         ] ;
+               rdf:rest rdf:nil
+             ]
+ ] .
+
+[ swrla:isRuleEnabled "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "ValidateAttendanceRemoteUnavailable" ;
+   rdf:type swrl:Imp ;
+   swrl:body [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                           swrl:propertyPredicate attendance-ontology:hasPin ;
+                           swrl:argument1 :lesson ;
+                           swrl:argument2 :pin
+                         ] ;
+               rdf:rest [ rdf:type swrl:AtomList ;
+                          rdf:first [ rdf:type swrl:ClassAtom ;
+                                      swrl:classPredicate attendance-ontology:Pin ;
+                                      swrl:argument1 :pin
+                                    ] ;
+                          rdf:rest [ rdf:type swrl:AtomList ;
+                                     rdf:first [ rdf:type swrl:ClassAtom ;
+                                                 swrl:classPredicate attendance-ontology:RemoteAttendance ;
+                                                 swrl:argument1 :attendance
+                                               ] ;
+                                     rdf:rest [ rdf:type swrl:AtomList ;
+                                                rdf:first [ rdf:type swrl:ClassAtom ;
+                                                            swrl:classPredicate attendance-ontology:Lesson ;
+                                                            swrl:argument1 :lesson
+                                                          ] ;
+                                                rdf:rest [ rdf:type swrl:AtomList ;
+                                                           rdf:first [ rdf:type swrl:ClassAtom ;
+                                                                       swrl:classPredicate attendance-ontology:Attendance ;
+                                                                       swrl:argument1 :attendance
+                                                                     ] ;
+                                                           rdf:rest [ rdf:type swrl:AtomList ;
+                                                                      rdf:first [ rdf:type swrl:BuiltinAtom ;
+                                                                                  swrl:builtin swrlb:notEqual ;
+                                                                                  swrl:arguments [ rdf:type rdf:List ;
+                                                                                                   rdf:first :remote_val ;
+                                                                                                   rdf:rest [ rdf:type rdf:List ;
+                                                                                                              rdf:first "true"^^xsd:boolean ;
+                                                                                                              rdf:rest rdf:nil
+                                                                                                            ]
+                                                                                                 ]
+                                                                                ] ;
+                                                                      rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                 rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
+                                                                                             swrl:propertyPredicate attendance-ontology:remote-allowed ;
+                                                                                             swrl:argument1 :lesson ;
+                                                                                             swrl:argument2 :remote_val
+                                                                                           ] ;
+                                                                                 rdf:rest [ rdf:type swrl:AtomList ;
+                                                                                            rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
+                                                                                                        swrl:propertyPredicate attendance-ontology:hasAttendance ;
+                                                                                                        swrl:argument1 :pin ;
+                                                                                                        swrl:argument2 :attendance
+                                                                                                      ] ;
+                                                                                            rdf:rest rdf:nil
+                                                                                          ]
+                                                                               ]
+                                                                    ]
+                                                         ]
+                                              ]
+                                   ]
+                        ]
+             ] ;
+   swrl:head [ rdf:type swrl:AtomList ;
+               rdf:first [ rdf:type swrl:ClassAtom ;
+                           swrl:classPredicate attendance-ontology:AttendanceRemoteUnavailable ;
+                           swrl:argument1 :attendance
                          ] ;
                rdf:rest rdf:nil
              ]
@@ -1881,126 +1916,6 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
                rdf:first [ rdf:type swrl:ClassAtom ;
                            swrl:classPredicate attendance-ontology:AttendanceInDelay ;
                            swrl:argument1 :attendance
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "ExternalGuestSeminar" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Seminar ;
-                           swrl:argument1 :lesson
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:hasGuest ;
-                                      swrl:argument1 :lesson ;
-                                      swrl:argument2 :guest
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:ClassAtom ;
-                                                 swrl:classPredicate attendance-ontology:External ;
-                                                 swrl:argument1 :guest
-                                               ] ;
-                                     rdf:rest rdf:nil
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:ExternalGuestSeminar ;
-                           swrl:argument1 :lesson
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "Seminar" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Lesson ;
-                           swrl:argument1 :lesson
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:hasGuest ;
-                                      swrl:argument1 :lesson ;
-                                      swrl:argument2 :guest
-                                    ] ;
-                          rdf:rest rdf:nil
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Seminar ;
-                           swrl:argument1 :lesson
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "Query realizzata per dimostrare che la regola PinExpirationDate sia formulata correttamente, ma che usandola come regola con il reasoner Pellet non sia in grado di inferire correttamente il risultato e inserirlo nell'ontologia." ;
-   rdfs:label "PinExpirationDateQueryRule" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:Pin ;
-                           swrl:argument1 :pin
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:DatavaluedPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:creation-date ;
-                                      swrl:argument1 :pin ;
-                                      swrl:argument2 :creationDate
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                 swrl:builtin swrlb:dayTimeDuration ;
-                                                 swrl:arguments [ rdf:type rdf:List ;
-                                                                  rdf:first :pinDuration ;
-                                                                  rdf:rest [ rdf:type rdf:List ;
-                                                                             rdf:first 0 ;
-                                                                             rdf:rest [ rdf:type rdf:List ;
-                                                                                        rdf:first 0 ;
-                                                                                        rdf:rest [ rdf:type rdf:List ;
-                                                                                                   rdf:first 15 ;
-                                                                                                   rdf:rest [ rdf:type rdf:List ;
-                                                                                                              rdf:first 0 ;
-                                                                                                              rdf:rest rdf:nil
-                                                                                                            ]
-                                                                                                 ]
-                                                                                      ]
-                                                                           ]
-                                                                ]
-                                               ] ;
-                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                rdf:first [ rdf:type swrl:BuiltinAtom ;
-                                                            swrl:builtin swrlb:addDayTimeDurationToDateTime ;
-                                                            swrl:arguments ( :result
-                                                                             :creationDate
-                                                                             :pinDuration
-                                                                           )
-                                                          ] ;
-                                                rdf:rest rdf:nil
-                                              ]
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:BuiltinAtom ;
-                           swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
-                           swrl:arguments ( :pin
-                                            :creationDate
-                                            :result
-                                          )
                          ] ;
                rdf:rest rdf:nil
              ]

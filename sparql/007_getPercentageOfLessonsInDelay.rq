@@ -11,9 +11,10 @@ SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100
             ?wrk att:hasLesson ?lesson .
             ?lesson att:hasPin ?pin .
             ?pin att:hasAttendance ?attendance .
-            ?attendance att:hasAttendant ?student .
+            ?attendance rdf:type att:AttendanceValid ;
+                att:hasAttendant ?student .
 
-			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+			FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
         }
 
         GROUP BY ?student
@@ -24,10 +25,11 @@ SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100
             ?wrk att:hasLesson ?lesson .
             ?lesson att:hasPin ?pin .
             ?pin att:hasAttendance ?attendance .
-            ?attendance rdf:type att:AttendanceValidWithDelay ;
+            ?attendance rdf:type att:AttendanceValid ;
+                rdf:type att:AttendanceInDelay;
                 att:hasAttendant ?student .
 
-            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+            FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
 
         }
 
