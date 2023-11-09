@@ -516,10 +516,7 @@ attendance-ontology:AttendanceRemoteUnavailable rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState
 attendance-ontology:AttendanceState rdf:type owl:Class ;
-                                    rdfs:subClassOf attendance-ontology:Attendance ;
-                                    owl:disjointUnionOf ( attendance-ontology:AttendanceNotValid
-                                                          attendance-ontology:AttendanceValid
-                                                        ) .
+                                    rdfs:subClassOf attendance-ontology:Attendance .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup
