@@ -12,14 +12,7 @@ SELECT ?student ?percentage WHERE {
         SELECT ?wrk ?student WHERE {
             ?wrk att:hasExam ?exam .
             ?exam att:hasTurn ?turn .
-            ?turn att:hasStudent ?student .
-
-            OPTIONAL {
-                ?turn att:hasPin ?pin .
-                ?pin att:hasAttendance ?attendance .
-                ?attendance att:hasAttendant ?student ;
-                    rdf:type att:AttendanceValid .
-            }
+            ?turn att:hasStudent ?student . 
         }
     }
     # Get all attendances of them.
@@ -33,8 +26,7 @@ SELECT ?student ?percentage WHERE {
                 ?lesson att:hasPin ?pin .
                 ?pin att:hasAttendance ?attendance .
                 ?attendance att:hasAttendant ?student ;
-                    rdf:type ?type .
-                ?type rdfs:subClassOf att:AttendanceValid .
+                    rdf:type att:AttendanceValid .
             }
         }
         
@@ -52,6 +44,6 @@ SELECT ?student ?percentage WHERE {
     # Get the percentage of attended lessons.
     BIND ((?tot_freq / ?tot * 100) AS ?percentage)
     # Filter them by Workgroup and percentage.
-    # FILTER (?percentage <= 50)
-    FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+    FILTER (?percentage < 75)
+    FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
 }
