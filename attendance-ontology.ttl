@@ -7,6 +7,11 @@
 @base <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology> .
 
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology> rdf:type owl:Ontology ;
+                                                                                   <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
+                                                                                   <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
+                                                                                   <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
                                                                                    <http://purl.org/dc/terms/contributor> <https://orcid.org/0000-0001-8269-8171> ,
                                                                                                                           <mailto:chris.little@metoffice.gov.uk> ;
                                                                                    <http://purl.org/dc/terms/created> "2006-09-27"^^xsd:date ;
@@ -17,10 +22,95 @@
                                                                                    <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
                                                                                    <http://purl.org/dc/terms/modified> "2017-04-06"^^xsd:date ;
                                                                                    <http://purl.org/dc/terms/rights> "Copyright © 2006-2017 W3C, OGC. W3C and OGC liability, trademark and document use rules apply."@en ;
-                                                                                   rdfs:comment "Ontology for vCard based on RFC6350"@en ;
+                                                                                   rdfs:comment "Ontology for vCard based on RFC6350"@en ,
+                                                                                                """
+Recent changes to this namespace:
+$Log: wgs84_pos.rdf,v $
+Revision 1.22  2009/04/20 15:00:30  timbl
+Remove the time bits which have been deal with elsewhere eg in iCal.
+
+Revision 1.21  2009/04/20 12:52:47  timbl
+try again
+
+Revision 1.20  2009/04/20 12:42:11  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.19  2009/04/20 12:36:31  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.18  2006/02/01 22:01:04  danbri
+Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
+
+Revision 1.17  2004/02/06 17:38:12  danbri
+Fixed a bad commit screwup
+
+Revision 1.15  2003/04/19 11:24:08  danbri
+Fixed the typo even more.
+
+Revision 1.14  2003/04/19 11:16:56  danbri
+fixed a typo
+
+Revision 1.13  2003/02/19 22:27:27  connolly
+relaxed domain constraints on lat/long/alt from Point to SpatialThing
+
+Revision 1.12  2003/01/12 01:41:41  danbri
+Trying local copy of XSLT doc.
+
+Revision 1.11  2003/01/12 01:20:18  danbri
+added a link to morten's xslt rdfs viewer.
+
+Revision 1.10  2003/01/11 18:56:49  danbri
+Removed datatype range from lat and long properties, since they would
+have required each occurance of the property to mention the datatype.
+
+Revision 1.9  2003/01/11 11:41:31  danbri
+Another typo; repaired rdfs:Property to rdf:Property x4
+
+Revision 1.8  2003/01/11 11:05:02  danbri
+Added an rdfs:range for each lat/long/alt property,
+http://www.w3.org/2001/XMLSchema#float
+
+Revision 1.7  2003/01/10 20:25:16  danbri
+Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
+coordinate system(s) at the same time. Feedback welcomed.
+
+Revision 1.6  2003/01/10 20:18:30  danbri
+Added CVS log comments into the RDF/XML as an rdfs:comment property of the
+vocabulary. Note that this is not common practice (but seems both harmless
+and potentially useful).
+
+
+revision 1.5
+date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
+Updated schema:
+Added a dc:date, added url for more info. Changed the rdfs:label of the
+namespace from gp to geo. Added a class Point, set as the rdfs:domain of
+each property. Added XML comment on the lat_long property suggesting that
+we might not need it (based on #rdfig commentary from implementors).
+
+revision 1.4
+date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
+Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
+#rdfig for catching this error.
+
+revision 1.3
+date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
+fixed buglet in vocab, added more wgs links
+
+revision 1.2
+date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
+Removed alt from the as-a-flat-string property, and switched from
+space separated to comma separated.
+
+revision 1.1
+date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
+basic geo vocab
+
+""" ;
                                                                                    rdfs:label "OWL-Time"@en ,
                                                                                               "Ontology for vCard"@en ,
-                                                                                              "Tiempo en OWL"@es ;
+                                                                                              "Tiempo en OWL"@es ,
+                                                                                              "geo" ;
                                                                                    rdfs:seeAlso <http://dx.doi.org/10.3233/SW-150187> ,
                                                                                                 <http://www.semantic-web-journal.net/content/time-ontology-extended-non-gregorian-calendar-applications> ,
                                                                                                 <http://www.w3.org/TR/owl-time> ;
@@ -38,6 +128,18 @@ Ontology engineering by Simon J D Cox"""@en .
 #################################################################
 #    Annotation properties
 #################################################################
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
 
 ###  http://purl.org/dc/terms/contributor
 <http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
@@ -315,6 +417,21 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
                 rdfs:subPropertyOf <http://www.w3.org/2006/time#hasDuration> ;
                 rdfs:domain :Pin ;
                 rdfs:range <http://www.w3.org/2006/time#Duration> .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> rdf:type owl:ObjectProperty ;
+                                                   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/based_near> ;
+                                                   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                                   rdfs:comment """The relation between something and the point, 
+ or other geometrical thing in space, where it is.  For example, the realtionship between
+ a radio tower and a Point with a given lat and long.
+ Or a relationship between a park and its outline as a closed arc of points, or a road and
+ its location as a arc (a sequence of points).
+ Clearly in practice there will be limit to the accuracy of any such statement, but one would expect
+ an accuracy appropriate for the size of the object and uses such as mapping .
+ """ ;
+                                                   rdfs:label "location" .
 
 
 ###  http://www.w3.org/2006/time#after
@@ -927,9 +1044,20 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
                                       rdfs:label "url"@en .
 
 
+###  http://xmlns.com/foaf/0.1/based_near
+<http://xmlns.com/foaf/0.1/based_near> rdf:type owl:ObjectProperty .
+
+
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#attendance-time
+:attendance-time rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Attendance ;
+                 rdfs:range xsd:dateTime ;
+                 rdfs:label "attendance time" .
+
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#creation-date
 :creation-date rdf:type owl:DatatypeProperty ;
@@ -979,10 +1107,11 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
           rdfs:label "pin code" .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote
-:remote rdf:type owl:DatatypeProperty ;
-        rdfs:domain :Attendance ;
-        rdfs:range xsd:boolean .
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed
+:remote-allowed rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Attendable ;
+                rdfs:range xsd:boolean ;
+                rdfs:label "remote allowed" .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#start-time
@@ -1015,6 +1144,28 @@ DBPedia provides a set of resources corresponding to the IANA timezones, with a 
           rdfs:range xsd:gYear ;
           rdfs:comment "workgroup year." ;
           rdfs:label "wrk year" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
+<http://www.w3.org/2003/01/geo/wgs84_pos#alt> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                              rdfs:comment """The WGS84 altitude of a SpatialThing (decimal meters 
+above the local reference ellipsoid).""" ;
+                                              rdfs:label "altitude" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                              rdfs:comment "The WGS84 latitude of a SpatialThing (decimal degrees)." ;
+                                              rdfs:label "latitude" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+<http://www.w3.org/2003/01/geo/wgs84_pos#long> rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                               rdfs:comment "The WGS84 longitude of a SpatialThing (decimal degrees)." ;
+                                               rdfs:label "longitude" .
 
 
 ###  http://www.w3.org/2006/time#day
@@ -1560,64 +1711,62 @@ The range of this property is not specified, so can be replaced by any specific 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance
 :Attendance rdf:type owl:Class ;
-            owl:disjointWith <http://www.w3.org/2006/time#January> ;
-            owl:disjointUnionOf ( :AttendanceNotValid
-                                  :AttendanceValid
-                                ) .
+            owl:disjointWith <http://www.w3.org/2006/time#January> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail
+:AttendanceDetail rdf:type owl:Class ;
+                  rdfs:subClassOf :Attendance ;
+                  owl:disjointWith <http://www.w3.org/2006/time#January> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay
+:AttendanceInDelay rdf:type owl:Class ;
+                   rdfs:subClassOf :AttendanceWarning ;
+                   owl:disjointWith <http://www.w3.org/2006/time#January> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo
+:AttendanceInfo rdf:type owl:Class ;
+                rdfs:subClassOf :AttendanceDetail ;
+                owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid
 :AttendanceNotValid rdf:type owl:Class ;
-                    rdfs:subClassOf :Attendance ;
+                    rdfs:subClassOf :AttendanceState ;
                     owl:disjointWith :AttendanceValid ,
-                                     :AttendanceValidPresent ,
-                                     :AttendanceValidWithDelay ,
                                      <http://www.w3.org/2006/time#January> .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidAlreadySubmitted
-:AttendanceNotValidAlreadySubmitted rdf:type owl:Class ;
-                                    rdfs:subClassOf :AttendanceNotValid ;
-                                    owl:disjointWith :AttendanceValid ,
-                                                     :AttendanceValidPresent ,
-                                                     :AttendanceValidWithDelay ,
-                                                     <http://www.w3.org/2006/time#January> .
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceRemoteUnavailable
+:AttendanceRemoteUnavailable rdf:type owl:Class ;
+                             rdfs:subClassOf :AttendanceWarning ;
+                             owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidOutOfWorkgroup
-:AttendanceNotValidOutOfWorkgroup rdf:type owl:Class ;
-                                  rdfs:subClassOf :AttendanceNotValid ;
-                                  owl:disjointWith :AttendanceValid ,
-                                                   :AttendanceValidPresent ,
-                                                   :AttendanceValidWithDelay ,
-                                                   <http://www.w3.org/2006/time#January> .
-
-
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValidWithDelay
-:AttendanceNotValidWithDelay rdf:type owl:Class ;
-                             rdfs:subClassOf :AttendanceNotValid ;
-                             owl:disjointWith :AttendanceValid ,
-                                              :AttendanceValidPresent ,
-                                              :AttendanceValidWithDelay ,
-                                              <http://www.w3.org/2006/time#January> .
-
-
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid
-:AttendanceValid rdf:type owl:Class ;
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState
+:AttendanceState rdf:type owl:Class ;
                  rdfs:subClassOf :Attendance ;
                  owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValidPresent
-:AttendanceValidPresent rdf:type owl:Class ;
-                        rdfs:subClassOf :AttendanceValid ;
-                        owl:disjointWith <http://www.w3.org/2006/time#January> .
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup
+:AttendanceStudentInsideWorkgroup rdf:type owl:Class ;
+                                  rdfs:subClassOf :AttendanceInfo ;
+                                  owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValidWithDelay
-:AttendanceValidWithDelay rdf:type owl:Class ;
-                          rdfs:subClassOf :AttendanceValid ;
-                          owl:disjointWith <http://www.w3.org/2006/time#January> .
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid
+:AttendanceValid rdf:type owl:Class ;
+                 rdfs:subClassOf :AttendanceState ;
+                 owl:disjointWith <http://www.w3.org/2006/time#January> .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning
+:AttendanceWarning rdf:type owl:Class ;
+                   rdfs:subClassOf :AttendanceDetail ;
+                   owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class
@@ -1664,7 +1813,10 @@ The range of this property is not specified, so can be replaced by any specific 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lab
 :Lab rdf:type owl:Class ;
      rdfs:subClassOf :Location ;
-     owl:disjointWith <http://www.w3.org/2006/time#January> .
+     owl:disjointWith :Office ,
+                      :Other ,
+                      :Room ,
+                      <http://www.w3.org/2006/time#January> .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson
@@ -1686,13 +1838,16 @@ The range of this property is not specified, so can be replaced by any specific 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Office
 :Office rdf:type owl:Class ;
         rdfs:subClassOf :Location ;
-        owl:disjointWith <http://www.w3.org/2006/time#January> .
+        owl:disjointWith :Other ,
+                         :Room ,
+                         <http://www.w3.org/2006/time#January> .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Other
 :Other rdf:type owl:Class ;
        rdfs:subClassOf :Location ;
-       owl:disjointWith <http://www.w3.org/2006/time#January> .
+       owl:disjointWith :Room ,
+                        <http://www.w3.org/2006/time#January> .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person
@@ -1707,7 +1862,8 @@ The range of this property is not specified, so can be replaced by any specific 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#RemoteAttendance
 :RemoteAttendance rdf:type owl:Class ;
-                  rdfs:subClassOf :Attendance ;
+                  rdfs:subClassOf :Attendance ,
+                                  <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
                   owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
@@ -1759,17 +1915,43 @@ owl:Nothing owl:equivalentClass <http://www.w3.org/2006/time#January> .
 owl:Thing owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 [ rdf:type owl:Annotation ;
-   owl:annotatedSource _:genid18 ;
+   owl:annotatedSource _:genid16 ;
    owl:annotatedProperty rdfs:comment ;
    owl:annotatedTarget "DisjointClasses(<http://www.w3.org/2006/time#January>) replaced by DisjointClasses(<http://www.w3.org/2006/time#January> owl:Thing)" ;
-   rdfs:comment "Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi on 9/25/23, 12:03 PM"
+   rdfs:comment "Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi on 11/9/23, 6:23 PM"
  ] .
 
-_:genid18 rdf:type owl:Axiom ;
+_:genid16 rdf:type owl:Axiom ;
            owl:annotatedSource owl:Thing ;
            owl:annotatedProperty owl:disjointWith ;
            owl:annotatedTarget <http://www.w3.org/2006/time#January> ;
            rdfs:comment "DisjointClasses(<http://www.w3.org/2006/time#January>) replaced by DisjointClasses(<http://www.w3.org/2006/time#January> owl:Thing)" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
+<http://www.w3.org/2003/01/geo/wgs84_pos#Point> rdf:type owl:Class ;
+                                                rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+                                                owl:disjointWith <http://www.w3.org/2006/time#January> ;
+                                                rdfs:comment """ 
+Uniquely identified by lat/long/alt. i.e.
+
+spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
+  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
+
+sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
+  """ ,
+                                                             """A point, typically described using a coordinate system relative to Earth, such as WGS84.
+  """ ;
+                                                rdfs:label "point" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+<http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> rdf:type owl:Class ;
+                                                       owl:disjointWith <http://www.w3.org/2006/time#January> ;
+                                                       rdfs:comment """Anything with spatial extent, i.e. size, shape, or position.
+ e.g. people, places, bowling balls, as well as abstract areas like cubes.
+""" ;
+                                                       rdfs:label "SpatialThing" .
 
 
 ###  http://www.w3.org/2006/time#DateTimeDescription
@@ -3028,165 +3210,250 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI
 :AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                                 :Attendance ,
+                                                :AttendanceDetail ,
+                                                :AttendanceInDelay ,
+                                                :AttendanceState ,
                                                 :AttendanceValid ,
-                                                :AttendanceValidWithDelay ;
+                                                :AttendanceWarning ;
                                        :hasAttendant :STU_00001_MarioRossi ;
-                                       :isAttendanceOf :PIN_WS_3 .
+                                       :isAttendanceOf :PIN_WS_3 ;
+                                       :attendance-time "2023-06-26T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI
 :AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                                 :Attendance ,
-                                                :AttendanceValid ,
-                                                :AttendanceValidPresent ;
+                                                :AttendanceState ,
+                                                :AttendanceValid ;
                                        :hasAttendant :STU_00002_LuigiVerdi ;
-                                       :isAttendanceOf :PIN_WS_4 .
+                                       :isAttendanceOf :PIN_WS_4 ;
+                                       :attendance-time "2023-06-26T11:35:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_CHIARA_BIANCHI
 :AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                           :Attendance ,
-                                          :AttendanceNotValid ,
-                                          :AttendanceNotValidWithDelay ;
+                                          :AttendanceDetail ,
+                                          :AttendanceInDelay ,
+                                          :AttendanceInfo ,
+                                          :AttendanceState ,
+                                          :AttendanceStudentInsideWorkgroup ,
+                                          :AttendanceValid ,
+                                          :AttendanceWarning ;
                                  :hasAttendant :STU_00003_ChiaraBianchi ;
-                                 :isAttendanceOf :PIN_PM_1 .
+                                 :isAttendanceOf :PIN_PM_1 ;
+                                 :attendance-time "2023-05-01T10:17:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
 :AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceValid ,
-                                       :AttendanceValidPresent ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInDelay ,
+                                       :AttendanceInfo ,
+                                       :AttendanceNotValid ,
+                                       :AttendanceRemoteUnavailable ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
+                                       :AttendanceWarning ,
+                                       :RemoteAttendance ,
+                                       <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
                               :hasAttendant :STU_00002_LuigiVerdi ;
-                              :isAttendanceOf :PIN_PM_1 .
+                              :isAttendanceOf :PIN_PM_1 ;
+                              :attendance-time "2023-05-01T10:20:00Z"^^xsd:dateTime ;
+                              <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "44.10487"^^xsd:float ;
+                              <http://www.w3.org/2003/01/geo/wgs84_pos#long> "12.41643"^^xsd:float .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI
 :AT_PM_2023_05_01_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
+                                       :AttendanceDetail ,
+                                       :AttendanceInDelay ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
                                        :AttendanceValid ,
-                                       :AttendanceValidPresent ;
+                                       :AttendanceWarning ;
                               :hasAttendant :STU_00001_MarioRossi ;
-                              :isAttendanceOf :PIN_PM_1 .
+                              :isAttendanceOf :PIN_PM_1 ;
+                              :attendance-time "2023-05-01T10:35:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI
 :AT_PM_2023_05_03_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                           :Attendance ,
-                                          :AttendanceValid ,
-                                          :AttendanceValidPresent ;
+                                          :AttendanceDetail ,
+                                          :AttendanceInfo ,
+                                          :AttendanceNotValid ,
+                                          :AttendanceState ,
+                                          :AttendanceStudentInsideWorkgroup ;
                                  :hasAttendant :STU_00003_ChiaraBianchi ;
-                                 :isAttendanceOf :PIN_PM_2 .
+                                 :isAttendanceOf :PIN_PM_2 ;
+                                 :attendance-time "2023-05-03T10:12:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_LUIGI_VERDI
 :AT_PM_2023_05_03_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
+                                       :AttendanceDetail ,
+                                       :AttendanceInDelay ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
                                        :AttendanceValid ,
-                                       :AttendanceValidPresent ;
+                                       :AttendanceWarning ;
                               :hasAttendant :STU_00002_LuigiVerdi ;
-                              :isAttendanceOf :PIN_PM_2 .
+                              :isAttendanceOf :PIN_PM_2 ;
+                              :attendance-time "2023-05-03T10:17:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI
 :AT_PM_2023_05_03_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceValid ,
-                                       :AttendanceValidWithDelay ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
+                                       :AttendanceValid ;
                               :hasAttendant :STU_00001_MarioRossi ;
-                              :isAttendanceOf :PIN_PM_2 .
+                              :isAttendanceOf :PIN_PM_2 ;
+                              :attendance-time "2023-05-03T10:11:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_CHIARA_BIANCHI
 :AT_PM_2023_05_08_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                           :Attendance ,
+                                          :AttendanceDetail ,
+                                          :AttendanceInDelay ,
+                                          :AttendanceInfo ,
+                                          :AttendanceState ,
+                                          :AttendanceStudentInsideWorkgroup ,
                                           :AttendanceValid ,
-                                          :AttendanceValidPresent ;
+                                          :AttendanceWarning ;
                                  :hasAttendant :STU_00003_ChiaraBianchi ;
-                                 :isAttendanceOf :PIN_PM_3 .
+                                 :isAttendanceOf :PIN_PM_3 ;
+                                 :attendance-time "2023-05-08T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_LUIGI_VERDI
 :AT_PM_2023_05_08_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
+                                       :AttendanceDetail ,
+                                       :AttendanceInDelay ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
                                        :AttendanceValid ,
-                                       :AttendanceValidPresent ;
+                                       :AttendanceWarning ;
                               :hasAttendant :STU_00002_LuigiVerdi ;
-                              :isAttendanceOf :PIN_PM_3 .
+                              :isAttendanceOf :PIN_PM_3 ;
+                              :attendance-time "2023-05-08T10:40:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI
 :AT_PM_2023_05_08_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceValid ,
-                                       :AttendanceValidPresent ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
+                                       :AttendanceValid ;
                               :hasAttendant :STU_00001_MarioRossi ;
-                              :isAttendanceOf :PIN_PM_3 .
+                              :isAttendanceOf :PIN_PM_3 ;
+                              :attendance-time "2023-05-08T10:02:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 :AT_WS_2023_05_21_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
                                           :Attendance ,
-                                          :AttendanceValid ,
-                                          :AttendanceValidWithDelay ,
-                                          :RemoteAttendance ;
+                                          :AttendanceDetail ,
+                                          :AttendanceInfo ,
+                                          :AttendanceState ,
+                                          :AttendanceStudentInsideWorkgroup ,
+                                          :AttendanceValid ;
                                  :hasAttendant :STU_00003_ChiaraBianchi ;
                                  :isAttendanceOf :PIN_WS_1 ;
-                                 :remote "true"^^xsd:boolean .
+                                 :attendance-time "2023-05-21T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 :AT_WS_2023_05_21_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceValid ,
-                                       :AttendanceValidWithDelay ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
+                                       :AttendanceValid ;
                               :hasAttendant :STU_00001_MarioRossi ;
-                              :isAttendanceOf :PIN_WS_1 .
+                              :isAttendanceOf :PIN_WS_1 ;
+                              :attendance-time "2023-05-21T10:07:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI_1
 :AT_WS_2023_05_21_MARIO_ROSSI_1 rdf:type owl:NamedIndividual ,
                                          :Attendance ,
+                                         :AttendanceDetail ,
+                                         :AttendanceInfo ,
                                          :AttendanceNotValid ,
-                                         :AttendanceNotValidAlreadySubmitted ;
+                                         :AttendanceState ,
+                                         :AttendanceStudentInsideWorkgroup ;
                                 :hasAttendant :STU_00001_MarioRossi ;
-                                :isAttendanceOf :PIN_WS_1 .
+                                :isAttendanceOf :PIN_WS_1 ;
+                                :attendance-time "2023-05-21T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI
 :AT_WS_2023_05_22_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceValid ,
-                                       :AttendanceValidWithDelay ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInfo ,
+                                       :AttendanceNotValid ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ;
                               :hasAttendant :STU_00002_LuigiVerdi ;
-                              :isAttendanceOf :PIN_WS_2 .
+                              :isAttendanceOf :PIN_WS_2 ;
+                              :attendance-time "2023-05-22T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
 :AT_WS_2023_05_22_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceValid ,
-                                       :AttendanceValidPresent ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
+                                       :AttendanceValid ;
                               :hasAttendant :STU_00001_MarioRossi ;
-                              :isAttendanceOf :PIN_WS_2 .
+                              :isAttendanceOf :PIN_WS_2 ;
+                              :attendance-time "2023-05-22T10:18:00Z"^^xsd:dateTime .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_07_24_DALIA_LABALIA
-:AT_WS_2023_07_24_DALIA_LABALIA rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_DALIA_LABALIA
+:AT_WS_2023_08_24_DALIA_LABALIA rdf:type owl:NamedIndividual ,
                                          :Attendance ,
-                                         :AttendanceNotValid ,
-                                         :AttendanceNotValidOutOfWorkgroup ;
+                                         :AttendanceState ,
+                                         :AttendanceValid ,
+                                         :RemoteAttendance ,
+                                         <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
                                 :hasAttendant :STU_00007_DALIA_LABALIA ;
-                                :isAttendanceOf :PIN_WS_8 .
+                                :isAttendanceOf :PIN_WS_8 ;
+                                :attendance-time "2023-08-24T11:12:00Z"^^xsd:dateTime ;
+                                <http://www.w3.org/2003/01/geo/wgs84_pos#lat> "44.10487"^^xsd:float ;
+                                <http://www.w3.org/2003/01/geo/wgs84_pos#long> "12.41643"^^xsd:float .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_07_24_MARIO_ROSSI
-:AT_WS_2023_07_24_MARIO_ROSSI rdf:type owl:NamedIndividual ,
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI
+:AT_WS_2023_08_24_MARIO_ROSSI rdf:type owl:NamedIndividual ,
                                        :Attendance ,
-                                       :AttendanceNotValid ,
-                                       :AttendanceNotValidWithDelay ;
+                                       :AttendanceDetail ,
+                                       :AttendanceInfo ,
+                                       :AttendanceState ,
+                                       :AttendanceStudentInsideWorkgroup ,
+                                       :AttendanceValid ;
                               :hasAttendant :STU_00001_MarioRossi ;
-                              :isAttendanceOf :PIN_WS_8 .
+                              :isAttendanceOf :PIN_WS_8 ;
+                              :attendance-time "2023-08-24T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001
@@ -3343,6 +3610,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                    :hasPin :PIN_PC_1 ;
                    :isLessonOf :WRK_CL_001_DA_PervasiveComputing_2023 ;
                    :end-time "2022-10-17T13:00:00Z"^^xsd:dateTime ;
+                   :remote-allowed "false"^^xsd:boolean ;
                    :start-time "2022-10-17T11:00:00Z"^^xsd:dateTime .
 
 
@@ -3358,6 +3626,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                    :hasPin :PIN_PM_1 ;
                    :isLessonOf :WRK_CL_001_DA_ProjectManagement_2023 ;
                    :end-time "2023-05-01T13:00:00Z"^^xsd:dateTime ;
+                   :remote-allowed "false"^^xsd:boolean ;
                    :start-time "2023-05-01T11:00:00Z"^^xsd:dateTime .
 
 
@@ -3370,6 +3639,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                    :hasPin :PIN_PM_2 ;
                    :isLessonOf :WRK_CL_001_DA_ProjectManagement_2023 ;
                    :end-time "2023-05-03T11:00:00Z"^^xsd:dateTime ;
+                   :remote-allowed "false"^^xsd:boolean ;
                    :start-time "2023-05-03T09:00:00Z"^^xsd:dateTime .
 
 
@@ -3382,6 +3652,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                    :hasPin :PIN_PM_3 ;
                    :isLessonOf :WRK_CL_001_DA_ProjectManagement_2023 ;
                    :end-time "2023-05-08T13:00:00Z"^^xsd:dateTime ;
+                   :remote-allowed "false"^^xsd:boolean ;
                    :start-time "2023-05-08T11:00:00Z"^^xsd:dateTime .
 
 
@@ -3397,6 +3668,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                            :PIN_WS_6 ;
                    :isLessonOf :WRK_CL_001_DA_WebSemantico_2023 ;
                    :end-time "2023-05-21T14:00:00"^^xsd:dateTime ;
+                   :remote-allowed "false"^^xsd:boolean ;
                    :start-time "2023-05-21T11:00:00"^^xsd:dateTime .
 
 
@@ -3411,6 +3683,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                    :hasTutor :TUT_RobertoReda ;
                    :isLessonOf :WRK_CL_001_DA_WebSemantico_2023 ;
                    :end-time "2023-05-22T11:00:00"^^xsd:dateTime ;
+                   :remote-allowed "false"^^xsd:boolean ;
                    :start-time "2023-05-22T09:00:00"^^xsd:dateTime .
 
 
@@ -3424,6 +3697,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                    :hasPin :PIN_WS_8 ;
                    :isLessonOf :WRK_CL_001_DA_WebSemantico_2023 ;
                    :end-time "2023-07-24T23:00:00"^^xsd:dateTime ;
+                   :remote-allowed "true"^^xsd:boolean ;
                    :start-time "2023-07-24T08:00:00"^^xsd:dateTime .
 
 
@@ -3658,8 +3932,8 @@ It is deprecated in this edition of OWL-Time. """ ;
 :PIN_WS_8 rdf:type owl:NamedIndividual ,
                    :Pin ,
                    <http://www.w3.org/2006/time#TemporalEntity> ;
-          :hasAttendance :AT_WS_2023_07_24_DALIA_LABALIA ,
-                         :AT_WS_2023_07_24_MARIO_ROSSI ;
+          :hasAttendance :AT_WS_2023_08_24_DALIA_LABALIA ,
+                         :AT_WS_2023_08_24_MARIO_ROSSI ;
           :isPinOf :LES_WS_2023_07_24 ;
           :pinHasDuration :TD_15_MINUTES ;
           <http://www.w3.org/2006/time#hasDuration> :TD_15_MINUTES ;
@@ -3680,7 +3954,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                                      :AT_WS_2023_05_21_MARIO_ROSSI ,
                                      :AT_WS_2023_05_21_MARIO_ROSSI_1 ,
                                      :AT_WS_2023_05_22_MARIO_ROSSI ,
-                                     :AT_WS_2023_07_24_MARIO_ROSSI ;
+                                     :AT_WS_2023_08_24_MARIO_ROSSI ;
                       :isStudentOf :CL_001 ,
                                    :ET_PM_2023_05_25_09_30 ,
                                    :ET_WS_2023_06_26_09_30 ;
@@ -3768,7 +4042,7 @@ It is deprecated in this edition of OWL-Time. """ ;
 :STU_00007_DALIA_LABALIA rdf:type owl:NamedIndividual ,
                                   :Person ,
                                   :Student ;
-                         :isAttendantOf :AT_WS_2023_07_24_DALIA_LABALIA ;
+                         :isAttendantOf :AT_WS_2023_08_24_DALIA_LABALIA ;
                          <http://www.w3.org/2006/vcard/ns#hasGender> :GEN_Female ;
                          :student-id "00007" ;
                          <http://www.w3.org/2006/vcard/ns#bday> "1990-10-13T00:00:00"^^xsd:dateTime ;
@@ -4224,15 +4498,111 @@ It is deprecated in this edition of OWL-Time. """ ;
 #    Annotations
 #################################################################
 
+<http://www.w3.org/2003/01/geo/wgs84_pos#> <http://purl.org/dc/elements/1.1/date> "$Date: 2009/04/20 15:00:30 $" ;
+                                            <http://purl.org/dc/elements/1.1/description> """A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
+                                            <http://purl.org/dc/elements/1.1/title> "WGS84 Geo Positioning: an RDF vocabulary" ;
+                                            rdfs:comment """
+Recent changes to this namespace:
+$Log: wgs84_pos.rdf,v $
+Revision 1.22  2009/04/20 15:00:30  timbl
+Remove the time bits which have been deal with elsewhere eg in iCal.
+
+Revision 1.21  2009/04/20 12:52:47  timbl
+try again
+
+Revision 1.20  2009/04/20 12:42:11  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.19  2009/04/20 12:36:31  timbl
+Add Event (edited ages ago and never checked in), and location (following discussion http://chatlogs.planetrdf.com/swig/2009-04-20#T12-36-09)
+
+Revision 1.18  2006/02/01 22:01:04  danbri
+Clarified that lat and long are decimal degrees, and that alt is decimal metres about local reference ellipsoid
+
+Revision 1.17  2004/02/06 17:38:12  danbri
+Fixed a bad commit screwup
+
+Revision 1.15  2003/04/19 11:24:08  danbri
+Fixed the typo even more.
+
+Revision 1.14  2003/04/19 11:16:56  danbri
+fixed a typo
+
+Revision 1.13  2003/02/19 22:27:27  connolly
+relaxed domain constraints on lat/long/alt from Point to SpatialThing
+
+Revision 1.12  2003/01/12 01:41:41  danbri
+Trying local copy of XSLT doc.
+
+Revision 1.11  2003/01/12 01:20:18  danbri
+added a link to morten's xslt rdfs viewer.
+
+Revision 1.10  2003/01/11 18:56:49  danbri
+Removed datatype range from lat and long properties, since they would
+have required each occurance of the property to mention the datatype.
+
+Revision 1.9  2003/01/11 11:41:31  danbri
+Another typo; repaired rdfs:Property to rdf:Property x4
+
+Revision 1.8  2003/01/11 11:05:02  danbri
+Added an rdfs:range for each lat/long/alt property,
+http://www.w3.org/2001/XMLSchema#float
+
+Revision 1.7  2003/01/10 20:25:16  danbri
+Longer rdfs:comment for Point, trying to be Earth-centric and neutral about
+coordinate system(s) at the same time. Feedback welcomed.
+
+Revision 1.6  2003/01/10 20:18:30  danbri
+Added CVS log comments into the RDF/XML as an rdfs:comment property of the
+vocabulary. Note that this is not common practice (but seems both harmless
+and potentially useful).
+
+
+revision 1.5
+date: 2003/01/10 20:14:31;  author: danbri;  state: Exp;  lines: +16 -5
+Updated schema:
+Added a dc:date, added url for more info. Changed the rdfs:label of the
+namespace from gp to geo. Added a class Point, set as the rdfs:domain of
+each property. Added XML comment on the lat_long property suggesting that
+we might not need it (based on #rdfig commentary from implementors).
+
+revision 1.4
+date: 2003/01/10 20:01:07;  author: danbri;  state: Exp;  lines: +6 -5
+Fixed typo; several rdfs:about attributes are now rdf:about. Thanks to MortenF in
+#rdfig for catching this error.
+
+revision 1.3
+date: 2003/01/10 11:59:03;  author: danbri;  state: Exp;  lines: +4 -3
+fixed buglet in vocab, added more wgs links
+
+revision 1.2
+date: 2003/01/10 11:01:11;  author: danbri;  state: Exp;  lines: +4 -4
+Removed alt from the as-a-flat-string property, and switched from
+space separated to comma separated.
+
+revision 1.1
+date: 2003/01/10 10:53:23;  author: danbri;  state: Exp;
+basic geo vocab
+
+""" ;
+                                            rdfs:label "geo" .
+
+
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat_long> rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
+                                                   rdfs:label "lat/long" .
+
+
 <http://www.w3.org/2006/time#generalDay> rdfs:comment """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
 Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
-                                                       """Día del mes - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gDay, excepto que se permiten valores hasta el 99, con el propósito de proporcionar soporte a calendarios con meses con más de 31 días.
+                                                      """Día del mes - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gDay, excepto que se permiten valores hasta el 99, con el propósito de proporcionar soporte a calendarios con meses con más de 31 días.
             Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es ;
-                                          rdfs:label "Día generalizado"@es ,
-                                                     "Generalized day"@en ;
-                                          <http://www.w3.org/2004/02/skos/core#definition> """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
+                                         rdfs:label "Día generalizado"@es ,
+                                                    "Generalized day"@en ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> """Day of month - formulated as a text string with a pattern constraint to reproduce the same lexical form as gDay, except that values up to 99 are permitted, in order to support calendars with more than 31 days in a month. 
 Note that the value-space is not defined, so a generic OWL2 processor cannot compute ordering relationships of values of this type."""@en ,
-                                                                                           """Día del mes - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gDay, excepto que se permiten valores hasta el 99, con el propósito de proporcionar soporte a calendarios con meses con más de 31 días.
+                                                                                          """Día del mes - formulado como una cadena de texto con una restricción patrón para reproducir la misma forma léxica que gDay, excepto que se permiten valores hasta el 99, con el propósito de proporcionar soporte a calendarios con meses con más de 31 días.
             Nótese que el espacio de valores no está definido, por tanto, un procesador genérico de OWL2 no puede computar relaciones de orden de valores de este tipo."""@es .
 
 
@@ -4460,14 +4830,39 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 
 #################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Lab
+                :Office
+                :Other
+                :Room
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.w3.org/2006/vcard/ns#Female>
+                <http://www.w3.org/2006/vcard/ns#Male>
+                <http://www.w3.org/2006/vcard/ns#None>
+                <http://www.w3.org/2006/vcard/ns#Other>
+                <http://www.w3.org/2006/vcard/ns#Unknown>
+              )
+] .
+
+
+#################################################################
 #    Rules
 #################################################################
 
 <http://www.semanticweb.org/owl/owlapi/turtle#lesson> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+<http://www.semanticweb.org/owl/owlapi/turtle#pin> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 <http://www.semanticweb.org/owl/owlapi/turtle#attendance> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/owl/owlapi/turtle#pin> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+<http://www.semanticweb.org/owl/owlapi/turtle#remote_val> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <http://www.semanticweb.org/owl/owlapi/turtle#set> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
@@ -4475,9 +4870,19 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 <http://www.semanticweb.org/owl/owlapi/turtle#res> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<urn:swrl:var#attendance> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+<http://www.semanticweb.org/owl/owlapi/turtle#workgroup> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<urn:swrl:var#remot> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+<http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#attendable> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#student> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#attTime> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#wrk> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#expDate> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <http://www.semanticweb.org/owl/owlapi/turtle#guest> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
@@ -4487,13 +4892,76 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 <http://www.semanticweb.org/owl/owlapi/turtle#result> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<urn:swrl:var#pin> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-<urn:swrl:var#creationDate> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-<urn:swrl:var#pinDuration> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-<urn:swrl:var#result> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "ValidateAttendanceRemoteUnavailable" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasPin ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Pin ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :RemoteAttendance ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Lesson ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :Attendance ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#notEqual> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                           rdf:first <http://www.semanticweb.org/owl/owlapi/turtle#remote_val> ;
+                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first "true"^^xsd:boolean ;
+                                                                                                                                                                      rdf:rest rdf:nil
+                                                                                                                                                                    ]
+                                                                                                                                                         ]
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :remote-allowed ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#remote_val>
+                                                                                                                       ] ;
+                                                                                                             rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                                        rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAttendance ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                                                                    <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                                                                  ] ;
+                                                                                                                        rdf:rest rdf:nil
+                                                                                                                      ]
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AttendanceRemoteUnavailable ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "" ;
@@ -4580,38 +5048,117 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "" ;
-   rdfs:label "RemoteAttendance" ;
+   rdfs:label "ValidateAttendanceStudentInsideWorkgroup" ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attendance ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance>
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasClass ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass>
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :remote ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#remot>
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :isLessonOf ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendable> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup>
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#equal> ;
-                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                          rdf:first <urn:swrl:var#remot> ;
-                                                                                                                          rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                     rdf:first "true"^^xsd:boolean ;
-                                                                                                                                     rdf:rest rdf:nil
-                                                                                                                                   ]
-                                                                                                                        ]
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :isAttendanceOf ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
                                                                            ] ;
-                                                                 rdf:rest rdf:nil
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasStudent ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :isPinOf ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attendable>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> :Attendance ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                                            ] ;
+                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasAttendant ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                                                       ] ;
+                                                                                                             rdf:rest rdf:nil
+                                                                                                           ]
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
                                                                ]
                                                     ]
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RemoteAttendance ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#attendance>
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AttendanceStudentInsideWorkgroup ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "ValidateAttendanceInDelay" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Attendance ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :attendance-time ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attTime>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :isAttendanceOf ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :isPinOf ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#wrk>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :expiration-date ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#expDate>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#attTime>
+                                                                                                                                                           <http://www.semanticweb.org/owl/owlapi/turtle#expDate>
+                                                                                                                                                         )
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AttendanceInDelay ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
@@ -4623,7 +5170,7 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Lesson ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Seminar ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
@@ -4744,25 +5291,25 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Pin ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#pin>
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
                                                      ] ;
                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :creation-date ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#pin> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#creationDate>
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#creationDate>
                                                                 ] ;
                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
                                                                              <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#dayTimeDuration> ;
                                                                              <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
-                                                                                                                          rdf:first <urn:swrl:var#pinDuration> ;
+                                                                                                                          rdf:first <http://www.semanticweb.org/owl/owlapi/turtle#pinDuration> ;
                                                                                                                           rdf:rest [ rdf:type rdf:List ;
                                                                                                                                      rdf:first 0 ;
                                                                                                                                      rdf:rest [ rdf:type rdf:List ;
                                                                                                                                                 rdf:first 0 ;
                                                                                                                                                 rdf:rest [ rdf:type rdf:List ;
-                                                                                                                                                           rdf:first 15 ;
+                                                                                                                                                           rdf:first 30 ;
                                                                                                                                                            rdf:rest [ rdf:type rdf:List ;
                                                                                                                                                                       rdf:first 0 ;
                                                                                                                                                                       rdf:rest rdf:nil
@@ -4775,9 +5322,9 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
                                                                                         <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#addDayTimeDurationToDateTime> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#arguments> ( <urn:swrl:var#result>
-                                                                                                                                     <urn:swrl:var#creationDate>
-                                                                                                                                     <urn:swrl:var#pinDuration>
+                                                                                        <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#result>
+                                                                                                                                     <http://www.semanticweb.org/owl/owlapi/turtle#creationDate>
+                                                                                                                                     <http://www.semanticweb.org/owl/owlapi/turtle#pinDuration>
                                                                                                                                    )
                                                                                       ] ;
                                                                             rdf:rest rdf:nil
@@ -4788,8 +5335,8 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :expiration-date ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#pin> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#result>
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#result>
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]

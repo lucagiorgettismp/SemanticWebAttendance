@@ -3,7 +3,7 @@
         "commands": [
             {
                 "match": "\\.rq$",
-                "cmd": "arq --data Progetto_2_3.ttl --query ${file}",
+                "cmd": "arq --data attendance-ontology.ttl --query ${file}",
                 "useShortcut": false,
                 "silent": false
             }

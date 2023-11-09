@@ -6,8 +6,9 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Students having a presence frequency at DA_WebSemantico higher (or equal) to 75%
 SELECT ?student ?percentage WHERE {
+    # Retrieve frequency from each student
     {
-        SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
+        SELECT ?wrk ?student (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
             ?class att:hasStudent ?student .
 
@@ -16,23 +17,23 @@ SELECT ?student ?percentage WHERE {
                 ?lesson att:hasPin ?pin .
                 ?pin att:hasAttendance ?attendance .
                 ?attendance att:hasAttendant ?student ;
-                    rdf:type ?type .
-                ?type rdfs:subClassOf att:AttendanceValid .
+                    rdf:type att:AttendanceValid .
             }
-
-            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
         }
 
-        GROUP BY ?student
+        GROUP BY ?wrk ?student
     }
+    # Retrieve the number of attendanble lessons
     {
-        SELECT (count(?lesson) AS ?tot) WHERE {
+        SELECT ?wrk (count(?lesson) AS ?tot) WHERE {
             ?wrk att:hasLesson ?lesson .
-            
-            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
         }
+
+        GROUP BY ?wrk
     }
 
+    # Get only student with more than 75% of attendend lessons.
     BIND ((?tot_freq / ?tot * 100) AS ?percentage)
-	FILTER (?percentage > 50)
+    FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
+	# FILTER (?percentage >= 75)
 }

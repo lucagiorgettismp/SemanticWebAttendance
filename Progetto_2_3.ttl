@@ -485,36 +485,53 @@ attendance-ontology:Attendable rdf:type owl:Class ;
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance
-attendance-ontology:Attendance rdf:type owl:Class ;
-                               owl:disjointUnionOf ( attendance-ontology:AttendanceNotValid
-                                                     attendance-ontology:AttendanceValid
-                                                   ) .
+attendance-ontology:Attendance rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail
+attendance-ontology:AttendanceDetail rdf:type owl:Class ;
+                                     rdfs:subClassOf attendance-ontology:Attendance .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay
 attendance-ontology:AttendanceInDelay rdf:type owl:Class ;
-                                      rdfs:subClassOf attendance-ontology:Attendance .
+                                      rdfs:subClassOf attendance-ontology:AttendanceWarning .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo
+attendance-ontology:AttendanceInfo rdf:type owl:Class ;
+                                   rdfs:subClassOf attendance-ontology:AttendanceDetail .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid
 attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
-                                       rdfs:subClassOf attendance-ontology:Attendance ;
+                                       rdfs:subClassOf attendance-ontology:AttendanceState ;
                                        owl:disjointWith attendance-ontology:AttendanceValid .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceRemoteUnavailable
 attendance-ontology:AttendanceRemoteUnavailable rdf:type owl:Class ;
-                                                rdfs:subClassOf attendance-ontology:Attendance .
+                                                rdfs:subClassOf attendance-ontology:AttendanceWarning .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState
+attendance-ontology:AttendanceState rdf:type owl:Class ;
+                                    rdfs:subClassOf attendance-ontology:Attendance .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup
 attendance-ontology:AttendanceStudentInsideWorkgroup rdf:type owl:Class ;
-                                                     rdfs:subClassOf attendance-ontology:Attendance .
+                                                     rdfs:subClassOf attendance-ontology:AttendanceInfo .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid
 attendance-ontology:AttendanceValid rdf:type owl:Class ;
-                                    rdfs:subClassOf attendance-ontology:Attendance .
+                                    rdfs:subClassOf attendance-ontology:AttendanceState .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning
+attendance-ontology:AttendanceWarning rdf:type owl:Class ;
+                                      rdfs:subClassOf attendance-ontology:AttendanceDetail .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class
@@ -658,27 +675,28 @@ vcard:Gender owl:disjointUnionOf ( vcard:Female
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI
 attendance-ontology:AT_ET_WS_2023_06_26_09_30_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                                   attendance-ontology:Attendance ;
+                                                                   attendance-ontology:AttendanceValid ;
                                                           attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                           attendance-ontology:attendance-time "2023-06-26T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI
 attendance-ontology:AT_ET_WS_2023_06_26_11_00_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                                   attendance-ontology:Attendance ;
+                                                                   attendance-ontology:AttendanceValid ;
                                                           attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                           attendance-ontology:attendance-time "2023-06-26T11:35:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_CHIARA_BIANCHI
 attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-01T10:17:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                                          attendance-ontology:AttendanceNotValid ,
                                                           attendance-ontology:RemoteAttendance ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-01T10:20:00Z"^^xsd:dateTime ;
@@ -688,90 +706,91 @@ attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI
 attendance-ontology:AT_PM_2023_05_01_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-01T10:35:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI
 attendance-ontology:AT_PM_2023_05_03_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceNotValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-03T10:12:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_03_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-03T10:17:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI
 attendance-ontology:AT_PM_2023_05_03_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-03T10:11:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_CHIARA_BIANCHI
 attendance-ontology:AT_PM_2023_05_08_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-08T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_LUIGI_VERDI
 attendance-ontology:AT_PM_2023_05_08_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-08T10:40:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI
 attendance-ontology:AT_PM_2023_05_08_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-08T10:02:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 attendance-ontology:AT_WS_2023_05_21_CHIARA_BIANCHI rdf:type owl:NamedIndividual ,
-                                                             attendance-ontology:Attendance ;
+                                                             attendance-ontology:AttendanceValid ;
                                                     attendance-ontology:hasAttendant attendance-ontology:STU_00003_ChiaraBianchi ;
                                                     attendance-ontology:attendance-time "2023-05-21T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-21T10:07:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI_1
 attendance-ontology:AT_WS_2023_05_21_MARIO_ROSSI_1 rdf:type owl:NamedIndividual ,
-                                                            attendance-ontology:Attendance ;
+                                                            attendance-ontology:AttendanceNotValid ;
                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                    attendance-ontology:attendance-time "2023-05-21T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI
 attendance-ontology:AT_WS_2023_05_22_LUIGI_VERDI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceNotValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
                                                  attendance-ontology:attendance-time "2023-05-22T10:10:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_05_22_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-05-22T10:18:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_DALIA_LABALIA
 attendance-ontology:AT_WS_2023_08_24_DALIA_LABALIA rdf:type owl:NamedIndividual ,
+                                                            attendance-ontology:AttendanceValid ,
                                                             attendance-ontology:RemoteAttendance ;
                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00007_DALIA_LABALIA ;
                                                    attendance-ontology:attendance-time "2023-08-24T11:12:00Z"^^xsd:dateTime ;
@@ -781,7 +800,7 @@ attendance-ontology:AT_WS_2023_08_24_DALIA_LABALIA rdf:type owl:NamedIndividual 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI
 attendance-ontology:AT_WS_2023_08_24_MARIO_ROSSI rdf:type owl:NamedIndividual ,
-                                                          attendance-ontology:Attendance ;
+                                                          attendance-ontology:AttendanceValid ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00001_MarioRossi ;
                                                  attendance-ontology:attendance-time "2023-08-24T10:18:00Z"^^xsd:dateTime .
 
