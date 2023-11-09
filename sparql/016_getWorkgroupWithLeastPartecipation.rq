@@ -39,5 +39,5 @@ SELECT ?wrk ?rapporto WHERE {
     
     # Calcolo e filtro il rapporto.
     BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
-    FILTER (?rapporto < 30)
+    FILTER (?rapporto < 50)
 }

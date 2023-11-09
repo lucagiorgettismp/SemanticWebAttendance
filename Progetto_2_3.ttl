@@ -491,30 +491,50 @@ attendance-ontology:Attendance rdf:type owl:Class ;
                                                    ) .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail
+attendance-ontology:AttendanceDetail rdf:type owl:Class ;
+                                     rdfs:subClassOf attendance-ontology:Attendance .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay
 attendance-ontology:AttendanceInDelay rdf:type owl:Class ;
-                                      rdfs:subClassOf attendance-ontology:Attendance .
+                                      rdfs:subClassOf attendance-ontology:AttendanceWarning .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo
+attendance-ontology:AttendanceInfo rdf:type owl:Class ;
+                                   rdfs:subClassOf attendance-ontology:AttendanceDetail .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid
 attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
-                                       rdfs:subClassOf attendance-ontology:Attendance ;
+                                       rdfs:subClassOf attendance-ontology:AttendanceState ;
                                        owl:disjointWith attendance-ontology:AttendanceValid .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceRemoteUnavailable
 attendance-ontology:AttendanceRemoteUnavailable rdf:type owl:Class ;
-                                                rdfs:subClassOf attendance-ontology:Attendance .
+                                                rdfs:subClassOf attendance-ontology:AttendanceWarning .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState
+attendance-ontology:AttendanceState rdf:type owl:Class ;
+                                    rdfs:subClassOf attendance-ontology:Attendance .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup
 attendance-ontology:AttendanceStudentInsideWorkgroup rdf:type owl:Class ;
-                                                     rdfs:subClassOf attendance-ontology:Attendance .
+                                                     rdfs:subClassOf attendance-ontology:AttendanceInfo .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid
 attendance-ontology:AttendanceValid rdf:type owl:Class ;
-                                    rdfs:subClassOf attendance-ontology:Attendance .
+                                    rdfs:subClassOf attendance-ontology:AttendanceState .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning
+attendance-ontology:AttendanceWarning rdf:type owl:Class ;
+                                      rdfs:subClassOf attendance-ontology:AttendanceDetail .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Class

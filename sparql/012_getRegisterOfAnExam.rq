@@ -15,13 +15,8 @@ SELECT ?student ?turn ?type WHERE {
 
         ?attendance att:hasAttendant ?student;
             rdf:type ?type.
-        {
-            ?attendance rdf:type att:AttendanceValid .
-        } UNION {
-            ?attendance rdf:type att:AttendanceNotValid .
-        }
+        ?type rdfs:subClassOf att:AttendanceState .
     }
-
 
     FILTER (?exam = att:EX_WS_2023_06_26)
 }
