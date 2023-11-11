@@ -39,11 +39,11 @@ Come ontologie esterne abbiamo incluso:
 
 - [**Time**](https://www.w3.org/TR/owl-time/#): per descrivere le proprietà temporali di una qualsiasi risorsa. Nel nostro caso è utilzzata per esprimere le durate temporali dei Pin usati per registrare la presenza e per indicare gli orari di inizio degli appuntamenti.
 
-- [**Geo**](https://www.w3.org/2003/01/geo/): per esprimere la posizione dalla quale viene eseguita una rilevazione a distanza, solitamente contraddistinta dalle coordinate latitudine, longitudine e dalla _accuracy_ della rilevazione.
+- [**Geo**](https://www.w3.org/2003/01/geo/): per esprimere la posizione dalla quale viene eseguita una rilevazione a distanza, solitamente contraddistinta dalle coordinate espresse in latitudine e longitudine.
 
 ## Presentazione del contesto
 
-L'ontologia in questione nasce dall'interesse dei componenti del gruppo del progetto di esprimere la conoscenza accumulata da un dominio applicativo reale maturata durante gli anni di lavoro presso un'azienda di sviluppo software locale.
+L'ontologia in questione nasce dall'interesse dei componenti del gruppo del progetto di esprimere la conoscenza acquisita da un dominio applicativo reale maturata durante gli anni di lavoro presso un'azienda di sviluppo software locale.
 
 Il requisito principale è quello di avere un sistema informatico per registrare la [presenza](#attendance) degli studenti alle varie attività didattiche quali [lezioni](#lesson), [esami](#exam) o altri momenti della vita accademica. Il docente a inizio attività condivide un pin alfanumerico che i partecipanti sono tenuti ad inserire in un apposito portale.
 
@@ -52,74 +52,6 @@ Il requisito principale è quello di avere un sistema informatico per registrare
 ## Classi
 
 Di seguito viene riportato uno schema di massima della nostra ontologia:
-
-```mermaid
-classDiagram
-`Didactic Activity` <-- Workgroup : Association
-Class <-- Workgroup
-Teacher <-- Workgroup
-class `Didactic Activity` {
-    +string Name
-}
-class Class {
-    +int Number
-}
-class Workgroup {
-    +Year
-    isValid()
-}
-Workgroup *.. Exam : Composition
-class Exam {
-    +List~turn~ hasTurn
-}
-Workgroup *.. Lesson
-class Lesson {
-    +List<Student> hasStudent : from inheritance
-}
-turn <|-- Exam
-class turn["Exam Turn"] {
-    +List<Student> hasStudent : from inheritance
-}
-link turn "/SemanticWebAttendance#exam-turn"
-Lesson <|-- Attendable : Inheritance
-Exam Turn <|-- Attendable : Inheritance
-class Attendable {
-    +List<Student> hasStudentManual
-}
-Pin <-- Attendable
-class Pin {
-    +string Code
-}
-Person o-- Teacher : Aggregation
-Person o-- Tutor
-Person o-- External
-Person o-- Student
-link Person "/SemanticWebAttendance#person"
-class Person {
-    string GivenName
-    string FamilyName
-}
-class group["Student Group"] {
-    +List~Student~
-}
-link group "/SemanticWebAttendance#student-group"
-group --|> Class
-group --|> turn
-group --|> Lesson
-group "n" --> "m" Student : hasStudent
-class Attendance
-Attendance o-- AttendanceValid
-Attendance o-- AttendanceNotValid
-Attendance o-- RemoteAttendance
-AttendanceValid o-- AttendanceValidPresent
-AttendanceValid o-- AttendanceValidWithDelay
-AttendanceNotValid o-- AttendanceNotValidAlreadySubmitted
-link AttendanceNotValidAlreadySubmitted "/SemanticWebAttendance#AttendanceNotValidAlreadySubmitted"
-AttendanceNotValid o-- AttendanceNotValidOutOfWorkgroup
-AttendanceNotValid o-- AttendanceNotValidWithDelay
-Pin --|> Attendance : hasAttendance
-Attendance --|> Person : hasAttendant
-```
 
 ![Schema di massima](img/schema_di_massima.jpg)
 
@@ -131,16 +63,15 @@ _Sopra: uno schema di massima della nostra ontologia_
 
 Questa classe rappresenta una qualunque persona interagisca con il sistema.
 
-![Person Diagram](./img/person.png)
+![Person Diagram](./img/attendance-Person.drawio.png)
 
 **Data Properties**
 
-| Nome              | Tipo   |
-| ----------------- | ------ |
-| given name        | string |
-| family name       | string |
-| birth date        | date   |
-| organization name | string |
+| Nome        | Tipo   |
+| ----------- | ------ |
+| given name  | string |
+| family name | string |
+| birth date  | date   |
 
 **Object Properties**
 
@@ -150,48 +81,56 @@ Questa classe rappresenta una qualunque persona interagisca con il sistema.
 | hasAttendant | Gender  | Person |
 | hasGuest     | Lesson  | Person |
 
-Nel nostro elaborato essa modella:
+Nel nostro elaborato essa modella alcune sottoclassi.
 
-- <a id="teacher">Teacher</a> (Docente): chi tiene le lezioni di un determinato workgroup.
+#### Teacher
 
-  **Object Properties**
+Chi tiene le lezioni di un determinato workgroup.
 
-  | Nome       | Dominio   | Range   |
-  | ---------- | --------- | ------- |
-  | hasTeacher | Workgroup | Teacher |
+**Object Properties**
 
-- <a id="tutor">Tutor</a> (Tutore): chi aiuta a gestire uno specifico workgroup.
+| Nome       | Dominio   | Range   |
+| ---------- | --------- | ------- |
+| hasTeacher | Workgroup | Teacher |
 
-  **Object Properties**
+#### Tutor
 
-  | Nome     | Dominio | Range |
-  | -------- | ------- | ----- |
-  | hasTutor | Lesson  | Tutor |
+Chi aiuta a gestire una specifica lezione.
 
-- <a id="student">Student</a> (Studente): chi partecipa alle lezioni.
+**Object Properties**
 
-  **Data Properties**
+| Nome     | Dominio | Range |
+| -------- | ------- | ----- |
+| hasTutor | Lesson  | Tutor |
 
-  | Nome      | Tipo   |
-  | --------- | ------ |
-  | studentId | string |
+#### Student
 
-  **Object Properties**
+Chi partecipa alle lezioni e agli esmi.
 
-  | Nome                                                  | Dominio       | Range   |
-  | ----------------------------------------------------- | ------------- | ------- |
-  | [has Manual Student](#hasstudent-vs-hasmanualstudent) | Student Group | Student |
-  | hasStudent                                            | StudentGroup  | Student |
+**Data Properties**
 
-- <a id="external">External</a> (Esterno): chi non fa parte dell'organizzazione scolastica, ma viene invitato per tenere seminari.
+| Nome      | Tipo   |
+| --------- | ------ |
+| studentId | string |
 
-  **Data Properties**
+**Object Properties**
 
-  | Nome         | Tipo   |
-  | ------------ | ------ |
-  | organization | string |
+| Nome                                                | Dominio       | Range   |
+| --------------------------------------------------- | ------------- | ------- |
+| [hasManualStudent](#hasstudent-vs-hasmanualstudent) | Student Group | Student |
+| hasStudent                                          | StudentGroup  | Student |
 
-  Abbiamo quindi dichiarato questa risorsa DisjointWith con le altre sotto classi di Person
+#### External
+
+Chi non fa parte dell'organizzazione scolastica, ma viene invitato per tenere seminari.
+
+**Data Properties**
+
+| Nome              | Tipo   |
+| ----------------- | ------ |
+| organization name | string |
+
+Abbiamo quindi dichiarato questa risorsa DisjointWith con le altre sotto classi di Person: infatti una persona o appartiene all'università o ad una organizzazione esterna.
 
 ### Workgroup
 
@@ -205,10 +144,10 @@ Rappresenta la relazione tra:
 
 **Data Property**
 
-| Nome     | Tipo   |
-| -------- | ------ |
-| wrk term | number |
-| wrk year | number |
+| Nome     | Tipo        |
+| -------- | ----------- |
+| wrk term | xsd:integer |
+| wrk year | xsd:integer |
 
 **Object Property**
 
@@ -273,21 +212,21 @@ Rappresenta un lasso di tempo dove gli [studenti](#student) seguono un [docente]
 
 **Object Property**
 
-| Nome      | Dominio   | Range             |
-| --------- | --------- | ----------------- |
-| hasGuest  | Lesson    | [Person](#person) |
-| hasLesson | Workgroup | Lesson            |
-| hasTutor  | Lesson    | [Tutor](#tutor)   |
+| Nome      | Dominio                 | Range             |
+| --------- | ----------------------- | ----------------- |
+| hasGuest  | Lesson                  | [Person](#person) |
+| hasLesson | [Workgroup](#workgroup) | Lesson            |
+| hasTutor  | Lesson                  | [Tutor](#tutor)   |
 
 Nella nostra ontologia sono presenti anche altre due risorse sottoclassi di questa:
 
-- **Seminar**: Seminario tenuto da una persona (#person) diversa dal titolare dell'insegnamento.
+- **Seminar**: Seminario tenuto da una persona diversa dal titolare dell'insegnamento.
 
 - **External Guest Seminar**: Sottoclasse di Seminar, contraddistingue i seminari da un ospire esterno all'università, invitato dal docente. Nella nostra ontologia questo è rappresentato dalla classe [External](#external).
 
 ### Exam
 
-Rappresenta un lasso di tempo dove gli [studenti](#student), eventualmente divisi su più [turni](#exam-turn) svolgono la propria prova.
+Rappresenta l'insieme di prove d'esame degli [studenti](#student) per un determinato workgroup.
 
 **Data Property**
 
@@ -304,7 +243,9 @@ Rappresenta un lasso di tempo dove gli [studenti](#student), eventualmente divis
 
 #### Exam Turn
 
-Rappresenta un lasso di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova. Questa divisione è necessaria in quanto non sempre negli atenei sono presenti aule abbastanza capienti per contenere tutti gli studenti contemporaneamente. Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra gli attendenti (in un'aula da 200 persone, potrebbero riuscirci a stare soltato 50 persone durante un'esame).
+Rappresenta un lasso di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova. Questa divisione è necessaria in quanto non sempre negli atenei sono presenti aule abbastanza capienti per contenere tutti gli studenti contemporaneamente.
+
+Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra i presenti (in un'aula da 200 persone, potrebbero riuscirci a stare soltato 50 persone durante un'esame).
 
 **Object Property**
 
@@ -314,12 +255,12 @@ Rappresenta un lasso di tempo dove una parte di studenti iscritti ad un esame sv
 
 ### Pin
 
-Rappresenta un codice alfanumerico che le persone inseriscono per registrare la loro presenza ad un [Attendable](#attendable). Questo viene generato duna presenza sul Pin.
+Rappresenta un codice alfanumerico che le persone inseriscono per registrare la loro presenza ad un [Attendable](#attendable). Questo viene generato dal sistema e fornito da chi gestisce l'attività.
 
-**Data Property**al sistema e fornito da chi gestisce l'attività.
+**Data Property**
 
 Possiede una data di creazione (creation date) da valorizzare quando viene generato il Pin,
-È usata anche per calcolare la data di scadenza di quel Pin tramite la regola PinExpirationDate^[La regola è valida, ma attualmente alla versione 5.6.2 non è supportata da Protègè]. Allo scoccare della scadenza la registrazione verrà considerata come ritardo o assenza.
+È usata anche per calcolare la data di scadenza di quel Pin tramite la regola PinExpirationDate ^[La regola è valida, ma attualmente alla versione 5.6.2 non è supportata da Pellet]. Allo scoccare della scadenza la registrazione verrà considerata come ritardo o assenza.
 
 | Nome            | Tipo   |
 | --------------- | ------ |
@@ -329,13 +270,12 @@ Possiede una data di creazione (creation date) da valorizzare quando viene gener
 
 **Object Property**
 
-| Nome           | Dominio    | Range                     |
-| -------------- | ---------- | ------------------------- |
-| hasAttendance  | Pin        | [Attendance](#attendance) |
-| pinHasDuration | Pin        | time:Duration             |
-| hasPin         | Attendable | Pin                       |
+| Nome           | Dominio | Range                     |
+| -------------- | ------- | ------------------------- |
+| hasAttendance  | Pin     | [Attendance](#attendance) |
+| pinHasDuration | Pin     | time:Duration             |
 
-Possiamo affermare che la proprietà _hasAttendance_ è una proprietà **funzionale**: infatti un Pin può avere più Attendance, mentre un Attendance può avere un solo Pin su cui essere registrato.
+Possiamo affermare che la proprietà _hasAttendance_ è una proprietà **inversamente funzionale**: infatti un Pin può avere più Attendance, mentre un Attendance può avere un solo Pin su cui essere registrato.
 
 ### Attendance
 
@@ -345,9 +285,9 @@ Rappresenta una registrazione di una presenza.
 
 La registrazione richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
-Questa registrazione possiede la particolarità di non dover per forza essere binaria nel senso di tenere traccia solamente della presenza/assenza di un partecipante. La nostra ontologia deve tenere conto che uno studente presente sia essendo entrato puntuale o con qualche minuto di anticipo, sia essendo in ritardo. Uno studente che effettua una registrazione della presenza per la seconda volta sullo stesso Pin, ad esempio, dall'applicativo sarà segnato come una registrazione non valida, risultando comunque presente perché già registrato una prima volta precedentemente a quella non valida.
+Questa registrazione tiene traccia della presenza/assenza di un partecipante. Inoltre tiene conto anche del fatto che uno studente presente sia entrato puntuale o sia essendo in ritardo, se si sia registrato da remoto e se sia iscritto al workgroup dell'attendable in questione.
 
-Tuttavia una presenza può essere o _Valida_ o _Invalida_, presentando due insiemi disgiunti di classi. In questo è venuta in aiuto l'espressività concessa da OWL. Abbiamo potuto esprimere questo fatto con le seguenti regole:
+Le presenze _Valide_ e _Invalide_, sono insiemi disgiunti di classi. In questo ci è venuta in aiuto l'espressività concessa da OWL. Abbiamo potuto esprimere questo fatto con le seguenti regole:
 
 ```
 attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
@@ -386,24 +326,13 @@ Le registrazioni fatte da remoto sono contraddistinte dalla proprità remote set
 | hasAttendance | Pin        | Person |
 | hasAttendant  | Attendance | Person |
 
-### StudentGroup
-
-Rappresenta un gruppo di studenti. Questa classe è presente esclusivamente nell'ontologia come superclasse per conferire la proprietà hasStudent alle sue sottoclassi.
-
-**Object Property**
-
-| Nome                                                  | Dominioui    | Range   |
-| ----------------------------------------------------- | ------------ | ------- |
-| [has Manual Student](#hasstudent-vs-hasmanualstudent) | StudentGroup | Student |
-| hasStudent                                            | StudentGroup | Student |
-
 ## Object Properties
 
-Di seguito vengono specificate le principali Object Properties modellate. _Vengono elencate ma non esaustivamente spiegate le properties usate dalle ontologie importate._
+Di seguito vengono specificate le principali Object Properties modellate.
 
 ### hasStudent vs hasManualStudent
 
-La prima proprietà esprime un elenco di studenti che appartengono ad un determinato Student Group a priori, mentre la seconda un elenco di studenti aggiunti a posteriori ad un Attendable, in genere vengono aggiunti a mano da un operatore su richiesta di un ufficio o di un dipartimento, perché si intende fare seguire ad uno studente una lezione, per via di un dottorato in corso o altre esigenze di formazione degli studenti.
+La proprietà hasStudent esprime un elenco di studenti che ci si aspetta si registrino ad un Attendable, in quanto appartenenti alle classi del workgroup associato. La seconda invece esprime un elenco di studenti aggiunti a posteriori ad un Attendable. In genere questi vengono aggiunti a mano da un operatore su richiesta di un ufficio o di un dipartimento, perché si intende fare seguire ad uno studente una lezione, per via di un dottorato in corso o altre esigenze di formazione degli studenti.
 
 # Regole Semantiche
 
