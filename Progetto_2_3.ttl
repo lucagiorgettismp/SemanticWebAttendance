@@ -137,12 +137,6 @@ ns:term_status rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAdmittableStudent
-attendance-ontology:hasAdmittableStudent rdf:type owl:ObjectProperty ;
-                                         rdfs:domain attendance-ontology:Exam ;
-                                         rdfs:range attendance-ontology:Student .
-
-
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance
 attendance-ontology:hasAttendance rdf:type owl:ObjectProperty ;
                                   owl:inverseOf attendance-ontology:isAttendanceOf ;
@@ -218,6 +212,14 @@ attendance-ontology:hasPin rdf:type owl:ObjectProperty ;
                            rdfs:range attendance-ontology:Pin .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasRemoteLocation
+attendance-ontology:hasRemoteLocation rdf:type owl:ObjectProperty ;
+                                      rdfs:subPropertyOf owl:topObjectProperty ;
+                                      owl:inverseOf owl:topObjectProperty ;
+                                      rdfs:domain attendance-ontology:RemoteAttendance ;
+                                      rdfs:range attendance-ontology:RemoteLocation .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent
 attendance-ontology:hasStudent rdf:type owl:ObjectProperty ;
                                owl:inverseOf attendance-ontology:isStudentOf ;
@@ -288,6 +290,11 @@ attendance-ontology:isManualStudentOf rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf
 attendance-ontology:isPinOf rdf:type owl:ObjectProperty ,
                                      owl:FunctionalProperty .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isRemoteLocationOf
+attendance-ontology:isRemoteLocationOf rdf:type owl:ObjectProperty ;
+                                       rdfs:subPropertyOf owl:topObjectProperty .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf
@@ -549,7 +556,8 @@ attendance-ontology:Exam rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn
 attendance-ontology:ExamTurn rdf:type owl:Class ;
-                             rdfs:subClassOf attendance-ontology:Attendable .
+                             rdfs:subClassOf attendance-ontology:Attendable ;
+                             owl:disjointWith attendance-ontology:Lesson .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#External
@@ -599,8 +607,12 @@ attendance-ontology:Pin rdf:type owl:Class .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#RemoteAttendance
 attendance-ontology:RemoteAttendance rdf:type owl:Class ;
-                                     rdfs:subClassOf attendance-ontology:Attendance ,
-                                                     geo:SpatialThing .
+                                     rdfs:subClassOf attendance-ontology:Attendance .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#RemoteLocation
+attendance-ontology:RemoteLocation rdf:type owl:Class ;
+                                   rdfs:subClassOf geo:SpatialThing .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Room
@@ -699,9 +711,8 @@ attendance-ontology:AT_PM_2023_05_01_LUIGI_VERDI rdf:type owl:NamedIndividual ,
                                                           attendance-ontology:AttendanceNotValid ,
                                                           attendance-ontology:RemoteAttendance ;
                                                  attendance-ontology:hasAttendant attendance-ontology:STU_00002_LuigiVerdi ;
-                                                 attendance-ontology:attendance-time "2023-05-01T10:20:00Z"^^xsd:dateTime ;
-                                                 geo:lat "44.10487"^^xsd:float ;
-                                                 geo:long "12.41643"^^xsd:float .
+                                                 attendance-ontology:hasRemoteLocation attendance-ontology:REM_LOC_LUIGI_VERDI ;
+                                                 attendance-ontology:attendance-time "2023-05-01T10:20:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI
@@ -793,9 +804,8 @@ attendance-ontology:AT_WS_2023_08_24_DALIA_LABALIA rdf:type owl:NamedIndividual 
                                                             attendance-ontology:AttendanceValid ,
                                                             attendance-ontology:RemoteAttendance ;
                                                    attendance-ontology:hasAttendant attendance-ontology:STU_00007_DALIA_LABALIA ;
-                                                   attendance-ontology:attendance-time "2023-08-24T11:12:00Z"^^xsd:dateTime ;
-                                                   geo:lat "44.10487"^^xsd:float ;
-                                                   geo:long "12.41643"^^xsd:float .
+                                                   attendance-ontology:hasRemoteLocation attendance-ontology:REM_LOC_DALIA_LABALIA ;
+                                                   attendance-ontology:attendance-time "2023-08-24T11:12:00Z"^^xsd:dateTime .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI
@@ -1152,6 +1162,20 @@ attendance-ontology:PIN_WS_8 rdf:type owl:NamedIndividual ,
                              attendance-ontology:creation-date "2023-08-24T11:00:00Z"^^xsd:dateTime ;
                              attendance-ontology:expiration-date "2023-08-24T11:15:00Z"^^xsd:dateTime ;
                              attendance-ontology:pin-code "061238"^^xsd:token .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#REM_LOC_DALIA_LABALIA
+attendance-ontology:REM_LOC_DALIA_LABALIA rdf:type owl:NamedIndividual ,
+                                                   attendance-ontology:RemoteLocation ;
+                                          geo:lat "44.12202"^^xsd:float ;
+                                          geo:long "12.301151"^^xsd:float .
+
+
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#REM_LOC_LUIGI_VERDI
+attendance-ontology:REM_LOC_LUIGI_VERDI rdf:type owl:NamedIndividual ,
+                                                 attendance-ontology:RemoteLocation ;
+                                        geo:lat "44.10487"^^xsd:float ;
+                                        geo:long "12.41643"^^xsd:float .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi
