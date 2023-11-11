@@ -5,7 +5,7 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-# Description of this awesome query
+# Get all the free locations in a given time slot.
 SELECT ?location WHERE {
     ?location att:location-code ?code ;
         rdf:type ?type .

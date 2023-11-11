@@ -4,7 +4,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Description of this awesome query
+# Get lessons with guests
 SELECT ?lesson ?type ?name ?surname ?organization WHERE {
 	?lesson att:hasGuest ?guest .
 	?guest vcard:given-name ?name ;

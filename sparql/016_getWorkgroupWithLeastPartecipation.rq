@@ -4,10 +4,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Recupero tutti i workgroup che hanno avuto poca partecipazione.
+# Get all workgroups with attendance rate under 30%.
 SELECT ?wrk ?rapporto WHERE {
     {
-        # Recupero tutte le presenze di un workgroup e ne ottengo il numero totale.
+        # Get all attendances of all workgroups.
         SELECT ?wrk (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
             ?class att:hasStudent ?student .
@@ -24,7 +24,7 @@ SELECT ?wrk ?rapporto WHERE {
         GROUP BY ?wrk
     }
     {
-        # Lo devo rapportare al numero totale di presenze che mi sarei aspettato in quel workgroup.
+        # Get all maximum presences of stedents.
         SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
             ?wrk att:hasClass ?class .
             ?class att:hasStudent ?student .
@@ -37,7 +37,7 @@ SELECT ?wrk ?rapporto WHERE {
         GROUP BY ?wrk
     }
     
-    # Calcolo e filtro il rapporto.
+    # Calculate the attendance rate.
     BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
     FILTER (?rapporto < 50)
 }

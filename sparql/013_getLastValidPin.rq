@@ -4,6 +4,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
+# Get the last valid pin for a lesson
 SELECT ?pin ?code ?expirationDate WHERE {
     ?attendable att:hasPin ?pin .
     ?pin att:creation-date ?creationDate ;

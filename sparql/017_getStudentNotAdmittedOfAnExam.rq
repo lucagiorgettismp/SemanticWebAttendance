@@ -4,8 +4,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
-# Description of this awesome query
-# TODO: to be fixed
+# Get all student not admittable to an exam of a given workgroup. 
 SELECT ?student ?percentage WHERE {
     # Get all students attending the exam.
     {
