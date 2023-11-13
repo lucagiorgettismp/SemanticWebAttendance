@@ -113,13 +113,6 @@ Chi partecipa alle lezioni e agli esmi.
 | --------- | ------ |
 | studentId | string |
 
-**Object Properties**
-
-| Nome                                                | Dominio       | Range   |
-| --------------------------------------------------- | ------------- | ------- |
-| [hasManualStudent](#hasstudent-vs-hasmanualstudent) | Student Group | Student |
-| hasStudent                                          | StudentGroup  | Student |
-
 #### External
 
 Chi non fa parte dell'organizzazione scolastica, ma viene invitato per tenere seminari.
@@ -167,9 +160,10 @@ Rappresenta un gruppo di studenti iscritti ad un certo anno accademico.
 
 **Object Properties**
 
-| Nome     | Dominio   | Range |
-| -------- | --------- | ----- |
-| hasClass | Workgroup | Class |
+| Nome            | Dominio                 | Range               |
+| --------------- | ----------------------- | ------------------- |
+| hasClass        | [Workgroup](#workgroup) | Class               |
+| hasClassStudent | Class                   | [Student](#student) |
 
 #### Didactic Activity
 
@@ -199,10 +193,12 @@ Da notare che questo concetto non viene completamente esaurito in questa ontolog
 
 **Object Property**
 
-| Nome        | Dominio    | Range                 |
-| ----------- | ---------- | --------------------- |
-| hasLocation | Attendable | [Location](#location) |
-| hasPin      | Attendable | [Pin](#pin)           |
+| Nome                                                | Dominio    | Range                 |
+| --------------------------------------------------- | ---------- | --------------------- |
+| hasLocation                                         | Attendable | [Location](#location) |
+| hasPin                                              | Attendable | [Pin](#pin)           |
+| [hasManualStudent](#hasstudent-vs-hasmanualstudent) | Attendable | [Student](#student)   |
+| hasStudent                                          | Attendable | [Student](#student)   |
 
 Possiamo affermare che la proprietà _hasPin_ è **inversamente funzionale**: infatti una lezione può avere molti pin, mentre ogni pin oggetto di questa relazione può averne una sola di questo tipo verso una lezione. Possiamo quindi dire che la relazione inversa di hasPin, ovvero isPinOf, è funzionale.
 
@@ -335,6 +331,8 @@ Di seguito vengono specificate le principali Object Properties modellate.
 ### hasStudent vs hasManualStudent
 
 La proprietà hasStudent esprime un elenco di studenti che ci si aspetta si registrino ad un Attendable, in quanto appartenenti alle classi del workgroup associato. La seconda invece esprime un elenco di studenti aggiunti a posteriori ad un Attendable. In genere questi vengono aggiunti a mano da un operatore su richiesta di un ufficio o di un dipartimento, perché si intende fare seguire ad uno studente una lezione, per via di un dottorato in corso o altre esigenze di formazione degli studenti.
+
+Quindi nella nostra ontologia abbiamo modellato hasManualStudent come sotto proprietà di hasStudent, in quanto tutti gli studenti aggiunti come manuali sono comunque degli studenti registrabili.
 
 # Regole Semantiche
 
