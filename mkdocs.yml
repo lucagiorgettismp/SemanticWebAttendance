@@ -6,7 +6,10 @@ repo_url: https://github.com/lucagiorgettismp/SemanticWebAttendance.git
 
 nav:
   - Index: index.md
-    
+
+markdown_extensions: 
+  - footnotes
+
 plugins:
   - search
   - mermaid2:

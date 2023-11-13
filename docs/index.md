@@ -260,7 +260,9 @@ Rappresenta un codice alfanumerico che le persone inseriscono per registrare la 
 **Data Property**
 
 Possiede una data di creazione (creation date) da valorizzare quando viene generato il Pin,
-È usata anche per calcolare la data di scadenza di quel Pin tramite la regola PinExpirationDate ^[La regola è valida, ma attualmente alla versione 5.6.2 non è supportata da Pellet]. Allo scoccare della scadenza la registrazione verrà considerata come ritardo o assenza.
+È usata anche per calcolare la data di scadenza di quel Pin tramite la regola PinExpirationDate[^1]. Allo scoccare della scadenza la registrazione verrà considerata come ritardo o assenza.
+
+[^1]: La regola è valida, ma attualmente alla versione 5.6.2 non è supportata da Pellet
 
 | Nome            | Tipo   |
 | --------------- | ------ |
