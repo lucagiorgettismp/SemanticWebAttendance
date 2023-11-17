@@ -7,7 +7,7 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 # Number of WRK_CL_001_DA_WebSemantico_2023 exam tried from a student
 SELECT ?student (COUNT(?attendance) AS ?tries) WHERE {
     ?wrk att:hasClass ?class .
-    ?class att:hasStudent ?student .
+    ?class att:hasClassStudent ?student .
 
     OPTIONAL {
         ?wrk att:hasExam ?exam .

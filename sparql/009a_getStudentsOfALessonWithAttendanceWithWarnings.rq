@@ -5,8 +5,7 @@ PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attenda
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Students of the specified lesson and their attendance.
-# TODO: to be fixed
-SELECT DISTINCT ?student ?type ?warning WHERE {
+SELECT DISTINCT ?student ?type ?warning ?info WHERE {
     {
         ?lesson att:hasStudent ?student . 
     }
@@ -14,7 +13,7 @@ SELECT DISTINCT ?student ?type ?warning WHERE {
     {
         ?lesson att:isLessonOf ?workgroup .
         ?workgroup att:hasClass ?class . 
-        ?class att:hasStudent ?student .
+        ?class att:hasClassStudent ?student .
     }
 
     OPTIONAL { 
@@ -25,8 +24,13 @@ SELECT DISTINCT ?student ?type ?warning WHERE {
         ?type rdfs:subClassOf att:AttendanceState .
 
         OPTIONAL {
-            ?attendance rdf:type ?warning .
+            ?attendance rdf:type ?warning.
             ?warning rdfs:subClassOf att:AttendanceWarning .
+        }
+
+        OPTIONAL {
+            ?attendance rdf:type ?info.
+            ?info rdfs:subClassOf att:AttendanceInfo .
         }
     }
 

@@ -1795,68 +1795,6 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "" ;
-   rdfs:label "try" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                           swrl:propertyPredicate attendance-ontology:hasClass ;
-                           swrl:argument1 :workgroup ;
-                           swrl:argument2 :wrkClass
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:hasLesson ;
-                                      swrl:argument1 :workgroup ;
-                                      swrl:argument2 :lesson
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                 swrl:propertyPredicate attendance-ontology:hasPin ;
-                                                 swrl:argument1 :lesson ;
-                                                 swrl:argument2 :pin
-                                               ] ;
-                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                            swrl:propertyPredicate attendance-ontology:hasAttendance ;
-                                                            swrl:argument1 :pin ;
-                                                            swrl:argument2 :attendance
-                                                          ] ;
-                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                       swrl:propertyPredicate attendance-ontology:hasAttendant ;
-                                                                       swrl:argument1 :attendance ;
-                                                                       swrl:argument2 :student
-                                                                     ] ;
-                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                      rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                  swrl:propertyPredicate attendance-ontology:hasClassStudent ;
-                                                                                  swrl:argument1 :wrkClass ;
-                                                                                  swrl:argument2 :student
-                                                                                ] ;
-                                                                      rdf:rest rdf:nil
-                                                                    ]
-                                                         ]
-                                              ]
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:BuiltinAtom ;
-                           swrl:builtin <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
-                           swrl:arguments ( :wrkClass
-                                            :workgroup
-                                            :lesson
-                                            :pin
-                                            :attendance
-                                            :student
-                                          )
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
    rdfs:label "NotAttendedLesson" ;
    rdf:type swrl:Imp ;
    swrl:body [ rdf:type swrl:AtomList ;

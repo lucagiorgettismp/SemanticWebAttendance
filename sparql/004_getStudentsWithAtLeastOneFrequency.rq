@@ -8,7 +8,7 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ?stuid ?surname ?name WHERE {
 	?wrk att:hasLesson ?lesson ;
 		att:hasClass ?class .
-	?class att:hasStudent ?student .
+	?class att:hasClassStudent ?student .
 	?lesson att:hasPin ?pin .
 	?pin att:hasAttendance ?attendance .
 

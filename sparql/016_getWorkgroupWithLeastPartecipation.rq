@@ -10,7 +10,7 @@ SELECT ?wrk ?rapporto WHERE {
         # Get all attendances of all workgroups.
         SELECT ?wrk (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
-            ?class att:hasStudent ?student .
+            ?class att:hasClassStudent ?student .
             
             OPTIONAL {
                 ?wrk att:hasLesson ?lesson .
@@ -27,7 +27,7 @@ SELECT ?wrk ?rapporto WHERE {
         # Get all maximum presences of stedents.
         SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
             ?wrk att:hasClass ?class .
-            ?class att:hasStudent ?student .
+            ?class att:hasClassStudent ?student .
             
             OPTIONAL {
                 ?wrk att:hasLesson ?lesson .

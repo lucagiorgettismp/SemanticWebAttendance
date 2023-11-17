@@ -13,7 +13,7 @@ SELECT DISTINCT ?student ?type WHERE {
     {
         ?lesson att:isLessonOf ?workgroup .
         ?workgroup att:hasClass ?class . 
-        ?class att:hasStudent ?student .
+        ?class att:hasClassStudent ?student .
     }
 
     OPTIONAL { 

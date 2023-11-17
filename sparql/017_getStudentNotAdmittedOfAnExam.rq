@@ -18,7 +18,7 @@ SELECT ?student ?percentage WHERE {
     {
         SELECT ?wrk ?student (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
-            ?class att:hasStudent ?student .
+            ?class att:hasClassStudent ?student .
             
             OPTIONAL {
                 ?wrk att:hasLesson ?lesson .
