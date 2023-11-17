@@ -532,11 +532,6 @@ attendance-ontology:AttendanceState rdf:type owl:Class ;
                                     rdfs:subClassOf attendance-ontology:Attendance .
 
 
-###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup
-attendance-ontology:AttendanceStudentInsideWorkgroup rdf:type owl:Class ;
-                                                     rdfs:subClassOf attendance-ontology:AttendanceInfo .
-
-
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid
 attendance-ontology:AttendanceValid rdf:type owl:Class ;
                                     rdfs:subClassOf attendance-ontology:AttendanceState .
@@ -1517,10 +1512,6 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
 
 :result rdf:type swrl:Variable .
 
-:workgroup rdf:type swrl:Variable .
-
-:wrkClass rdf:type swrl:Variable .
-
 [ swrla:isRuleEnabled "true"^^xsd:boolean ;
    rdfs:comment "" ;
    rdfs:label "Seminar" ;
@@ -1661,62 +1652,6 @@ geo:lat_long rdfs:comment "A comma-separated representation of a latitude, longi
                            swrl:propertyPredicate attendance-ontology:expiration-date ;
                            swrl:argument1 :pin ;
                            swrl:argument2 :result
-                         ] ;
-               rdf:rest rdf:nil
-             ]
- ] .
-
-[ swrla:isRuleEnabled "true"^^xsd:boolean ;
-   rdfs:comment "" ;
-   rdfs:label "ValidateAttendanceStudentInsideWorkgroup" ;
-   rdf:type swrl:Imp ;
-   swrl:body [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                           swrl:propertyPredicate attendance-ontology:hasClass ;
-                           swrl:argument1 :workgroup ;
-                           swrl:argument2 :wrkClass
-                         ] ;
-               rdf:rest [ rdf:type swrl:AtomList ;
-                          rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                      swrl:propertyPredicate attendance-ontology:hasLesson ;
-                                      swrl:argument1 :workgroup ;
-                                      swrl:argument2 :lesson
-                                    ] ;
-                          rdf:rest [ rdf:type swrl:AtomList ;
-                                     rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                 swrl:propertyPredicate attendance-ontology:hasPin ;
-                                                 swrl:argument1 :lesson ;
-                                                 swrl:argument2 :pin
-                                               ] ;
-                                     rdf:rest [ rdf:type swrl:AtomList ;
-                                                rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                            swrl:propertyPredicate attendance-ontology:hasAttendance ;
-                                                            swrl:argument1 :pin ;
-                                                            swrl:argument2 :attendance
-                                                          ] ;
-                                                rdf:rest [ rdf:type swrl:AtomList ;
-                                                           rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                       swrl:propertyPredicate attendance-ontology:hasAttendant ;
-                                                                       swrl:argument1 :attendance ;
-                                                                       swrl:argument2 :student
-                                                                     ] ;
-                                                           rdf:rest [ rdf:type swrl:AtomList ;
-                                                                      rdf:first [ rdf:type swrl:IndividualPropertyAtom ;
-                                                                                  swrl:propertyPredicate attendance-ontology:hasClassStudent ;
-                                                                                  swrl:argument1 :wrkClass ;
-                                                                                  swrl:argument2 :student
-                                                                                ] ;
-                                                                      rdf:rest rdf:nil
-                                                                    ]
-                                                         ]
-                                              ]
-                                   ]
-                        ]
-             ] ;
-   swrl:head [ rdf:type swrl:AtomList ;
-               rdf:first [ rdf:type swrl:ClassAtom ;
-                           swrl:classPredicate attendance-ontology:AttendanceStudentInsideWorkgroup ;
-                           swrl:argument1 :attendance
                          ] ;
                rdf:rest rdf:nil
              ]
