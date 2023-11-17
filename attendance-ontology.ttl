@@ -310,7 +310,6 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent> rdf:type owl:ObjectProperty ;
-                                                                                                   rdfs:subPropertyOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> ;
                                                                                                    owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf> ;
                                                                                                    rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ;
                                                                                                    rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> .
@@ -334,7 +333,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> rdf:type owl:ObjectProperty ;
                                                                                              owl:inverseOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> ;
-                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ;
+                                                                                             rdfs:domain <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ;
                                                                                              rdfs:range <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> .
 
 
@@ -398,8 +397,7 @@ xsd:gYearMonth rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf
-<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf> rdf:type owl:ObjectProperty ;
-                                                                                                    rdfs:subPropertyOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> .
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf
@@ -1722,7 +1720,6 @@ The range of this property is not specified, so can be replaced by any specific 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> rdf:type owl:Class ;
-                                                                                             rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
                                                                                              owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
@@ -1845,6 +1842,12 @@ The range of this property is not specified, so can be replaced by any specific 
                                                                                            owl:disjointWith <http://www.w3.org/2006/time#January> .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ManualStudentAttendance
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ManualStudentAttendance> rdf:type owl:Class ;
+                                                                                                          rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ;
+                                                                                                          owl:disjointWith <http://www.w3.org/2006/time#January> .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Office
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Office> rdf:type owl:Class ;
                                                                                          rdfs:subClassOf <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Location> ;
@@ -1933,7 +1936,7 @@ owl:Thing owl:disjointWith <http://www.w3.org/2006/time#January> .
    owl:annotatedSource _:genid14 ;
    owl:annotatedProperty rdfs:comment ;
    owl:annotatedTarget "DisjointClasses(<http://www.w3.org/2006/time#January>) replaced by DisjointClasses(<http://www.w3.org/2006/time#January> owl:Thing)" ;
-   rdfs:comment "Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi on 13/11/23, 18:52"
+   rdfs:comment "Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi on 17/11/23, 18:53"
  ] .
 
 _:genid14 rdf:type owl:Axiom ;
@@ -3250,7 +3253,9 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
@@ -3258,14 +3263,29 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#attendance-time> "2023-05-01T10:17:00Z"^^xsd:dateTime .
 
 
+###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_EMMA_MARRONE
+<http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_EMMA_MARRONE> rdf:type owl:NamedIndividual ,
+                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
+                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ,
+                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ManualStudentAttendance> ;
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00004_EMMA_MARRONE> ;
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_1> ;
+                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#attendance-time> "2023-05-01T10:19:00Z"^^xsd:dateTime .
+
+
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceRemoteUnavailable> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#RemoteAttendance> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
@@ -3279,7 +3299,9 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
@@ -3290,8 +3312,11 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_CHIARA_BIANCHI> rdf:type owl:NamedIndividual ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> ,
-                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ;
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_2> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#attendance-time> "2023-05-03T10:12:00Z"^^xsd:dateTime .
@@ -3302,7 +3327,9 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
@@ -3313,7 +3340,10 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_03_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_2> ;
@@ -3325,7 +3355,9 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
@@ -3338,7 +3370,9 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInDelay> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceWarning> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
@@ -3349,7 +3383,10 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_08_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_3> ;
@@ -3359,7 +3396,10 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI> rdf:type owl:NamedIndividual ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1> ;
@@ -3369,7 +3409,10 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1> ;
@@ -3379,8 +3422,11 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI_1
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_MARIO_ROSSI_1> rdf:type owl:NamedIndividual ,
                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> ,
-                                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ;
+                                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ;
                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1> ;
                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#attendance-time> "2023-05-21T10:10:00Z"^^xsd:dateTime .
@@ -3389,8 +3435,11 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceNotValid> ,
-                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ;
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#attendance-time> "2023-05-22T10:10:00Z"^^xsd:dateTime .
@@ -3399,7 +3448,10 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2> ;
@@ -3421,7 +3473,10 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI> rdf:type owl:NamedIndividual ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceDetail> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceInfo> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceState> ,
+                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ,
                                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceValid> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
                                                                                                                <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_8> ;
@@ -3472,8 +3527,7 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_PM_2023_05_25_09_30
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_PM_2023_05_25_09_30> rdf:type owl:NamedIndividual ,
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ,
-                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_ROOM_AULA_2.10> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_7> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
@@ -3487,8 +3541,7 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30> rdf:type owl:NamedIndividual ,
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ,
-                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_LAB_3.1> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_3> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ;
@@ -3500,8 +3553,7 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> rdf:type owl:NamedIndividual ,
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ,
-                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                                  <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExamTurn> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_LAB_3.1> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_4> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
@@ -3570,13 +3622,9 @@ It is deprecated in this edition of OWL-Time. """ ;
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17> rdf:type owl:NamedIndividual ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Seminar> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Seminar> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasGuest> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TR_AntonellaCarbonaro> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PC_1> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_PervasiveComputing_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2022-10-17T13:00:00Z"^^xsd:dateTime ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed> "false"^^xsd:boolean ;
@@ -3588,15 +3636,10 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExternalGuestSeminar> ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Seminar> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Seminar> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasGuest> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#EXT_ELON_MUSK> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00004_EMMA_MARRONE> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_1> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00004_EMMA_MARRONE> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2023-05-01T13:00:00Z"^^xsd:dateTime ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed> "false"^^xsd:boolean ;
@@ -3606,12 +3649,8 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03> rdf:type owl:NamedIndividual ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_2> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2023-05-03T11:00:00Z"^^xsd:dateTime ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed> "false"^^xsd:boolean ;
@@ -3621,12 +3660,8 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08> rdf:type owl:NamedIndividual ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_PM_3> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_ProjectManagement_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2023-05-08T13:00:00Z"^^xsd:dateTime ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed> "false"^^xsd:boolean ;
@@ -3636,15 +3671,11 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> rdf:type owl:NamedIndividual ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_ROOM_AULA_2.10> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_1> ,
                                                                                                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_5> ,
                                                                                                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_6> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_WebSemantico_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2023-05-21T14:00:00"^^xsd:dateTime ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed> "false"^^xsd:boolean ;
@@ -3654,13 +3685,9 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> rdf:type owl:NamedIndividual ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_ROOM_AULA_2.6> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_2> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasTutor> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#TUT_RobertoReda> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_WebSemantico_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2023-05-22T11:00:00"^^xsd:dateTime ;
@@ -3671,13 +3698,9 @@ It is deprecated in this edition of OWL-Time. """ ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_07_24
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_07_24> rdf:type owl:NamedIndividual ,
                                                                                                              <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendable> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ,
-                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#StudentGroup> ;
+                                                                                                             <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLocation> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LOC_ROOM_AULA_2.10> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#PIN_WS_8> ;
-                                                                                                    <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00001_MarioRossi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00002_LuigiVerdi> ,
-                                                                                                                                                                                                 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00003_ChiaraBianchi> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#WRK_CL_001_DA_WebSemantico_2023> ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#end-time> "2023-07-24T23:00:00"^^xsd:dateTime ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#remote-allowed> "true"^^xsd:boolean ;
@@ -3756,6 +3779,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Pin> ,
                                                                                                     <http://www.w3.org/2006/time#TemporalEntity> ;
                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_CHIARA_BIANCHI> ,
+                                                                                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_EMMA_MARRONE> ,
                                                                                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_LUIGI_VERDI> ,
                                                                                                                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_MARIO_ROSSI> ;
                                                                                            <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01> ;
@@ -3944,14 +3968,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_08_24_MARIO_ROSSI> ;
                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isClassStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001> ;
                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_PM_2023_05_25_09_30> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_07_24> ;
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_09_30> ;
                                                                                                        <http://www.w3.org/2006/vcard/ns#hasGender> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Male> ;
                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> "00001" ;
                                                                                                        <http://www.w3.org/2006/vcard/ns#bday> "1995-09-12T00:00:00"^^xsd:dateTime ;
@@ -3970,14 +3987,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_22_LUIGI_VERDI> ;
                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isClassStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001> ;
                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_PM_2023_05_25_09_30> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ,
-                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_07_24> ;
+                                                                                                                                                                                                     <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ;
                                                                                                        <http://www.w3.org/2006/vcard/ns#hasGender> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Male> ;
                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> "00002" ;
                                                                                                        <http://www.w3.org/2006/vcard/ns#bday> "1997-11-04T00:00:00"^^xsd:dateTime ;
@@ -3995,14 +4005,7 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                                                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_WS_2023_05_21_CHIARA_BIANCHI> ;
                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isClassStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_001> ;
                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_PM_2023_05_25_09_30> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PC_2022_10_17> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_03> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_08> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_21> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_05_22> ,
-                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_WS_2023_07_24> ;
+                                                                                                                                                                                                        <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ET_WS_2023_06_26_11_00> ;
                                                                                                           <http://www.w3.org/2006/vcard/ns#hasGender> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Female> ;
                                                                                                           <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> "00003" ;
                                                                                                           <http://www.w3.org/2006/vcard/ns#bday> "1997-10-22T00:00:00"^^xsd:dateTime ;
@@ -4014,9 +4017,9 @@ It is deprecated in this edition of OWL-Time. """ ;
 <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#STU_00004_EMMA_MARRONE> rdf:type owl:NamedIndividual ,
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Person> ,
                                                                                                                   <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Student> ;
+                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendantOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_EMMA_MARRONE> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isClassStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#CL_002> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isManualStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01> ;
-                                                                                                         <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isStudentOf> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#LES_PM_2023_05_01> ;
                                                                                                          <http://www.w3.org/2006/vcard/ns#hasGender> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#GEN_Female> ;
                                                                                                          <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#student-id> "00004" ;
                                                                                                          <http://www.w3.org/2006/vcard/ns#bday> "1997-09-13T00:00:00"^^xsd:dateTime ;
@@ -4579,13 +4582,13 @@ It is deprecated in this edition of OWL-Time. """ ;
                                                                                        "一年"@zh .
 
 
-[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
 ] .
 
-[ xsd:pattern "--(0[1-9]|1[0-9]|20)(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
-[ xsd:pattern "---(0[1-9]|[1-9][0-9])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
+[ xsd:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?"
  ] .
 
 #################################################################
@@ -4964,14 +4967,6 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 <http://www.semanticweb.org/owl/owlapi/turtle#res> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-<http://www.semanticweb.org/owl/owlapi/turtle#workgroup> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#attendable> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
-<http://www.semanticweb.org/owl/owlapi/turtle#student> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
 <http://www.semanticweb.org/owl/owlapi/turtle#attTime> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <http://www.semanticweb.org/owl/owlapi/turtle#wrk> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -4980,11 +4975,17 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 <http://www.semanticweb.org/owl/owlapi/turtle#guest> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+<http://www.semanticweb.org/owl/owlapi/turtle#student> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 <http://www.semanticweb.org/owl/owlapi/turtle#creationDate> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <http://www.semanticweb.org/owl/owlapi/turtle#pinDuration> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 <http://www.semanticweb.org/owl/owlapi/turtle#result> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#workgroup> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "" ;
@@ -5142,68 +5143,6 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "" ;
-   rdfs:label "ValidateAttendanceStudentInsideWorkgroup" ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasClass> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass>
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isLessonOf> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendable> ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup>
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isAttendanceOf> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
-                                                                           ] ;
-                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasStudent> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
-                                                                                      ] ;
-                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#isPinOf> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attendable>
-                                                                                                 ] ;
-                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Attendance> ;
-                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
-                                                                                                            ] ;
-                                                                                                  rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                             rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
-                                                                                                                         <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
-                                                                                                                       ] ;
-                                                                                                             rdf:rest rdf:nil
-                                                                                                           ]
-                                                                                                ]
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
-                                                     ] ;
-                                           rdf:rest rdf:nil
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "" ;
    rdfs:label "ValidateAttendanceInDelay" ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
    <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
@@ -5286,6 +5225,54 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
                                                        <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ExternalGuestSeminar> ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "ValidateManualStudentAttendance" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#Lesson> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#ManualStudentAttendance> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
@@ -5431,6 +5418,124 @@ Note that the value-space is not defined, so a generic OWL2 processor cannot com
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#expiration-date> ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#result>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "ValidateAttendanceStudentInsideWorkgroup" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasClass> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasClassStudent> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AttendanceStudentInsideWorkgroup> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "" ;
+   rdfs:label "try" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasClass> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasLesson> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#workgroup> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasPin> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#lesson> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendance> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#pin> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasAttendant> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#attendance> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasClassStudent> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#builtin> <http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#select> ;
+                                                       <http://www.w3.org/2003/11/swrl#arguments> ( <http://www.semanticweb.org/owl/owlapi/turtle#wrkClass>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#workgroup>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#lesson>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#pin>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#attendance>
+                                                                                                    <http://www.semanticweb.org/owl/owlapi/turtle#student>
+                                                                                                  )
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]
