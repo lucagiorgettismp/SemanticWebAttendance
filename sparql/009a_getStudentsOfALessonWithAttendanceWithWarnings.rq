@@ -7,7 +7,7 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 # Students of the specified lesson and their attendance.
 SELECT DISTINCT ?student ?type ?warning ?info WHERE {
     {
-        ?lesson att:hasStudent ?student . 
+        ?lesson att:hasManualStudent ?student . 
     }
     UNION
     {
@@ -34,7 +34,7 @@ SELECT DISTINCT ?student ?type ?warning ?info WHERE {
         }
     }
 
-    FILTER (?lesson = att:LES_PM_2023_05_08)
+    FILTER (?lesson = att:LES_PM_2023_05_01)
 }
 
 ORDER BY ?student

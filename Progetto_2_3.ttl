@@ -206,7 +206,7 @@ attendance-ontology:hasLocation rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#hasManualStudent
 attendance-ontology:hasManualStudent rdf:type owl:ObjectProperty ;
                                      owl:inverseOf attendance-ontology:isManualStudentOf ;
-                                     rdfs:domain attendance-ontology:Attendable ;
+                                     rdfs:domain attendance-ontology:Lesson ;
                                      rdfs:range attendance-ontology:Student .
 
 
@@ -708,7 +708,8 @@ attendance-ontology:AT_PM_2023_05_01_CHIARA_BIANCHI rdf:type owl:NamedIndividual
 
 
 ###  http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#AT_PM_2023_05_01_EMMA_MARRONE
-attendance-ontology:AT_PM_2023_05_01_EMMA_MARRONE rdf:type owl:NamedIndividual ;
+attendance-ontology:AT_PM_2023_05_01_EMMA_MARRONE rdf:type owl:NamedIndividual ,
+                                                           attendance-ontology:AttendanceValid ;
                                                   attendance-ontology:hasAttendant attendance-ontology:STU_00004_EMMA_MARRONE ;
                                                   attendance-ontology:attendance-time "2023-05-01T10:19:00Z"^^xsd:dateTime .
 
