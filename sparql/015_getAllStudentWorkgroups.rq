@@ -6,7 +6,7 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 # Get all workgroups for a student
 SELECT ?workgroup ?da ?teacher ?term WHERE {
-    ?student att:isStudentOf ?class . 
+    ?student att:isClassStudentOf ?class . 
     ?class att:isClassOf ?workgroup .
     ?workgroup att:hasDidacticActivity ?da ;
         att:hasTeacher ?teacher ;

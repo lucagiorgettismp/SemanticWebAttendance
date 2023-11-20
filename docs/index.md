@@ -53,7 +53,7 @@ Il requisito principale è quello di avere un sistema informatico per registrare
 
 Di seguito viene riportato uno schema di massima della nostra ontologia:
 
-![Schema di massima](img/schema_di_massima.jpg)
+![Schema di massima](img/schema_di_massima.png)
 
 _Sopra: uno schema di massima della nostra ontologia_
 
@@ -63,7 +63,7 @@ _Sopra: uno schema di massima della nostra ontologia_
 
 Questa classe rappresenta una qualunque persona interagisca con il sistema.
 
-![Person Diagram](./img/attendance-Person.drawio.png)
+![Person Diagram](./img/person.png)
 
 **Data Properties**
 
@@ -156,8 +156,6 @@ Rappresenta la relazione tra:
 
 Rappresenta un gruppo di studenti iscritti ad un certo anno accademico.
 
-È sottoclasse di [StudentGroup](#student-group).
-
 **Object Properties**
 
 | Nome            | Dominio                 | Range               |
@@ -197,8 +195,6 @@ Da notare che questo concetto non viene completamente esaurito in questa ontolog
 | --------------------------------------------------- | ---------- | --------------------- |
 | hasLocation                                         | Attendable | [Location](#location) |
 | hasPin                                              | Attendable | [Pin](#pin)           |
-| [hasManualStudent](#hasstudent-vs-hasmanualstudent) | Attendable | [Student](#student)   |
-| hasStudent                                          | Attendable | [Student](#student)   |
 
 Possiamo affermare che la proprietà _hasPin_ è **inversamente funzionale**: infatti una lezione può avere molti pin, mentre ogni pin oggetto di questa relazione può averne una sola di questo tipo verso una lezione. Possiamo quindi dire che la relazione inversa di hasPin, ovvero isPinOf, è funzionale.
 
@@ -208,11 +204,14 @@ Rappresenta un lasso di tempo dove gli [studenti](#student) seguono un [docente]
 
 **Object Property**
 
-| Nome      | Dominio                 | Range             |
-| --------- | ----------------------- | ----------------- |
-| hasGuest  | Lesson                  | [Person](#person) |
-| hasLesson | [Workgroup](#workgroup) | Lesson            |
-| hasTutor  | Lesson                  | [Tutor](#tutor)   |
+| Nome      | Dominio                 | Range                 |
+| --------- | ----------------------- | --------------------- |
+| hasGuest  | Lesson                  | [Person](#person)     |
+| hasLesson | [Workgroup](#workgroup) | Lesson                | 
+| hasTutor  | Lesson                  | [Tutor](#tutor)       |
+| [hasManualStudent](#hasstudent-vs-hasmanualstudent) | Attendable | [Student](#student)   |
+
+
 
 Nella nostra ontologia sono presenti anche altre due risorse sottoclassi di questa:
 
@@ -245,9 +244,10 @@ Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su d
 
 **Object Property**
 
-| Nome    | Dominio       | Range     |
-| ------- | ------------- | --------- |
-| hasTurn | [Exam](#exam) | Exam Turn |
+| Nome       | Dominio       | Range                 |
+| ---------- | ------------- | --------------------- |
+| hasTurn    | [Exam](#exam) | Exam Turn             |
+| hasStudent | Attendable    | [Student](#student)   |
 
 ### Pin
 
@@ -387,7 +387,7 @@ attendance-ontology:hasGuest(?lesson, ?guest)
 
 Questa regola permetter di inferire se una lezione appartenga anche al tipo specifico _Seminar_.
 
-## ExternalGuestLesson
+## ExternalGuestSeminar
 
 ```swrl
 attendance-ontology:Seminar(?lesson) ^
@@ -398,20 +398,18 @@ attendance-ontology:External(?guest)
 
 Questa regola sfrutta la regola _Seminar_ e permette di inferire se una lezione appartenga anche al tipo specifico _ExternalGuestSeminar_.
 
-## ValidateAttendanceStudentInsideWorkgroup
+## ValidateManualStudentAttendance
 
 ```swrl
-attendance-ontology:hasClass(?workgroup, ?wrkClass) ^
-attendance-ontology:isLessonOf(?attendable, ?workgroup) ^
-attendance-ontology:isAttendanceOf(?attendance, ?pin) ^
-attendance-ontology:hasStudent(?wrkClass, ?student) ^
-attendance-ontology:isPinOf(?pin, ?attendable) ^
-attendance-ontology:Attendance(?attendance) ^
-attendance-ontology:hasAttendant(?attendance, ?student)
--> attendance-ontology:AttendanceStudentInsideWorkgroup(?attendance)
+attendance-ontology:hasPin(?lesson, ?pin) ^ 
+attendance-ontology:Lesson(?lesson) ^ 
+attendance-ontology:hasManualStudent(?lesson, ?student) ^ 
+attendance-ontology:hasAttendant(?attendance, ?student) ^ 
+attendance-ontology:hasAttendance(?pin, ?attendance) 
+-> attendance-ontology:ManualStudentAttendance(?attendance)
 ```
 
-Questa regola inferisce che una presenza è stata registrata da uno studente all'interno del workgroup. Infatti di norma non sarebbe permesso a studenti che non appartengano al workgroup per il quale è stata preparata una lezione o un esame di parteciparvi.
+Questa regola controlla se l'attendance in questione è stato eseguito o meno da uno studente inserito all'interno della lezione direttamente dal docente, senza essere all'interno della classe del workgroup della lezione.
 
 ## ValidateAttendanceInDelay
 
@@ -465,15 +463,15 @@ Selezioniamo l'ultimo pin valido per un attendable. Questa interrogazione viene 
 In questo caso l'Attendable da usare è già noto, basta ordinare per data di creazione decresente i Pin che sono di un certo Attendable e prendere solo il primo.
 
 ```sparql
-SELECT ?pin WHERE {
+SELECT ?pin ?code ?expirationDate WHERE {
     ?attendable att:hasPin ?pin .
     ?pin att:creation-date ?creationDate ;
         att:expiration-date ?expirationDate ;
         att:pin-code ?code .
 
     BIND( now() AS ?currentDateTime ) # Get current date time
-    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
     FILTER (?expirationDate >= ?currentDateTime)
+    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
 }
 
 ORDER BY DESC(?creationDate) LIMIT 1
@@ -496,7 +494,7 @@ Selezioniamo tutti i workgroup attivi per un utente per capire quali lezioni dov
 ```sparql
 # Retrieve all workgroup for a student.
 SELECT ?workgroup ?da ?teacher ?term WHERE {
-    ?student att:isStudentOf ?class .
+    ?student att:isClassStudentOf ?class . 
     ?class att:isClassOf ?workgroup .
     ?workgroup att:hasDidacticActivity ?da ;
         att:hasTeacher ?teacher ;
@@ -528,12 +526,11 @@ In questo caso devo recuperare da tutti pin usati per la lezione tutte le presen
 
 ```sparql
 # Retrieve all attendance from an attendable.
-SELECT ?attendance WHERE {
+SELECT ?student WHERE {
     ?attendable att:hasPin ?pin .
     ?pin att:hasAttendance ?attendance .
     ?attendance att:hasAttendant ?student ;
-        rdf:type ?type .
-    ?type rdfs:subClassOf att:AttendanceValid .
+        rdf:type att:AttendanceValid .
 
     FILTER (?attendable = att:LES_WS_2023_05_22) # This is the parameter
 }
@@ -552,74 +549,101 @@ Eseguendo questa interrogazione viene prodotto il risultato:
 ----------------------------
 ```
 
-## Studenti che possono sostenere l'esame (presenze > di tot %)
+## Studenti che non possono sostenere l'esame (presenze < di tot %)
 
-Otteniamo tutti gli studenti che hanno una percentuale di presenza maggiore rispetto ad una certa soglia (nel nostro esempio 50%).
+Otteniamo tutti gli studenti che sono iscritti ad un esame ma che non hanno la percentuale di presenza superiore ad una certa soglia (nel nostro esempio 75%).
 
 ```sparql
-# Students having a presence frequency at DA_WebSemantico higher (or equal) to 50%
+# Get all student not admittable to an exam of a given workgroup. 
 SELECT ?student ?percentage WHERE {
-		{
-		SELECT ?student (count(?attendance) AS ?tot_freq) WHERE {
+    # Get all students attending the exam.
+    {
+        SELECT ?wrk ?student WHERE {
+            ?wrk att:hasExam ?exam .
+            ?exam att:hasTurn ?turn .
+            ?turn att:hasStudent ?student . 
+        }
+    }
+    # Get all attendances of them.
+    {
+        SELECT ?wrk ?student (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
-            ?class att:hasStudent ?student .
-
+            ?class att:hasClassStudent ?student .
+            
             OPTIONAL {
                 ?wrk att:hasLesson ?lesson .
                 ?lesson att:hasPin ?pin .
                 ?pin att:hasAttendance ?attendance .
                 ?attendance att:hasAttendant ?student ;
-                    rdf:type ?type .
-                ?type rdfs:subClassOf att:AttendanceValid .
+                    rdf:type att:AttendanceValid .
             }
-
-            FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
+        }
+        
+        GROUP BY ?wrk ?student
+    }
+    # Get all expected attendances by them.
+    {
+        SELECT ?wrk (count(?lesson) AS ?tot) WHERE {
+            ?wrk att:hasLesson ?lesson .
         }
 
-        GROUP BY ?student
-	}
-	{
-		SELECT (count(?lesson) AS ?tot) WHERE {
-			?wrk att:hasLesson ?lesson .
-			FILTER (?wrk = att:WRK_CL_001_DA_WebSemantico_2023)
-		}
-	}
+        GROUP BY ?wrk
+    }
 
-	FILTER (?percentage > 50)
+    # Get the percentage of attended lessons.
+    BIND ((?tot_freq / ?tot * 100) AS ?percentage)
+    # Filter them by Workgroup and percentage.
+    FILTER (?percentage < 75)
+    FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
 }
+
 ```
 
 Eseguendo questa interrogazione viene prodotto il risultato:
 
 ```sh
---------------------------------------------------------
-| student                  | percentage                |
-========================================================
-| att:STU_00001_MarioRossi | 66.6666666666666666666667 |
---------------------------------------------------------
+-----------------------------------------------------------
+| student                     | percentage                |
+===========================================================
+| att:STU_00002_LuigiVerdi    | 66.6666666666666666666667 |
+| att:STU_00003_ChiaraBianchi | 66.6666666666666666666667 |
+-----------------------------------------------------------
 ```
 
 ## Registro delle presenze
 
 ```sparql
-SELECT DISTINCT ?student ?type WHERE {
-    ?lesson att:hasStudent ?student .
+# Students of the specified lesson and their attendance.
+SELECT DISTINCT ?student ?type ?warning ?info WHERE {
+    {
+        ?lesson att:hasManualStudent ?student . 
+    }
+    UNION
+    {
+        ?lesson att:isLessonOf ?workgroup .
+        ?workgroup att:hasClass ?class . 
+        ?class att:hasClassStudent ?student .
+    }
 
-    OPTIONAL {
+    OPTIONAL { 
         ?lesson att:hasPin ?pin .
         ?pin att:hasAttendance ?attendance .
         ?attendance att:hasAttendant ?student ;
             rdf:type ?type .
-        {
-            ?type rdfs:subClassOf att:AttendanceValid .
+        ?type rdfs:subClassOf att:AttendanceState .
+
+        OPTIONAL {
+            ?attendance rdf:type ?warning.
+            ?warning rdfs:subClassOf att:AttendanceWarning .
         }
-        UNION
-        {
-            ?type rdfs:subClassOf att:AttendanceNotValid .
+
+        OPTIONAL {
+            ?attendance rdf:type ?info.
+            ?info rdfs:subClassOf att:AttendanceInfo .
         }
     }
 
-    FILTER (?lesson = att:LES_WS_2023_05_22)
+    FILTER (?lesson = att:LES_PM_2023_05_01)
 }
 
 ORDER BY ?student
@@ -628,13 +652,15 @@ ORDER BY ?student
 Eseguendo questa interrogazione viene prodotto il risultato:
 
 ```sh
---------------------------------------------------------------
-| student                     | type                         |
-==============================================================
-| att:STU_00001_MarioRossi    | att:AttendanceValidPresent   |
-| att:STU_00002_LuigiVerdi    | att:AttendanceValidWithDelay |
-| att:STU_00003_ChiaraBianchi |                              |
---------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------
+| student                     | type                   | warning                         | info                        |
+========================================================================================================================
+| att:STU_00001_MarioRossi    | att:AttendanceValid    | att:AttendanceInDelay           |                             |
+| att:STU_00002_LuigiVerdi    | att:AttendanceNotValid | att:AttendanceInDelay           |                             |
+| att:STU_00002_LuigiVerdi    | att:AttendanceNotValid | att:AttendanceRemoteUnavailable |                             |
+| att:STU_00003_ChiaraBianchi | att:AttendanceValid    | att:AttendanceInDelay           |                             |
+| att:STU_00004_EMMA_MARRONE  | att:AttendanceValid    | att:AttendanceInDelay           | att:ManualStudentAttendance |
+------------------------------------------------------------------------------------------------------------------------
 ```
 
 ## Workgroup poco partecipati
@@ -642,70 +668,69 @@ Eseguendo questa interrogazione viene prodotto il risultato:
 Secondo noi è anche interessante sapere quali siano i Workgroup con scarsa partecipazione. Possiamo avere bisogno di sapere quali siano le Attività Didattiche che riscontrano poco successo tra gli studenti per capire come migliorarle o come sostituirle negli anni successivi.
 
 ```sparql
+# Get all workgroups with attendance rate under 50%.
 SELECT ?wrk ?rapporto WHERE {
     {
-        # Recupero tutte le presenze di un workgroup e ne ottengo il numero totale.
+        # Get all attendances of all workgroups.
         SELECT ?wrk (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
-            ?class att:hasStudent ?student .
-
+            ?class att:hasClassStudent ?student .
+            
             OPTIONAL {
                 ?wrk att:hasLesson ?lesson .
                 ?lesson att:hasPin ?pin .
                 ?pin att:hasAttendance ?attendance .
                 ?attendance att:hasAttendant ?student ;
-                    rdf:type ?type .
-                ?type rdfs:subClassOf att:AttendanceValid .
+                    rdf:type att:AttendanceValid .
             }
         }
 
         GROUP BY ?wrk
     }
     {
-        # Lo devo rapportare al numero totale di presenze che mi sarei aspettato in quel workgroup.
+        # Get all maximum presences of stedents.
         SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
             ?wrk att:hasClass ?class .
-            ?class att:hasStudent ?student .
-
+            ?class att:hasClassStudent ?student .
+            
             OPTIONAL {
                 ?wrk att:hasLesson ?lesson .
             }
         }
-
+        
         GROUP BY ?wrk
     }
-
-    # Calcolo e filtro il rapporto.
+    
+    # Calculate the attendance rate.
     BIND (?tot_freq / ?exp_freq * 100 AS ?rapporto)
-    FILTER (?rapporto < 30)
+    FILTER (?rapporto < 50)
 }
 ```
 
 Eseguendo questa interrogazione viene prodotto il risultato:
 
 ```sh
---------------------------------------------------------
-| wrk                                       | rapporto |
-========================================================
-| att:WRK_CL_002_DA_ProjectManagement_2023  | 0.0      |
-| att:WRK_CL_002_DA_WebSemantico_2023       | 0.0      |
-| att:WRK_CL_001_DA_ProjectManagement_2023  | 0.0      |
-| att:WRK_CL_001_DA_PervasiveComputing_2023 | 0.0      |
---------------------------------------------------------
+-------------------------------------------------------------------------
+| wrk                                       | rapporto                  |
+=========================================================================
+| att:WRK_CL_002_DA_ProjectManagement_2023  | 0.0                       |
+| att:WRK_CL_002_DA_WebSemantico_2023       | 0.0                       |
+| att:WRK_CL_001_DA_PervasiveComputing_2023 | 0.0                       |
+| att:WRK_CL_001_DA_WebSemantico_2023       | 44.4444444444444444444444 |
+-------------------------------------------------------------------------
 ```
 
 # Futuri sviluppi
 
-- [**!!!! BUGIA !!!! Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone. Di questa conoscenza ne viene usata tuttavia solamente una piccola parte, dato che a noi interessa esclusivamente, a questo livello, descrivere le relative lavorative tra esse. Di questa ontologia potrebbero essere utilizzati anche:
+- [Foaf](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone. Di questa ontologia potrebbero essere utilizzati ad esempio:
 
   - [foaf:knows](http://xmlns.com/foaf/0.1/#term_knows)
 
     Potrebbero essere create proprietà da inferire come: compagni di classe (tra studenti), colleghi di lavoro (tra docenti), ecc...
 
   - [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
-  - [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
 
-    Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
+    Un relatore di un seminario potrebbe infatti aver pubblicato libri e articoli.
 
 # Conclusioni
 
