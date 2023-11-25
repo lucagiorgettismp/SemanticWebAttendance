@@ -3,6 +3,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
 
 # Description of this awesome query
 SELECT ?pin ?code ?attendable ?expirationDate WHERE {
@@ -11,8 +12,11 @@ SELECT ?pin ?code ?attendable ?expirationDate WHERE {
         att:expiration-date ?expirationDate ;
         att:pin-code ?code .
 
-    BIND( now() AS ?currentDateTime ) # Get current date time
-    FILTER (?expirationDate >= ?currentDateTime)
+    BIND( xsd:dateTime("2023-06-26T11:42:00Z") AS ?queriedDateTime ) # Get current date time
+    #BIND( now() AS ?queriedDateTime ) # Get current date time
+
+    FILTER (?expirationDate > ?queriedDateTime)
+    FILTER (?creationDate < ?queriedDateTime)
 }
 
-ORDER BY ?pin
+ORDER BY ?expirationDate
