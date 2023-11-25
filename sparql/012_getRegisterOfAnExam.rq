@@ -21,4 +21,4 @@ SELECT ?student ?turn ?type WHERE {
     FILTER (?exam = att:EX_WS_2023_06_26)
 }
 
-ORDER BY ?student
+ORDER BY ?turn ?student
