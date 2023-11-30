@@ -105,7 +105,7 @@ Chi aiuta a gestire una specifica lezione.
 
 #### Student
 
-Chi partecipa alle lezioni e agli esmi.
+Chi partecipa alle lezioni e agli esami.
 
 **Data Properties**
 
@@ -123,7 +123,7 @@ Chi non fa parte dell'organizzazione scolastica, ma viene invitato per tenere se
 | ----------------- | ------ |
 | organization name | string |
 
-Abbiamo quindi dichiarato questa risorsa DisjointWith con le altre sotto classi di Person: infatti una persona o appartiene all'università o ad una organizzazione esterna.
+Abbiamo quindi dichiarato questa risorsa DisjointWith con le altre sottoclassi di Person: infatti una persona o appartiene all'università o ad un'organizzazione esterna.
 
 ### Workgroup
 
@@ -175,7 +175,7 @@ Rappresenta un corso di studio insegnato nella scuola.
 
 ### Attendable
 
-Rappresenta una attività sulla quale può essere registrata una presenza.
+Rappresenta un'attività sulla quale può essere registrata una presenza.
 
 ![Attendable Diagram](./img/attendable.png)
 
@@ -217,7 +217,7 @@ Nella nostra ontologia sono presenti anche altre due risorse sottoclassi di ques
 
 - **Seminar**: Seminario tenuto da una persona diversa dal titolare dell'insegnamento.
 
-- **External Guest Seminar**: Sottoclasse di Seminar, contraddistingue i seminari da un ospire esterno all'università, invitato dal docente. Nella nostra ontologia questo è rappresentato dalla classe [External](#external).
+- **External Guest Seminar**: Sottoclasse di Seminar, contraddistingue i seminari da un ospite esterno all'università, invitato dal docente. Nella nostra ontologia questo è rappresentato dalla classe [External](#external).
 
 ### Exam
 
@@ -240,7 +240,7 @@ Rappresenta l'insieme di prove d'esame degli [studenti](#student) per un determi
 
 Rappresenta un lasso di tempo dove una parte di studenti iscritti ad un esame svolge la propria prova. Questa divisione è necessaria in quanto non sempre negli atenei sono presenti aule abbastanza capienti per contenere tutti gli studenti contemporaneamente.
 
-Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra i presenti (in un'aula da 200 persone, potrebbero riuscirci a stare soltato 50 persone durante un'esame).
+Tra le varie motivazioni, ci può essere la necessità di svolgere la prova su dei supporti specifici (come dei computer per le prove di informatica) o per via del distanziamento tra i presenti (in un'aula da 200 persone, potrebbero riuscire a stare soltanto 50 persone durante un'esame).
 
 **Object Property**
 
@@ -283,7 +283,7 @@ Rappresenta una registrazione di una presenza.
 
 La registrazione richiede un [Pin](#pin) associato ad un [Attendable](#attendable), cioè un impegno sul quale possa essere registrata una presenza.
 
-Questa registrazione tiene traccia della presenza/assenza di un partecipante. Inoltre tiene conto anche del fatto che uno studente presente sia entrato puntuale o sia essendo in ritardo, se si sia registrato da remoto e se sia iscritto al workgroup dell'attendable in questione.
+Questa registrazione tiene traccia della presenza/assenza di un partecipante. Inoltre tiene conto anche del fatto che uno studente rilevato come presente sia puntuale o in ritardo, se sia stato aggiunto manualmente dal docente all’Attendable e se si sia registrato da Remoto nonostante non sia consentito da un determinato Attendance.
 
 Le presenze _Valide_ e _Invalide_, sono insiemi disgiunti di classi. In questo ci è venuta in aiuto l'espressività concessa da OWL. Abbiamo potuto esprimere questo fatto con le seguenti regole:
 
@@ -293,23 +293,18 @@ attendance-ontology:AttendanceNotValid rdf:type owl:Class ;
     owl:disjointWith attendance-ontology:AttendanceValid .
 ```
 
-Le varie possibilità offerte attualmente dall'ontologia sono:
+Un Attendance può essere contraddistinto da:
 
-- Registrazione non valida (AttendanceNotValid):
+- **AttendanceState**: esito della rilevazione (AttendanceValid o AttendanceNotValid) inserito dall’applicazione.
+- **AttendanceDetail**: rappresenta informazioni (AttendanceInfo) e warning (AttendanceWarning) che vengono inferiti dalle SWRL rules.
+- **RemoteAttendance**: rilevazione effettuata da remoto, è contraddistinta da latitudine e longitudine.
 
-  - <a id="AttendanceNotValidAlreadySubmitted">Registrazione già sottoposta (AttendanceNotValidAlreadySubmitted)</a>: uno studente si è sbagliato e ha registrato più di una volta la sua presenza sulla stessa lezione
+Una AttendanceInfo che al momento viene inferita è **ManualStudentAttendance**, ovvero se la rilevazione fa riferimento ad uno studente aggiunto manualmente dal docente.
 
-  - <a id="AttendanceNotValidOutOfWorkgroup">Registrazione di uno studente fuori workgroup (AttendanceNotValidOutOfWorkgroup)</a>: uno studente si è registrato alla lezione nonostante non sia interno al workgroup della lezione e non fosse segnato tra gli studenti al quale è consentito come studenti manuali
+AttendanceWarning al momento include warning relativi a:
 
-  - <a id="AttendanceNotValidWithDelay">Registrazione con ritardo (AttendanceNotValidWithDelay)</a>: questa classe differisce da [AttendanceValidWithDelay](#attendancevalidwithdelay) in quanto il ritardo il questione è così tanto da non poter più considerare valida la presenza allo studente
-
-- Registrazione valida (AttendanceValid):
-
-  - <a id="AttendanceValidPresent">Registrazione valida (AttendanceValidPresent)</a>: la presenza dello studente è stata registrata entro l'inizio della lezione
-
-  - <a id="AttendanceValidWithDelay">Registrazione con ritardo (AttendanceValidWithDelay)</a>: questa classe differisce da [AttendanceNotValidWithDelay](#AttendanceNotValidWithDelay) in quanto il ritardo in questo caso non è così tanto da considerare invalida la presenza allo studente
-
-Le registrazioni fatte da remoto sono contraddistinte dalla proprità remote settata a `true`. In questo caso subentra il controllo da parte della regola [RemoteAttendance](#remoteattendance) che verifica se un attendance eseguito da remoto è consentito dall'attendable stesso, tramite la proprietà remote allowed.
+- **AttendanceInDelay**: attendance effettuato oltre al tempo di scadenza del pin
+- **AttendanceRemoteUnavailable**: attendance eseguito da remoto per un Attendable che non lo consente.
 
 **Data Property**
 
@@ -331,8 +326,6 @@ Di seguito vengono specificate le principali Object Properties modellate.
 ### hasStudent vs hasManualStudent
 
 La proprietà hasStudent esprime un elenco di studenti che ci si aspetta si registrino ad un Attendable, in quanto appartenenti alle classi del workgroup associato. La seconda invece esprime un elenco di studenti aggiunti a posteriori ad un Attendable. In genere questi vengono aggiunti a mano da un operatore su richiesta di un ufficio o di un dipartimento, perché si intende fare seguire ad uno studente una lezione, per via di un dottorato in corso o altre esigenze di formazione degli studenti.
-
-Quindi nella nostra ontologia abbiamo modellato hasManualStudent come sotto proprietà di hasStudent, in quanto tutti gli studenti aggiunti come manuali sono comunque degli studenti registrabili.
 
 # Regole Semantiche
 
@@ -361,22 +354,6 @@ swrlb:addDayTimeDurationToDateTime(?result, ?creationDate, ?pinDuration)
 
 Questa regola consente di valorizzare l'orario di scadenza di un Pin in base alla sua data di creazione. Nell'ontologia di esempio proposta, abbiamo assunto che tutti i Pin abbiano una durata di 15 minuti di durata. Tuttavia la regola non viene effettivamente utilizzata poiché Protégé non riesce ad elaborarla attraverso il tool integrato in esso _Drool rule engine_ o _Pellet_. Abbiamo infatti realizzato la query `PinExpirationDateQueryRule`, per dimostrare che la regola PinExpirationDate sia formulata correttamente.
 
-## RemoteAttendance
-
-```swrl
-attendance-ontology:Lesson(?lesson) ^
-attendance-ontology:Pin(?pin) ^
-attendance-ontology:hasPin(?lesson, ?pin) ^
-attendance-ontology:Attendance(?attendance) ^
-attendance-ontology:hasAttendance(?pin, ?attendance) ^
-attendance-ontology:RemoteAttendance(?attendance) ^
-attendance-ontology:allow-remote(?lesson, ?remote_val) ^
-swrlb:notEqual(?remote_val, true)
--> attendance-ontology:AttendanceNotValidNoRemoteAllowed(?attendance)
-```
-
-Questa regola permette di inferire l'appartenenza alla classe AttendanceNotValidNoRemoteAllowed per tutti gli Attendance che hanno la data property _remote_ valorizzata a `true` ma che sono stati registrati per un Attendable con _allow remote_ settato a `false`.
-
 ## Seminar
 
 ```swrl
@@ -385,7 +362,7 @@ attendance-ontology:hasGuest(?lesson, ?guest)
 -> attendance-ontology:Seminar(?lesson)
 ```
 
-Questa regola permetter di inferire se una lezione appartenga anche al tipo specifico _Seminar_.
+Questa regola permette di inferire se una lezione appartenga anche al tipo specifico _Seminar_.
 
 ## ExternalGuestSeminar
 
@@ -409,7 +386,7 @@ attendance-ontology:hasAttendance(?pin, ?attendance)
 -> attendance-ontology:ManualStudentAttendance(?attendance)
 ```
 
-Questa regola controlla se l'attendance in questione è stato eseguito o meno da uno studente inserito all'interno della lezione direttamente dal docente, senza essere all'interno della classe del workgroup della lezione.
+Questa regola controlla se l'attendance in questione è stata eseguita o meno da uno studente inserito all'interno della lezione direttamente dal docente, senza essere all'interno della classe del workgroup della lezione.
 
 ## ValidateAttendanceInDelay
 
@@ -456,11 +433,22 @@ Tramite questa sintassi esprimiamo alcune delle più comuni query che potrebbero
 
 Il codice di tutte le query generate per il progetto può essere consultato su [Github](https://github.com/lucagiorgietti)
 
+```sparql
+Esse devono essere eseguite tutte con i seguenti prefissi:
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX att: <http://www.semanticweb.org/part-time-team/ontologies/2023/5/attendance-ontology#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+```
+In questi esempi sono stati omessi per leggibilità.
+
 ## Ultimo pin valido per un determinato attendable
 
 Selezioniamo l'ultimo pin valido per un attendable. Questa interrogazione viene usata quando si vuole presentare il pin sul quale gli studenti possono registrare la loro presenza.
 
-In questo caso l'Attendable da usare è già noto, basta ordinare per data di creazione decresente i Pin che sono di un certo Attendable e prendere solo il primo.
+In questo caso l'Attendable da usare è già noto, basta ordinare per data di creazione decrescente i Pin che sono di un certo Attendable e prendere solo il primo.
 
 ```sparql
 SELECT ?pin ?code ?expirationDate WHERE {
@@ -469,9 +457,11 @@ SELECT ?pin ?code ?expirationDate WHERE {
         att:expiration-date ?expirationDate ;
         att:pin-code ?code .
 
-    BIND( now() AS ?currentDateTime ) # Get current date time
+    # Get current date time
+    BIND( now() AS ?currentDateTime )
     FILTER (?expirationDate >= ?currentDateTime)
-    FILTER (?attendable = att:LES_WS_2023_05_21) # This is the parameter
+    # This is the parameter
+    FILTER (?attendable = att:LES_WS_2023_05_21)
 }
 
 ORDER BY DESC(?creationDate) LIMIT 1
@@ -492,7 +482,7 @@ Eseguendo questa interrogazione viene prodotto il risultato:
 Selezioniamo tutti i workgroup attivi per un utente per capire quali lezioni dovrà seguire o quali esami sostenere.
 
 ```sparql
-# Retrieve all workgroup for a student.
+# Retrieve all workgroups for a student.
 SELECT ?workgroup ?da ?teacher ?term WHERE {
     ?student att:isClassStudentOf ?class . 
     ?class att:isClassOf ?workgroup .
@@ -554,7 +544,7 @@ Eseguendo questa interrogazione viene prodotto il risultato:
 Otteniamo tutti gli studenti che sono iscritti ad un esame ma che non hanno la percentuale di presenza superiore ad una certa soglia (nel nostro esempio 75%).
 
 ```sparql
-# Get all student not admittable to an exam of a given workgroup. 
+# Get all students not admittable to an exam of a given workgroup. 
 SELECT ?student ?percentage WHERE {
     # Get all students attending the exam.
     {
@@ -564,7 +554,7 @@ SELECT ?student ?percentage WHERE {
             ?turn att:hasStudent ?student . 
         }
     }
-    # Get all attendances of them.
+    # Get all their attendances.
     {
         SELECT ?wrk ?student (count(?attendance) AS ?tot_freq) WHERE {
             ?wrk att:hasClass ?class .
@@ -688,7 +678,7 @@ SELECT ?wrk ?rapporto WHERE {
         GROUP BY ?wrk
     }
     {
-        # Get all maximum presences of stedents.
+        # Get all maximum presences of students.
         SELECT ?wrk (count(?student) AS ?exp_freq) WHERE {
             ?wrk att:hasClass ?class .
             ?class att:hasClassStudent ?student .
@@ -720,39 +710,216 @@ Eseguendo questa interrogazione viene prodotto il risultato:
 -------------------------------------------------------------------------
 ```
 
-# Futuri sviluppi
+## Studenti non partecipanti ad un esame
+Questa query restituisce gli studenti che non partecipano ad un esame nonostante siano attesi.
 
-- [Foaf](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone. Di questa ontologia potrebbero essere utilizzati ad esempio:
+```sparql
+# Get all the students not attending an exam.
+SELECT ?turn ?student WHERE {
+    	# Get all students expected for the exam
+	{
+    	SELECT ?exam ?turn ?student WHERE {
+        	?wrk att:hasExam ?exam .
+        	?exam att:hasTurn ?turn .
+        	?turn att:hasStudent ?student .
+    	}
+	}
+	MINUS
+	# Get all students attending the exam.
+	{
+    	SELECT ?exam ?turn ?student WHERE {
+        	?wrk att:hasExam ?exam .
+        	?exam att:hasTurn ?turn .
+        	?turn att:hasStudent ?student .
 
-  - [foaf:knows](http://xmlns.com/foaf/0.1/#term_knows)
+        	?turn att:hasPin ?pin .
+        	?pin att:hasAttendance ?attendance .
+        	?attendance att:hasAttendant ?student ;
+            	rdf:type att:AttendanceValid .
+    	}
+	}
 
-    Potrebbero essere create proprietà da inferire come: compagni di classe (tra studenti), colleghi di lavoro (tra docenti), ecc...
+	FILTER (?exam = att:EX_WS_2023_06_26)
+}
+```
 
-  - [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
+Produce il seguente risultato:
+```sh
+------------------------------------------------------------
+| turn                       | student                     |
+============================================================
+| att:ET_WS_2023_06_26_11_00 | att:STU_00003_ChiaraBianchi |
+------------------------------------------------------------
+```
 
-    Un relatore di un seminario potrebbe infatti aver pubblicato libri e articoli.
+## Lezioni con un ospite
+Con questa query otteniamo tutte le lezioni che hanno un ospite:
+
+```sparql
+# Get lessons with guests
+SELECT ?lesson ?type ?name ?surname ?organization WHERE {
+    ?lesson att:hasGuest ?guest .
+    ?guest vcard:given-name ?name ;
+   	 vcard:family-name ?surname ;
+   	 rdf:type ?type .
+    ?type rdfs:subClassOf att:Person .
+    ?lesson att:start-time ?time .
+    
+    BIND( year(?time) AS ?year ) # Get current date time
+
+    OPTIONAL {
+   	 ?guest vcard:organization-name ?organization .
+    }
+
+    FILTER (?year = 2023)
+}
+```
+
+Eseguendo questa query otteniamo come risultato:
+```sh
+--------------------------------------------------------------------------
+| lesson                | type         | name   | surname | organization |
+==========================================================================
+| att:LES_PM_2023_05_01 | att:External | "Elon" | "Musk"  | "Tesla"      |
+--------------------------------------------------------------------------
+```
+
+## Aule libere
+Questa query recupera l’elenco delle aule libere in uno slot temporale:
+
+```sparql
+# Get all the free locations in a given time slot.
+SELECT ?location WHERE {
+	?location att:location-code ?code ;
+    	rdf:type ?type .
+	?type rdfs:subClassOf att:Location .
+
+	{
+    		?location rdf:type att:Lab .
+	}
+	UNION
+	{
+    		?location rdf:type att:Room .
+	}
+    
+	MINUS {
+    	SELECT ?location WHERE {
+        	?attendable rdf:type att:Lesson .
+        	BIND( "2023-07-24T17:00:00"^^xsd:dateTime AS ?currentDateTime ) # Get current date time
+
+        	?attendable att:start-time ?starttime ;
+            	att:end-time ?endtime .
+        	?attendable att:hasLocation ?location .
+        	FILTER (?starttime <= ?currentDateTime && ?endtime >= ?currentDateTime)
+    	}
+	}
+}
+```
+
+Eseguendo questa query otteniamo:
+```sh
+-------------------------
+| location              |
+=========================
+| att:LOC_ROOM_AULA_2.6 |
+| att:LOC_LAB_3.1       |
+| att:LOC_LAB_3.2       |
+-------------------------
+```
+
+## Percentuale lezioni in ritardo
+Questa query calcola la percentuale di lezioni in ritardo per ogni studente per un determinato workgroup:
+
+```sparql
+# Percentage of lessons in delay for students of WRK_CL_001_DA_WebSemantico_2023
+SELECT ?student ?tot_attendance ?tot_delays (?tot_delays / ?tot_attendance * 100 AS ?delay_percentage) WHERE {
+	{
+    	SELECT ?student (count(?attendance) AS ?tot_attendance) WHERE {
+        	?wrk att:hasLesson ?lesson .
+        	?lesson att:hasPin ?pin .
+        	?pin att:hasAttendance ?attendance .
+        	?attendance rdf:type att:AttendanceValid ;
+            	att:hasAttendant ?student .
+
+   		 FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
+    	}
+
+    	GROUP BY ?student
+	}
+
+	{
+    	SELECT ?student (count(?attendance) AS ?tot_delays) WHERE {
+        	?wrk att:hasLesson ?lesson .
+        	?lesson att:hasPin ?pin .
+        	?pin att:hasAttendance ?attendance .
+        	?attendance rdf:type att:AttendanceValid ;
+            	rdf:type att:AttendanceInDelay ;
+            	att:hasAttendant ?student .
+
+        	FILTER (?wrk = att:WRK_CL_001_DA_ProjectManagement_2023)
+    	}
+
+    	GROUP BY ?student
+	}
+}
+
+ORDER BY ?student
+```
+
+Eseguendo otteniamo:
+```sh
+-----------------------------------------------------------------------------------------
+| student                     | tot_attendance | tot_delays | delay_percentage          |
+=========================================================================================
+| att:STU_00001_MarioRossi    | 3              | 1          | 33.3333333333333333333333 |
+| att:STU_00002_LuigiVerdi    | 2              | 2          | 100.0                     |
+| att:STU_00003_ChiaraBianchi | 2              | 2          | 100.0                     |
+| att:STU_00004_EMMA_MARRONE  | 1              | 1          | 100.0                     |
+-----------------------------------------------------------------------------------------
+```
+## Pin ancora validi
+Questa query recupera tutti i pin ancora validi in un determinato momento:
+
+```sparql
+# Description of this awesome query
+SELECT ?pin ?code ?attendable ?expirationDate WHERE {
+	?attendable att:hasPin ?pin .
+	?pin att:creation-date ?creationDate ;
+    	att:expiration-date ?expirationDate ;
+    	att:pin-code ?code .
+
+	BIND( xsd:dateTime("2023-06-26T11:42:00Z") AS ?queriedDateTime ) # Get current date time
+	#BIND( now() AS ?queriedDateTime ) # Get current date time
+
+	FILTER (?expirationDate > ?queriedDateTime)
+	FILTER (?creationDate < ?queriedDateTime)
+}
+
+ORDER BY ?expirationDate
+```
+
+Eseguendo otteniamo:
+```sh
+----------------------------------------------------------------------------------------------------------
+| pin          | code                | attendable                 | expirationDate                       |
+==========================================================================================================
+| att:PIN_WS_4 | "883065"^^xsd:token | att:ET_WS_2023_06_26_11_00 | "2023-06-26T11:45:00Z"^^xsd:dateTime |
+----------------------------------------------------------------------------------------------------------
+```
 
 # Conclusioni
 
-Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere aperti all'innovazione, al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo ciò avviene raramente (purtroppo) e quando accade che i dati debbano essere condivisi con altri partner dei nostri clienti, occorre ogni volta spendere tantissime ore per trasmettere il knowhow e concordare la struttura dei dati esposti. Sarebbe utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale.
+Le tecnologie studiate durante questo corso trovano molto successo in ambienti nei quali è fondamentale essere aperti all'innovazione, al cambiamento e all'integrazione con altri sistemi e basi di conoscenza. Nel nostro ambito lavorativo (il mondo delle università) spesso accade che ci si debba interfacciare con dati provenienti da altri fornitori, o che siamo noi a doverli trasmettere, e occorre ogni volta spendere tantissime ore per trasmettere il know how e concordare la struttura dei dati esposti. Sarebbe utile avere la possibilità di integrare anche la conoscenza in modo veloce tra i vari fornitori di servizi informatici di un ateneo o di un apparato scolastico nazionale.
 
-Poter ottenere il numero di persone che eseguono un test di ingresso su scala nazionale, la loro distribuzione, sapere per ogni facoltà quali sono i corsi più o meno frequentati permetterebbe di prendere decisioni direzionali da parte del governo e dei rettori delle università.
+Un sistema basato su una ontologia condivisa permetterebbe di ottenere informazioni importanti, come ad esempio il numero di persone che eseguono un test di ingresso su scala nazionale, la loro distribuzione, sapere per ogni facoltà quali sono i corsi più o meno frequentati permetterebbe di prendere decisioni direzionali da parte del governo e dei rettori delle università.
 
 Allo stesso tempo, avere una ontologia che descrive in maniera sempre più completa la presenza degli utenti a lezione, permetterebbe al personale scolastico di eseguire query ad-hoc per avere un'idea precisa del dimensionamento necessario delle aule, del potenziale numero di parcheggi necessari e della eventuale necessità di dividere la classe in sottogruppi.
 
 Durante lo sviluppo dell'ontologia, come già descritto precedentemente, abbiamo notato la carenza di piattaforme open e free efficaci per lavorare con queste tecnologie a parte Protégé. Moltissimi software per validare, eseguire query, rappresentare grafici delle ontologie non sono più mantenuti oppure hanno una scarsa documentazione. Anche il supporto da parte della comunità non è stato sempre dei migliori, essendoci trovati ad affrontare problemi piuttosto comuni che non avevano risposte sui forum online o su Stack Overflow.
 
-Nonostante i nostri sforzi, non siamo riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto. Infatti, tramite le Github Actions riusciamo soltanto a controllare le query eseguite sull'ontologia già arricchità della conoscienza inferita dal reasoner. Questa ontologia arricchita, come _artefatto_ risultato di una computazione, non è bene che sia tracciato sul sistema di versioning, dovrebbe essere generato all'occorrenza. Lanciando Pellet e altri reasoner da linea di comando, il risultato ottenuto era differente da quello prodotto da Pellet all'interno di Protégé.
+Nonostante i nostri sforzi, non siamo riusciti a creare un efficace sistema di Continuous Integration che, data la nostra ontologia, effettuasse prima l'inferenza e poi un controllo di validità su tutte le query che venivano aggiunte al progetto. Infatti, tramite le Github Actions riusciamo soltanto a controllare le query eseguite sull'ontologia già arricchita della conoscenza inferita dal reasoner. Questa ontologia arricchita, come artefatto risultato di una computazione, non è bene che sia tracciato sul sistema di versioning, dovrebbe essere generato all'occorrenza. Lanciando Pellet e altri reasoner da linea di comando, il risultato ottenuto era differente da quello prodotto dall’utilizzo dello stesso Pellet all'interno di Protégé.
 
-Ulteriori sviluppi dell'ontologia potrebbero essere:
+Nonostante le difficoltà, l’ontologia sviluppata permette di interrogare il sistema ed ottenere informazioni in maniera piuttosto completa. 
 
-- uso di [**Foaf**](http://xmlns.com/foaf/0.1/#): per descrivere le relazioni tra le persone, lavorative tra i docenti, tra i docenti e gli esterni, tra i docenti e gli studenti e così via... Di questa ontologia potrebbero essere utilizzati anche:
+In futuro l’ontologia potrebbe integrare l’ontologia Foaf per esprimere le relazioni tra le persone, lavorative tra i docenti, tra i docenti e gli esterni, tra i docenti e gli studenti e così via, cosa che non era nell'intento di questo progetto. Inoltre potrebbe essere ampliata includendo informazioni ed altre ontologie su corsi universitari, docenti, studenti e tutto quello che è di interesse per quanto riguardo l’ambito del mondo universitario.
 
-  - [foaf:knows](http://xmlns.com/foaf/0.1/#term_knows)
-
-    Potrebbero essere create proprietà da inferire come: compagni di classe (tra studenti), colleghi di lavoro (tra docenti), ecc...
-
-  - [foaf:publications](http://xmlns.com/foaf/0.1/#term_publications)
-  - [foaf:Organization](http://xmlns.com/foaf/0.1/#term_Organization)
-
-    Un relatore di un seminario potrebbe infatti non appartenere all'ateneo.
