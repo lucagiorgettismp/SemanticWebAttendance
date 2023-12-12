@@ -27,3 +27,9 @@ jobs:
                     artifacts: "site/*"
                     body: "Release"
                     generateReleaseNotes: true
+            -   uses: actions/upload-pages-artifact@v1.0.7
+                with:
+                    path: ./site
+            -   name: Deploy to Github Pages
+                id: deployment
+                uses: actions/deploy-pages@v1.2.3
